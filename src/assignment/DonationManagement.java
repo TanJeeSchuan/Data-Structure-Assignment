@@ -4,11 +4,15 @@
  */
 package assignment;
 
+import adt.LinkedSet;
+
 /**
  *
  * @author Tan Jee Schuan
  */
 public class DonationManagement {
+    LinkedSet<Donor> donors;
+    
     //adt<event, adt<donor, donation>>
     //adt<cause, adt<donor, donation>>
     
@@ -18,4 +22,10 @@ public class DonationManagement {
     //queue
     
     //eg list(dict{cause, dict{donor, float donation}})
+
+    public DonationManagement() {
+        donors = new LinkedSet<>();
+        
+        //get all donors
+    }
 }

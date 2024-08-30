@@ -4,6 +4,9 @@
  */
 package assignment;
 
+import adt.SortedArrayList;
+import java.util.Comparator;
+
 /**
  *
  * @author Tan Jee Schuan
@@ -11,8 +14,17 @@ package assignment;
 public class CharityCause {
     int causeId;
     String causeName;
-    
+    SortedArrayList<Donee> donee;
     //refactor into ADT
     //orderedList
-    Donee[] doneeArr;
+    
+    public CharityCause(){
+        donee = new SortedArrayList<>(new Comparator<Donee>(){
+            @Override
+            public int compare(Donee o1, Donee o2) {
+                return o1.doneeId - o2.doneeId;
+            }
+        });
+    }
 }
+
