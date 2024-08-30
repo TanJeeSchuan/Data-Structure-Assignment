@@ -4,6 +4,8 @@
  */
 package adt;
 
+import adt.interfaces.List;
+
 /**
  *
  * @author Tan Jee Schuan
@@ -126,5 +128,50 @@ public class LinkedList<T> implements List{
         }    
         
         return -1;
+    }
+    
+    public Node getNode(int index) {
+        int counter = 0;
+        
+        if(index > size)
+            return null;
+        
+        Node currentNode = head;
+        while(counter < index){
+            currentNode = currentNode.next;
+            counter++;
+        }
+        
+        return currentNode;
+    }
+    
+    @Override
+    public Object[] toArray(){
+        int expansionFactor = 2;
+        int count = 0;
+        T[] arr = (T[])new Object[expansionFactor];
+        
+        if(isEmpty())
+            return null;
+                
+        Node currentNode = head;
+        while(currentNode.next != null){
+            if(count >= arr.length)
+                arr = expandArray(arr, expansionFactor);
+            
+            arr[count] = currentNode.data;
+            count++;
+            
+            currentNode = currentNode.next;
+        }
+        
+        return arr;
+    }
+    
+    private T[] expandArray(T[] array, int expansionFactor){
+        int newSize = array.length * expansionFactor;
+        T[] newArr = (T[])new Object[newSize];
+        System.arraycopy(array, 0, newArr, 0, array.length);
+        return newArr;
     }
 }

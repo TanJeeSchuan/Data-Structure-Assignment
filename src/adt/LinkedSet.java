@@ -1,5 +1,6 @@
 package adt;
 
+import adt.interfaces.SetInterface;
 import java.util.Iterator;
 
 public class LinkedSet<T> implements SetInterface<T>, Iterable<T> {

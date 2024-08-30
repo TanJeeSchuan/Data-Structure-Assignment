@@ -4,20 +4,19 @@
  */
 package adt;
 
-import java.util.Comparator;
-
 /**
  *
  * @author Tan Jee Schuan
  * @param <T>
  */
 
-public class SortedArrayList<T> extends ArrayList<T> {
-    Comparator<T> comparator;
-    
-    public SortedArrayList(Comparator<T> comparator){
+public class SortedArrayList<T extends Comparable<T>> extends ArrayList<T> {
+    public SortedArrayList(){
         super();
-        this.comparator = comparator;
+    }
+    
+    public SortedArrayList(Object[] arr){
+        super(arr);
     }
     
     @Override
@@ -25,7 +24,7 @@ public class SortedArrayList<T> extends ArrayList<T> {
         if(isFull())
             expandArray();
         
-        int i = findInsertionIndex(object);
+        int i = findInsertionIndex((T)object);
         
         if( i < 0)
             return false;
@@ -36,29 +35,29 @@ public class SortedArrayList<T> extends ArrayList<T> {
     
     @Override
     public boolean contains(Object object) {
-        return binarySearch(array, 0, entries, (T)object, comparator) != -1;
+        return binarySearch(array, 0, entries, (T)object) != -1;
     }
     
     @Override
     public int indexOf(Object object){
-        return binarySearch(array, 0, entries, (T)object, comparator);
+        return binarySearch(array, 0, entries, (T)object);
     }
 
     
-    private static int binarySearch(Object arr[], int start, int end, Object x, Comparator comparator){
-        if(start >= end){
-            int middle = start + (start + end) / 2 ;
+    private int binarySearch(Object arr[], int start, int end, Object x){
+        if(end >= start){
+            int middle = start + (end - start) / 2 ;
 
             if(x.equals(arr[middle]))
                 return middle;
 
             //x at low
-            if(comparator.compare(arr[middle], x) > 0)
-                return binarySearch(arr, start, middle - 1, x, comparator);
+            if(((T)arr[middle]).compareTo((T)x) > 0)
+                return binarySearch(arr, start, middle - 1, x);
 
             //x at higher part
-            if(comparator.compare(arr[middle], x) < 0)
-                return binarySearch(arr, middle + 1, end, x, comparator);
+            if(((T)arr[middle]).compareTo((T)x) < 0)
+                return binarySearch(arr, middle + 1, end, x);
         }
         //not found
         return -1;
@@ -69,7 +68,7 @@ public class SortedArrayList<T> extends ArrayList<T> {
             return 0;
             
         for(int i = 0; i < entries; i++){
-            if(comparator.compare((T)object, array[i]) < 0)
+            if(((T)object).compareTo((T)array[i]) < 0)
                 return i;
         }
         return entries;

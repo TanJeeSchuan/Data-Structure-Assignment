@@ -1,11 +1,14 @@
 
 package adt;
 
+import adt.interfaces.List;
+import java.util.Iterator;
+
 /*
  * @param <T>
  */
-public class ArrayList<T> implements List{
-    protected T[] array;
+public class ArrayList<T> implements List, Iterable<T>{
+    protected Object[] array;
     protected static final int DEFAULT_CAPACITY = 2;
     protected int maxSize;
     protected int entries = 0;
@@ -15,7 +18,33 @@ public class ArrayList<T> implements List{
         maxSize = DEFAULT_CAPACITY;
     }
     
+    public ArrayList(Object[] arr){
+        while(maxSize < arr.length){
+            maxSize *= DEFAULT_CAPACITY;
+        }
+        array = (T[])new Object[maxSize];
+        System.arraycopy(arr, 0, array, 0, arr.length);        
+    }
+    
+    public Iterator<T> iterator() {
+        return getIterator();
+    }
 
+    public Iterator<T> getIterator(){
+        return new Iterator<T>(){
+            int index = 0;
+            @Override
+            public boolean hasNext() {
+                return entries < maxSize;
+            }
+
+            @Override
+            public T next() {
+                return (T)array[++index];
+            }
+        };
+    }
+    
     @Override
     public boolean add(Object object) {
         if(isFull())
@@ -85,13 +114,13 @@ public class ArrayList<T> implements List{
     }
     
     protected void expandArray(){
-        T[] newArr = (T[])new Object[maxSize * maxSize];
+        T[] newArr = (T[])new Object[maxSize * DEFAULT_CAPACITY];
         
         for (int i = 0; i < maxSize; i++){
-            newArr[i] = array[i];
+            newArr[i] = (T) array[i];
         }
         
-        maxSize *= maxSize;
+        maxSize *= DEFAULT_CAPACITY;
         array = newArr;
     }
     
@@ -102,6 +131,7 @@ public class ArrayList<T> implements List{
         for (int i = entries-1; i >= index; i--){
             array[i+1] = array[i];
         }
+        
         entries++;
         array[index] = null;
     }
@@ -124,5 +154,12 @@ public class ArrayList<T> implements List{
     @Override
     public boolean isEmpty(){
         return (entries == 0);
+    }
+    
+    @Override
+    public Object[] toArray(){
+        Object[] output = new Object[entries];
+        System.arraycopy(array, 0, output, 0, entries);
+        return output;
     }
 }

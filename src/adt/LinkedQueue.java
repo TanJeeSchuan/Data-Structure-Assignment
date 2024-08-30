@@ -4,6 +4,7 @@
  */
 package adt;
 
+import adt.interfaces.QueueInterface;
 import java.util.Iterator;
 
 /**

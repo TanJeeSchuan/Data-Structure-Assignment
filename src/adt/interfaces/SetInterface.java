@@ -1,4 +1,4 @@
-package adt;
+package adt.interfaces;
 
 public interface SetInterface<T>{
     public void add(T t);

@@ -3,6 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package adt;
+
+import adt.interfaces.MapInterface;
+
 /**
  *
  * @author Cyborg
@@ -32,6 +35,7 @@ public class ArrayMap<K, V> implements MapInterface<K, V> {
         maxSize = DEFAULT_CAPACITY;
     }
 
+    @Override
     public void add(K k, V v) {
         if (isFull()) {
             expandArray();
@@ -41,6 +45,7 @@ public class ArrayMap<K, V> implements MapInterface<K, V> {
         size++;
     }
 
+    @Override
     public V remove(K k) {
         V value = null;
         for (int i = 0; i < size; i++) {
@@ -55,6 +60,7 @@ public class ArrayMap<K, V> implements MapInterface<K, V> {
         return value;
     }
 
+    @Override
     public void put(K k, V v) {
         for (int i = 0; i < size; i++) {
             if (array[i].key.equals(k)) {

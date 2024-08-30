@@ -2,9 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package assignment;
+package entity;
 
+import adt.ArrayMap;
 import adt.LinkedSet;
+import adt.ArrayList;
 
 /**
  *
@@ -12,6 +14,9 @@ import adt.LinkedSet;
  */
 public class DonationManagement {
     LinkedSet<Donor> donors;
+    //fast lookup
+    ArrayMap<Donor, ArrayList<Donation>> donations;
+    
     
     //adt<event, adt<donor, donation>>
     //adt<cause, adt<donor, donation>>
@@ -27,5 +32,18 @@ public class DonationManagement {
         donors = new LinkedSet<>();
         
         //get all donors
+    }
+    
+    //add donation
+    public void addDonation(Donor donor, CharityCause charityCause,double amount){
+        Donation newDonation = new Donation(donor,charityCause, amount);
+        
+        if(donations.has(donor)){
+            donations.get(donor).add(newDonation);
+        } else {
+            ArrayList<Donation> donationArrayList = new ArrayList<>();
+            donationArrayList.add(newDonation);
+            donations.add(donor, donationArrayList);
+        }
     }
 }
