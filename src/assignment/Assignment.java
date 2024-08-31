@@ -5,6 +5,10 @@
 package assignment;
 
 import adt.SortedArrayList;
+import boundary.MainInterface;
+import entity.CharityCause;
+import entity.DonationManagement;
+import entity.Donor;
 
 /**
  *
@@ -13,7 +17,18 @@ import adt.SortedArrayList;
 public class Assignment {
     
     public static void main(String[] args) {
+        DonationManagement don = new DonationManagement();
         
+        Donor donor1 = new Donor("Alice", "A@a.aa");
+        CharityCause charityCause = new CharityCause("ABC");
+        don.addDonation(donor1, charityCause, 0);
+        
+        System.out.println(don.getRecentDonors());
+        
+        MainInterface ui = new MainInterface();
+        while(!ui.isEnd()){
+            ui.startUI();
+        }
     }
     
 //    public static void main(String[] args) {
