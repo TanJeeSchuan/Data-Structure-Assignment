@@ -42,18 +42,18 @@ public class DonationManagement {
             donations.add(donor, donationArrayList);
         }
     }
-    
-    public void setDonation(Donor donor, Donation donation, int index){
-        if(donations.has(donor)){
+
+    public void setDonation(Donor donor, Donation donation, int index) {
+        if (donations.has(donor)) {
             donations.get(donor).remove(index);
             donations.get(donor).add(donation);
         }
     }
-    
-    public boolean setDonationDonor(Donor originDonor, Donor newDonor, Donation donation, int index){
-        if(donations.has(originDonor)){
+
+    public boolean setDonationDonor(Donor originDonor, Donor newDonor, Donation donation, int index) {
+        if (donations.has(originDonor)) {
             donations.get(originDonor).remove(index);
-        }else{
+        } else {
             return false;
         }
         if (donations.has(newDonor)) {
@@ -65,29 +65,28 @@ public class DonationManagement {
         }
         return true;
     }
-    
 
     public ArrayMap<Donor, ArrayList<Donation>> getDonations() {
         return donations;
     }
-    
-    public ArrayList<Donation> getDonorDonation(Donor donor){
+
+    public ArrayList<Donation> getDonorDonation(Donor donor) {
         if (donations.has(donor)) {
             return donations.get(donor);
         }
         return null;
     }
-    
-    public ArrayMap<Donor, ArrayList<Donation>> getMostRecentDonor(){
+
+    public ArrayMap<Donor, ArrayList<Donation>> getMostRecentDonor() {
         int highest = 0;
-        Donor donor= null;
-        for(int i = 0; i < donors.size(); i++){
-            if(donations.get(donors.getValue(i)).size() > highest){
-                highest = donations.get(donors.getValue(i)).size();
-                donor = donors.getValue(i);
+        Donor donor = null;
+        for (int i = 0; i < donations.size(); i++) {
+            if (donations.get(donations.getKey(i)).size() > highest) {
+                donor = donations.getKey(i);
+                highest = donations.get(donor).size();
             }
         }
-        
+
         ArrayMap<Donor, ArrayList<Donation>> mostRecentDonor = new ArrayMap();
         mostRecentDonor.add(donor, donations.get(donor));
         return mostRecentDonor;
