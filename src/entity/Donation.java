@@ -6,7 +6,7 @@ package entity;
 
 /**
  *
- * @author Tan Jee Schuan
+ * @author Liau Xiao Xuan
  */
 public class Donation implements Comparable<Donation> {
 

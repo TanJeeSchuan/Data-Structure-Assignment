@@ -59,25 +59,24 @@ public class DonationManagement {
 
     }
 
-    public void setDonationDonor(Donor originDonor, Donor newDonor, Donation donation, int index) {
-        donations.get(originDonor).remove(index);
-
-        if (donations.has(newDonor)) {
-            donations.get(newDonor).add(donation);
-        } else {
-            ArrayList<Donation> donationArrayList = new ArrayList<>();
-            donationArrayList.add(donation);
-            donations.add(newDonor, donationArrayList);
-        }
-
-    }
-
-    public void removeDonation(Donor donor, Donation donation, int index) {
-        if (donations.has(donor)) {
-            donations.get(donor).remove(index);
-        }
-    }
-
+//    public void setDonationDonor(Donor originDonor, Donor newDonor, Donation donation, int index) {
+//        donations.get(originDonor).remove(index);
+//
+//        if (donations.has(newDonor)) {
+//            donations.get(newDonor).add(donation);
+//        } else {
+//            ArrayList<Donation> donationArrayList = new ArrayList<>();
+//            donationArrayList.add(donation);
+//            donations.add(newDonor, donationArrayList);
+//        }
+//
+//    }
+//
+//    public void removeDonation(Donor donor, Donation donation, int index) {
+//        if (donations.has(donor)) {
+//            donations.get(donor).remove(index);
+//        }
+//    }
     public String getAllDonations() {
         String mapToString = "";
         for (int i = 0; i < donations.size(); i++) {
@@ -128,10 +127,13 @@ public class DonationManagement {
 
         ArrayList<Donation> donationArray = donations.get(donor);
 
-        for (int j = 0; j < donationArray.size(); j++) {
-            arrString += donationArray.get(j);
-            arrString += "\n";
+        if (donationArray != null) {
+            for (int j = 0; j < donationArray.size(); j++) {
+                arrString += "-------- No " + (j + 1) + " ---------\n";
+                arrString += donationArray.get(j);
+            }
         }
+
         return arrString;
     }
 

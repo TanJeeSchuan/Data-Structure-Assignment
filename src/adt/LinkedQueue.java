@@ -9,7 +9,7 @@ import java.util.Iterator;
 
 /**
  *
- * @author LiauXiaoXuan
+ * @author Liau Xiao Xuan
  */
 public class LinkedQueue<T> implements QueueInterface<T>, Iterable<T>{
     protected Node firstNode;

@@ -8,7 +8,7 @@ import java.util.Iterator;
 
 /**
  *
- * @author LiauXiaoXuan
+ * @author Liau Xiao Xuan
  */
 public interface QueueInterface<T> {
 
