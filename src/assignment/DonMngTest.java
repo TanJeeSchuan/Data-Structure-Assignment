@@ -45,28 +45,30 @@ public class DonMngTest {
         dm.addDonation(donor2, cc2, 2);
         dm.addDonation(donor3, cc3, 3);
 
-        System.out.println(dm.getAllDonations());              
+        System.out.println(dm.getAllDonations());
         System.out.println();
-        System.out.println(dm.getDonationString(dm.getMostRecentDonor()));          
-        
+        System.out.println(dm.getDonationString(dm.getMostRecentDonor()));
+
         System.out.println();
         System.out.println();
         System.out.println();
         System.out.println("Update");
         System.out.println();
-        
-        Donation donation = new Donation(donor, cc, 4.0);
-        
-        Donation type = (Donation)dm.getDonorDonation(donor).get(0);
-        type.setAmount(100.0);
+
+        Donation dn1 = (Donation) dm.getDonorDonation(donor).get(0);
+        Donation dn2 = (Donation) dm.getDonorDonation(donor).get(1);
+
+        dn1.setAmount(100.0);
         System.out.println(dm.getDonorDonation(donor).get(0));
         System.out.println(dm.getAllDonations());
+        dm.getDonorDonation(donor).remove(dn2);
+        System.out.println(dm.getAllDonations());
+
     }
 
 //    public void updateDonation() {
 //        
 //    }
-
     public static void main(String[] args) {
         DonMngTest t = new DonMngTest();
     }
