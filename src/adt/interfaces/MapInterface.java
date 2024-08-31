@@ -21,4 +21,6 @@ public interface MapInterface<K, V> {
     boolean has(K k);
 
     int size();
+    
+    K getKey(int index);
 }

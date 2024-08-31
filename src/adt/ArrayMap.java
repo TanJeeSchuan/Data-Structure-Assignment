@@ -91,6 +91,11 @@ public class ArrayMap<K, V> implements MapInterface<K, V> {
     public int size() {
         return size;
     }
+    
+    @Override
+    public K getKey(int index){
+        return array[index].key;
+    }
 
     protected void expandArray() {
         Entry[] newArr = new Entry[maxSize * DEFAULT_CAPACITY];
