@@ -48,4 +48,8 @@ public class Donor implements Comparable<Donor>{
     public int compareTo(Donor o) {
         return this.donorId - o.donorId;
     }
+    
+    public String toString(){
+        return "Donor Id: " + donorId + "\nDonor name: " + name + "\nDonor Email: " + email;
+    }
 }

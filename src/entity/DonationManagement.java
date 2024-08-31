@@ -9,6 +9,10 @@ import adt.LinkedSet;
 import adt.ArrayList;
 import adt.FixedSizedLinkedQueue;
 import adt.LinkedQueue;
+import adt.FixedSizedLinkedQueue;
+import adt.LinkedQueue;
+import adt.interfaces.List;
+import adt.interfaces.MapInterface;
 
 /**
  *
@@ -19,7 +23,6 @@ public class DonationManagement {
     LinkedSet<Donor> donors;
     //fast lookup
     ArrayMap<Donor, ArrayList<Donation>> donations;
-    
     //recent Donations
     LinkedQueue<Donation> recentDonations;
     
@@ -35,6 +38,17 @@ public class DonationManagement {
         donors = new LinkedSet<>();
         recentDonations = new FixedSizedLinkedQueue(5);
         //get all donors
+        // ------------------------Testing--------------------
+        Donor donor1 = new Donor("Alice", "A@a.aa");
+        Donor donor2 = new Donor("Bil", "B@a.aa");
+        Donor donor3 = new Donor("Chris", "C@a.aa");
+        Donor donor4 = new Donor("David", "D@a.aa");
+
+        donors.add(donor1);
+        donors.add(donor2);
+        donors.add(donor3);
+        donors.add(donor4);
+
     }
 
     //add donation
@@ -45,26 +59,19 @@ public class DonationManagement {
         
         if (donations.has(donor)) {
             donations.get(donor).add(newDonation);
+
         } else {
             ArrayList<Donation> donationArrayList = new ArrayList<>();
             donationArrayList.add(newDonation);
             donations.add(donor, donationArrayList);
+
         }
+
     }
 
-    public void setDonation(Donor donor, Donation donation, int index) {
-        if (donations.has(donor)) {
-            donations.get(donor).remove(index);
-            donations.get(donor).add(donation);
-        }
-    }
+    public void setDonationDonor(Donor originDonor, Donor newDonor, Donation donation, int index) {
+        donations.get(originDonor).remove(index);
 
-    public boolean setDonationDonor(Donor originDonor, Donor newDonor, Donation donation, int index) {
-        if (donations.has(originDonor)) {
-            donations.get(originDonor).remove(index);
-        } else {
-            return false;
-        }
         if (donations.has(newDonor)) {
             donations.get(newDonor).add(donation);
         } else {
@@ -72,11 +79,22 @@ public class DonationManagement {
             donationArrayList.add(donation);
             donations.add(newDonor, donationArrayList);
         }
-        return true;
+
     }
 
-    public ArrayMap<Donor, ArrayList<Donation>> getDonations() {
-        return donations;
+    public void removeDonation(Donor donor, Donation donation, int index) {
+        if (donations.has(donor)) {
+            donations.get(donor).remove(index);
+        }
+    }
+
+    public String getAllDonations() {
+        String mapToString = "";
+        for (int i = 0; i < donations.size(); i++) {
+            Donor donor = donations.getKey(i);
+            mapToString += getDonationString(donor);
+        }
+        return mapToString;
     }
 
     public ArrayList<Donation> getDonorDonation(Donor donor) {
@@ -86,9 +104,13 @@ public class DonationManagement {
         return null;
     }
 
-    public ArrayMap<Donor, ArrayList<Donation>> getMostRecentDonor() {
+//    public ArrayList<Donor> getDonors(){
+//        ArrayList<Donor> donationDonors = new ArrayList<>();
+//    }
+    public Donor getMostRecentDonor() {
         int highest = 0;
         Donor donor = null;
+
         for (int i = 0; i < donations.size(); i++) {
             if (donations.get(donations.getKey(i)).size() > highest) {
                 donor = donations.getKey(i);
@@ -96,9 +118,31 @@ public class DonationManagement {
             }
         }
 
-        ArrayMap<Donor, ArrayList<Donation>> mostRecentDonor = new ArrayMap();
-        mostRecentDonor.add(donor, donations.get(donor));
-        return mostRecentDonor;
+        return donor;
+    }
+
+    public String getDonationString(Donor donor) {
+        String arrString = "";
+        arrString += "Donor\n";
+        arrString += "------\n";
+        arrString += donor;
+
+        arrString += "\nDonation Detail\n";
+        arrString += "--------------------";
+        arrString += getDonationArrayString(donor);
+        return arrString;
+    }
+
+    public String getDonationArrayString(Donor donor) {
+        String arrString = "";
+
+        ArrayList<Donation> donationArray = donations.get(donor);
+
+        for (int j = 0; j < donationArray.size(); j++) {
+            arrString += donationArray.get(j);
+            arrString += "\n";
+        }
+        return arrString;
     }
     
     public LinkedQueue<Donation> getRecentDonors() {
