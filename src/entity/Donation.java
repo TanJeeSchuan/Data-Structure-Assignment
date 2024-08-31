@@ -59,4 +59,9 @@ public class Donation implements Comparable<Donation> {
     public int compareTo(Donation o) {
         return this.donationId - o.donationId;
     }
+    
+    @Override
+    public String toString(){
+        return "\nCharity Cause: " + cause.causeName + "\nAmount: " + amount;
+    }
 }
