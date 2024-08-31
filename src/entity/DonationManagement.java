@@ -7,6 +7,8 @@ package entity;
 import adt.ArrayMap;
 import adt.LinkedSet;
 import adt.ArrayList;
+import adt.FixedSizedLinkedQueue;
+import adt.LinkedQueue;
 
 /**
  *
@@ -17,6 +19,11 @@ public class DonationManagement {
     LinkedSet<Donor> donors;
     //fast lookup
     ArrayMap<Donor, ArrayList<Donation>> donations;
+    
+    //recent Donations
+    LinkedQueue<Donation> recentDonations;
+    
+    //todo
 
     //adt<event, adt<donor, donation>>
     //adt<cause, adt<donor, donation>>
@@ -26,7 +33,7 @@ public class DonationManagement {
     //eg list(dict{cause, dict{donor, float donation}})
     public DonationManagement() {
         donors = new LinkedSet<>();
-
+        recentDonations = new FixedSizedLinkedQueue(5);
         //get all donors
     }
 
@@ -34,6 +41,8 @@ public class DonationManagement {
     public void addDonation(Donor donor, CharityCause charityCause, double amount) {
         Donation newDonation = new Donation(donor, charityCause, amount);
 
+        recentDonations.enqueue(newDonation);
+        
         if (donations.has(donor)) {
             donations.get(donor).add(newDonation);
         } else {
@@ -90,6 +99,10 @@ public class DonationManagement {
         ArrayMap<Donor, ArrayList<Donation>> mostRecentDonor = new ArrayMap();
         mostRecentDonor.add(donor, donations.get(donor));
         return mostRecentDonor;
+    }
+    
+    public LinkedQueue<Donation> getRecentDonors() {
+        return recentDonations;
     }
 
 }
