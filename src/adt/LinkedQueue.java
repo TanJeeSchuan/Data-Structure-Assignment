@@ -113,4 +113,16 @@ public class LinkedQueue<T> implements QueueInterface<T>, Iterable<T>{
             this.next = next;
         }
     }
+    
+    @Override
+    public String toString(){
+        String out = "";
+        Node currentNode = firstNode;
+        while(currentNode != null){
+            out += currentNode.data.toString();
+            currentNode = currentNode.next;
+        }
+        
+        return out;
+    }
 }

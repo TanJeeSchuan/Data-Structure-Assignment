@@ -16,7 +16,9 @@ public class ArrayMap<K, V> implements MapInterface<K, V> {
 
     private static final int DEFAULT_CAPACITY = 2;
     int maxSize = 2;
-
+    private Entry<K, V>[] array;
+    private int size = 0;
+    
     private static class Entry<K, V> {
         K key;
         V value;
@@ -27,14 +29,15 @@ public class ArrayMap<K, V> implements MapInterface<K, V> {
         private Entry() {}
     }
 
-    private Entry<K, V>[] array;
-    private int size = 0;
-
     public ArrayMap() {
         array = new Entry[DEFAULT_CAPACITY];
         maxSize = DEFAULT_CAPACITY;
     }
 
+    public boolean isEmpty() {
+        return size==0;
+    }
+    
     @Override
     public void add(K k, V v) {
         if (isFull()) {
