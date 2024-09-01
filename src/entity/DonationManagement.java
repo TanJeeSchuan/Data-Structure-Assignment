@@ -9,10 +9,6 @@ import adt.LinkedSet;
 import adt.ArrayList;
 import adt.FixedSizedLinkedQueue;
 import adt.LinkedQueue;
-import adt.FixedSizedLinkedQueue;
-import adt.LinkedQueue;
-import adt.interfaces.List;
-import adt.interfaces.MapInterface;
 
 /**
  *
@@ -20,7 +16,7 @@ import adt.interfaces.MapInterface;
  */
 public class DonationManagement {
 
-    LinkedSet<Donor> donors;
+//    LinkedSet<Donor> donors;
     //fast lookup
     ArrayMap<Donor, ArrayList<Donation>> donations;
     //recent Donations
@@ -35,19 +31,20 @@ public class DonationManagement {
     //queue
     //eg list(dict{cause, dict{donor, float donation}})
     public DonationManagement() {
-        donors = new LinkedSet<>();
+//        donors = new LinkedSet<>();
         recentDonations = new FixedSizedLinkedQueue(5);
+        donations = new ArrayMap();
         //get all donors
         // ------------------------Testing--------------------
-        Donor donor1 = new Donor("Alice", "A@a.aa");
-        Donor donor2 = new Donor("Bil", "B@a.aa");
-        Donor donor3 = new Donor("Chris", "C@a.aa");
-        Donor donor4 = new Donor("David", "D@a.aa");
-
-        donors.add(donor1);
-        donors.add(donor2);
-        donors.add(donor3);
-        donors.add(donor4);
+//        Donor donor1 = new Donor("Alice", "A@a.aa");
+//        Donor donor2 = new Donor("Bil", "B@a.aa");
+//        Donor donor3 = new Donor("Chris", "C@a.aa");
+//        Donor donor4 = new Donor("David", "D@a.aa");
+//
+//        donors.add(donor1);
+//        donors.add(donor2);
+//        donors.add(donor3);
+//        donors.add(donor4);
 
     }
 
@@ -57,7 +54,7 @@ public class DonationManagement {
 
         recentDonations.enqueue(newDonation);
         
-        if (donations.has(donor)) {
+        if (!donations.isEmpty() || donations.has(donor)) {
             donations.get(donor).add(newDonation);
 
         } else {
