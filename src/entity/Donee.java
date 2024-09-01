@@ -56,4 +56,9 @@ public class Donee implements Comparable<Donee>{
     public int compareTo(Donee o) {
         return this.doneeId - o.doneeId;
     }
+    
+    @Override
+    public String toString(){
+        return "Donee Id: " + doneeId + ", Donee name: " + name + ", ContactNumber: " + contactNumber + ", Address: " + address;
+    }
 }

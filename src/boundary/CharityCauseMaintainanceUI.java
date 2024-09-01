@@ -67,14 +67,14 @@ public class CharityCauseMaintainanceUI {
 
     public int getCauseSelection() {
         System.out.print("\nEnter selected cause index: ");
-        return Integer.parseInt(scanner.nextLine())-1;
+        return Integer.parseInt(scanner.nextLine());
     }
 
     public void showModificationUI(Object get) {
         System.out.println("\nSelected Charity Cause: " + get.toString());
         System.out.println("1. Cause Name");
         System.out.println("2. Donees");
-        System.out.println("3. Cancel");
+        System.out.println("0. Cancel");
     }
 
     public int inputModificationChoice() {
@@ -88,11 +88,20 @@ public class CharityCauseMaintainanceUI {
     }
 
     public void showCharityCauseDonees(ArrayList lst) {
-        System.out.println(lst);
+        for(var o: lst){
+            System.out.println("\n"+o);
+        }
     }
 
     public int getAddOrRemoveDonee() {
         System.out.println("\n1. Add Donor");
         System.out.println("2. Remove Donor");
-        return Integer.parseInt(scanner.nextLine());    }
+        System.out.print("Enter selection: ");
+        return Integer.parseInt(scanner.nextLine());
     }
+
+    public int getRemovedDoneeIndex() {
+        System.out.print("\nEnter Donor index to remove: ");
+        return Integer.parseInt(scanner.nextLine());
+    }
+}
