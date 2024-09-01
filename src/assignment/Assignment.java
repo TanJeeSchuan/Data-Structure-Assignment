@@ -6,6 +6,7 @@ package assignment;
 
 import adt.SortedArrayList;
 import boundary.MainInterface;
+import control.MainMenu;
 import entity.CharityCause;
 import entity.DonationManagement;
 import entity.Donor;
@@ -25,10 +26,8 @@ public class Assignment {
         
         System.out.println(don.getRecentDonors());
         
-        MainInterface ui = new MainInterface();
-        while(!ui.isEnd()){
-            ui.startUI();
-        }
+        MainMenu mainMenu = new MainMenu();
+        mainMenu.startUI();
     }
     
 //    public static void main(String[] args) {

@@ -24,7 +24,7 @@ public class DonorSystemInterface {
         while(!isEnd){
             isEnd = false;
             
-            System.out.println("\nonor System Menu");
+            System.out.println("\nDonor System Menu");
             System.out.println("------------------------");
             System.out.println("1. Add new donor");
             System.out.println("2. Modify donor information");
