@@ -4,7 +4,7 @@
  */
 package boundary;
 
-import dao.DB;
+import adt.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -13,8 +13,6 @@ import java.util.Scanner;
  */
 public class CharityCauseMaintainanceUI {
     private Scanner scanner;
-    
-    private final int maxNum = 4;
     
     public CharityCauseMaintainanceUI(){
         scanner = new Scanner(System.in);
@@ -28,6 +26,22 @@ public class CharityCauseMaintainanceUI {
         System.out.println("3. Display all charity causes");
         System.out.println("4. Delete cause");
         System.out.println("0. Exit");
+    }
+    
+    public void showAddCharityUI(){
+        System.out.print("Enter cause name: ");
+    }
+    
+    public void showCharityCauseHeader(){
+        System.out.println("\n%-10s%-30s%-20s".formatted("CauseId","Cause Name","Number of Donee"));
+    }
+    
+    public void showCharityCauseSelection(String charityString){
+        System.out.println(charityString);
+    }
+    
+    public String getCauseDetails(){
+        return scanner.nextLine();
     }
 
     public int getSelection() {
@@ -50,4 +64,35 @@ public class CharityCauseMaintainanceUI {
         
         return input;
     }
-}
+
+    public int getCauseSelection() {
+        System.out.print("\nEnter selected cause index: ");
+        return Integer.parseInt(scanner.nextLine())-1;
+    }
+
+    public void showModificationUI(Object get) {
+        System.out.println("\nSelected Charity Cause: " + get.toString());
+        System.out.println("1. Cause Name");
+        System.out.println("2. Donees");
+        System.out.println("3. Cancel");
+    }
+
+    public int inputModificationChoice() {
+        System.out.print("\nEnter parameter to modify: ");
+        return Integer.parseInt(scanner.nextLine());
+    }
+
+    public String getNewCauseName() {
+        System.out.print("\nEnter new charity cause name: ");
+        return (scanner.nextLine());
+    }
+
+    public void showCharityCauseDonees(ArrayList lst) {
+        System.out.println(lst);
+    }
+
+    public int getAddOrRemoveDonee() {
+        System.out.println("\n1. Add Donor");
+        System.out.println("2. Remove Donor");
+        return Integer.parseInt(scanner.nextLine());    }
+    }

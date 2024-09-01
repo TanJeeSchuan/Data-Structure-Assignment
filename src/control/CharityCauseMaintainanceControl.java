@@ -4,8 +4,10 @@
  */
 package control;
 
+import adt.ArrayList;
 import boundary.CharityCauseMaintainanceUI;
 import dao.DB;
+import entity.CharityCause;
 
 /**
  *
@@ -13,6 +15,7 @@ import dao.DB;
  */
 public class CharityCauseMaintainanceControl {
     private CharityCauseMaintainanceUI charityCauseMaintainanceUI;
+    private DB db = DB.getInstance();
     
     public CharityCauseMaintainanceControl(){
         charityCauseMaintainanceUI = new CharityCauseMaintainanceUI();
@@ -32,8 +35,10 @@ public class CharityCauseMaintainanceControl {
                     isEnd = true;
                     break;
                 case 1:
+                    addNewCause();
                     break;
                 case 2:
+                    modifyCause();
                     break;
                 case 3:
                     displayAllCauses();
@@ -48,7 +53,64 @@ public class CharityCauseMaintainanceControl {
         }
     }
     
-    public void displayAllCauses(){
-        System.out.println(DB.getInstance().charityCauseDAO.getCharityCauses());
+    private void addNewCause() {
+        charityCauseMaintainanceUI.showAddCharityUI();
+        String causeName = charityCauseMaintainanceUI.getCauseDetails();
+        DB.getInstance().charityCauseDAO.addCharityCause(new CharityCause(causeName));
+    }
+    
+    private void modifyCause(){
+        //show selection
+        
+        ArrayList<CharityCause> causes = db.charityCauseDAO.getCharityCauses();
+        charityCauseMaintainanceUI.showCharityCauseHeader();
+        for(CharityCause cause: causes){
+            charityCauseMaintainanceUI.showCharityCauseSelection("%-10d%-30s%-20s".formatted(cause.causeId, cause.causeName, cause.donees.size()));
+        }
+        
+        int selectedIndex = charityCauseMaintainanceUI.getCauseSelection();
+        CharityCause selectedCause = (CharityCause)causes.get(selectedIndex);
+        charityCauseMaintainanceUI.showModificationUI(selectedCause.toString());
+        
+        int choice = charityCauseMaintainanceUI.inputModificationChoice();
+        switch (choice) {
+            case 0:
+                break;
+            case 1:
+                modifyCauseName(selectedCause);
+                break;
+            case 2:
+                modifyCauseDonees(selectedCause);
+                break;
+            default:
+                throw new AssertionError();
+        }
+        
+    }
+    
+    private void displayAllCauses(){
+        System.out.println(db.charityCauseDAO.getCharityCauses());
+    }
+
+    private void modifyCauseName(CharityCause selectedCause) {
+        selectedCause.causeName = charityCauseMaintainanceUI.getNewCauseName();
+    }
+
+    private void modifyCauseDonees(CharityCause selectedCause) {
+        
+        charityCauseMaintainanceUI.showCharityCauseDonees(selectedCause.donees);
+        int choice = charityCauseMaintainanceUI.getAddOrRemoveDonee();
+
+        switch (choice) {
+            case 0:
+                break;
+            case 1:
+                //add donor
+            case 2:
+                //remove donor
+            default:
+                throw new AssertionError();
+        }
+
     }
 }

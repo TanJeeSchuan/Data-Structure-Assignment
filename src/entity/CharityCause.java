@@ -12,7 +12,7 @@ import adt.SortedArrayList;
  * @author Tan Jee Schuan
  */
 public class CharityCause implements Comparable<CharityCause>{
-    public static int currentCauseId = 1;
+    public static int currentCauseId = 0;
     public int causeId;
     public String causeName;
     public SortedArrayList<Donee> donees;

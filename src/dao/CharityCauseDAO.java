@@ -17,7 +17,7 @@ public class CharityCauseDAO {
     private ArrayList<CharityCause> charityCauseList;
     
     public CharityCauseDAO(){
-        charityCauseList = new ArrayList<>();
+        charityCauseList = new ArrayList<CharityCause>();
         DoneeDAO doneeDAO = new DoneeDAO();
         
         LinkedSet<Donee> doneeSet = doneeDAO.getDonees();        
@@ -46,6 +46,10 @@ public class CharityCauseDAO {
         tempCharityCause.donees.add(doneeSet.iterator().next());
         tempCharityCause.donees.add(doneeSet.iterator().next());
         charityCauseList.add(tempCharityCause);
+    }
+    
+    public void addCharityCause(CharityCause charityCause){
+        charityCauseList.add(charityCause);
     }
     
     public ArrayList<CharityCause> getCharityCauses(){

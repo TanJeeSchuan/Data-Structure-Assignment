@@ -36,12 +36,12 @@ public class ArrayList<T> implements List, Iterable<T> {
 
             @Override
             public boolean hasNext() {
-                return entries < maxSize;
+                return index != entries;
             }
 
             @Override
             public T next() {
-                return (T) array[++index];
+                return (T) array[index++];
             }
         };
     }
@@ -181,7 +181,7 @@ public class ArrayList<T> implements List, Iterable<T> {
             str += (array[i]).toString();
             
             if(i < entries-1)
-                str += " ,";
+                str += ", ";
         }
         
         str += "]";
