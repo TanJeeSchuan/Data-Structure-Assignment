@@ -16,6 +16,7 @@ public class Donee implements Comparable<Donee>{
     private String address;
 
     public Donee(String name, String contactNumber, String address) {
+        this.doneeId = currentDoneeId;
         this.name = name;
         this.contactNumber = contactNumber;
         this.address = address;

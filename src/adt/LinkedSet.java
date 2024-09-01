@@ -21,7 +21,7 @@ public class LinkedSet<T> implements SetInterface<T>, Iterable<T> {
             public Object next() {
                 Node node = firstNode;
                 firstNode = firstNode.next;
-                return node;
+                return node.value;  
             }
         };
     }

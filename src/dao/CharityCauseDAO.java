@@ -5,6 +5,7 @@
 package dao;
 
 import adt.ArrayList;
+import adt.LinkedSet;
 import entity.CharityCause;
 import entity.Donee;
 
@@ -19,13 +20,35 @@ public class CharityCauseDAO {
         charityCauseList = new ArrayList<>();
         DoneeDAO doneeDAO = new DoneeDAO();
         
-        ArrayList<Donee> doneeList = new ArrayList<Donee>();
-        doneeList.add(doneeDAO.getDonees());
-                ;
-        charityCauseList.add(new CharityCause("Feeding the Homeless"),);
-        charityCauseList.add(new CharityCause("Supporting Education"));
-        charityCauseList.add(new CharityCause("Animal Welfare"));
-        charityCauseList.add(new CharityCause("Environmental Conservation"));
-        charityCauseList.add(new CharityCause("Disaster Relief"));
+        LinkedSet<Donee> doneeSet = doneeDAO.getDonees();        
+        
+        CharityCause tempCharityCause = new CharityCause("Feeding the Homeless");
+        tempCharityCause.donees.add(doneeSet.iterator().next());
+        tempCharityCause.donees.add(doneeSet.iterator().next());
+        charityCauseList.add(tempCharityCause);
+        
+        tempCharityCause = new CharityCause("Supporting Education");
+        tempCharityCause.donees.add(doneeSet.iterator().next());
+        tempCharityCause.donees.add(doneeSet.iterator().next());
+        charityCauseList.add(tempCharityCause);
+        
+        tempCharityCause = new CharityCause("Animal Welfare");
+        tempCharityCause.donees.add(doneeSet.iterator().next());
+        tempCharityCause.donees.add(doneeSet.iterator().next());
+        charityCauseList.add(tempCharityCause);
+        
+        tempCharityCause = new CharityCause("Environmental Conservation");
+        tempCharityCause.donees.add(doneeSet.iterator().next());
+        tempCharityCause.donees.add(doneeSet.iterator().next());
+        charityCauseList.add(tempCharityCause);
+        
+        tempCharityCause = new CharityCause("Disaster Relief");
+        tempCharityCause.donees.add(doneeSet.iterator().next());
+        tempCharityCause.donees.add(doneeSet.iterator().next());
+        charityCauseList.add(tempCharityCause);
+    }
+    
+    public ArrayList<CharityCause> getCharityCauses(){
+        return charityCauseList;
     }
 }

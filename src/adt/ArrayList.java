@@ -154,6 +154,13 @@ public class ArrayList<T> implements List, Iterable<T> {
     public boolean isFull() {
         return (entries == maxSize);
     }
+    
+    public void clear(){
+        for(int i = 0; i < entries; i++){
+            array[i] = null;
+        }
+        entries = 0;
+    }
 
     @Override
     public boolean isEmpty() {
@@ -165,5 +172,19 @@ public class ArrayList<T> implements List, Iterable<T> {
         Object[] output = new Object[entries];
         System.arraycopy(array, 0, output, 0, entries);
         return output;
+    }
+    
+    @Override
+    public String toString() {
+        String str = "[";
+        for(int i = 0; i < entries; i++){
+            str += (array[i]).toString();
+            
+            if(i < entries-1)
+                str += " ,";
+        }
+        
+        str += "]";
+        return str;
     }
 }

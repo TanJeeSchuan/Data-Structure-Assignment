@@ -5,7 +5,7 @@
 package assignment;
 
 import adt.SortedArrayList;
-import boundary.MainInterface;
+import boundary.MainUI;
 import control.MainMenu;
 import entity.CharityCause;
 import entity.DonationManagement;

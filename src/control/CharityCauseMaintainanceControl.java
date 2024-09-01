@@ -5,19 +5,17 @@
 package control;
 
 import boundary.CharityCauseMaintainanceUI;
-import boundary.MainUI;
+import dao.DB;
 
 /**
  *
  * @author Tan Jee Schuan
  */
-public class MainMenu {
-    private MainUI mainMenuUI;
-    private CharityCauseMaintainanceControl charityCauseMaintainanceControl;
+public class CharityCauseMaintainanceControl {
+    private CharityCauseMaintainanceUI charityCauseMaintainanceUI;
     
-    public MainMenu(){
-        mainMenuUI = new MainUI();
-        charityCauseMaintainanceControl = new CharityCauseMaintainanceControl();
+    public CharityCauseMaintainanceControl(){
+        charityCauseMaintainanceUI = new CharityCauseMaintainanceUI();
     }
     
     public void startUI(){
@@ -26,8 +24,8 @@ public class MainMenu {
         while(!isEnd){
             isEnd = false;
         
-            mainMenuUI.showUI();
-            int choice = mainMenuUI.getSelection();
+            charityCauseMaintainanceUI.showUI();
+            int choice = charityCauseMaintainanceUI.getSelection();
     
             switch (choice) {
                 case 0:
@@ -38,9 +36,9 @@ public class MainMenu {
                 case 2:
                     break;
                 case 3:
+                    displayAllCauses();
                     break;
                 case 4:
-                    charityCauseMaintainanceControl.startUI();
                     break;
                 case 5:
                     break;
@@ -48,5 +46,9 @@ public class MainMenu {
                     throw new AssertionError();
             }
         }
+    }
+    
+    public void displayAllCauses(){
+        System.out.println(DB.getInstance().charityCauseDAO.getCharityCauses());
     }
 }

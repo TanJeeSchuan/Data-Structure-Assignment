@@ -10,17 +10,17 @@ import java.util.Scanner;
  *
  * @author Tan Jee Schuan
  */
-public class DonorSystemInterface {
+public class DonorSystemUI {
     boolean isEnd = false;
     private Scanner scanner;
     
     private final int maxNum = 4;
     
-    public DonorSystemInterface(){
+    public DonorSystemUI(){
         scanner = new Scanner(System.in);
     }
     
-    public void startUI(){
+    public void showUI(){
         while(!isEnd){
             isEnd = false;
             
@@ -32,7 +32,8 @@ public class DonorSystemInterface {
             System.out.println("4. Delete Donor");
             System.out.println("0. Exit");
 
-            int input = scanner.nextInt();
+            int input = Integer.parseInt(scanner.nextLine());
+            scanner = new Scanner(System.in);
 
             switch (input) {
                 case 0:

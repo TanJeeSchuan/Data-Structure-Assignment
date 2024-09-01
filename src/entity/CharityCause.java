@@ -28,7 +28,7 @@ public class CharityCause implements Comparable<CharityCause>{
         currentCauseId++;
     }
     
-    public CharityCause(String causeName, List doneeList){
+    public CharityCause(String causeName, List<Donee> doneeList){
         this.causeId = currentCauseId;
         this.causeName = causeName;
         
