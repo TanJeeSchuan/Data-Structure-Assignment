@@ -5,6 +5,7 @@
 package dao;
 
 import adt.ArraySet;
+import adt.LinkedSet;
 import entity.Donee;
 import entity.Donor;
 
@@ -13,10 +14,10 @@ import entity.Donor;
  * @author Tan Jee Schuan
  */
 public class DonorDAO {
-    private ArraySet<DonorDAO> donorSet;
+    private LinkedSet<Donor> donorSet;
     
     public DonorDAO(){
-        donorSet = new ArraySet();
+        donorSet = new LinkedSet();
         //populatea set
         donorSet.add(new Donor("John Smith", "john.smith@example.com"));
         donorSet.add(new Donor("Emily Johnson", "emily.johnson@example.com"));
@@ -30,7 +31,7 @@ public class DonorDAO {
         donorSet.add(new Donor("Olivia Martinez", "olivia.martinez@example.com"));
     }
     
-    public ArraySet getDonees(){
+    public LinkedSet getDonees(){
         return donorSet;
     }
 }

@@ -25,8 +25,6 @@ public class ArraySet<E>{
     public void add(Object object) {
         if(isFull())
             array[0] = (E)object;
-        
-        
     }
     
     public void remove(Object t) {

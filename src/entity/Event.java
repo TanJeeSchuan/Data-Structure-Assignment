@@ -13,11 +13,21 @@ public class Event implements Comparable<Event>{
     private int eventId;
     private String eventName;
     private String eventVenue;
+    private CharityCause charityCause;
     
     public Event(String eventName, String eventVenue){
         this.eventId = currentId;
         this.eventName = eventName;
         this.eventVenue = eventVenue;
+        
+        currentId++;
+    }
+    
+    public Event(String eventName, String eventVenue, CharityCause charityCause){
+        this.eventId = currentId;
+        this.eventName = eventName;
+        this.eventVenue = eventVenue;
+        this.charityCause = charityCause;
         
         currentId++;
     }
@@ -44,6 +54,14 @@ public class Event implements Comparable<Event>{
 
     public void setEventVenue(String eventVenue) {
         this.eventVenue = eventVenue;
+    }
+    
+    public CharityCause getCharityCause(){
+        return charityCause;
+    }
+    
+    public void setCharityCause(CharityCause charityCause){
+        this.charityCause = charityCause;
     }
     
     @Override

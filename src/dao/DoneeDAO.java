@@ -5,6 +5,7 @@
 package dao;
 
 import adt.ArraySet;
+import adt.LinkedSet;
 import entity.Donee;
 
 /**
@@ -12,10 +13,10 @@ import entity.Donee;
  * @author Tan Jee Schuan
  */
 public class DoneeDAO {
-    private ArraySet<Donee> doneeSet;
+    private LinkedSet<Donee> doneeSet;
     
     public DoneeDAO(){
-        doneeSet = new ArraySet();
+        doneeSet = new LinkedSet();
         //populatea set
         
         doneeSet.add(new Donee("John Williams", "4859137204", "523 Pine St, Georgetown"));
@@ -30,7 +31,7 @@ public class DoneeDAO {
         doneeSet.add(new Donee("Chris Brown", "5692478130", "145 Pine St, Madison"));
     }
     
-    public ArraySet getDonees(){
+    public LinkedSet getDonees(){
         return doneeSet;
     }
 }
