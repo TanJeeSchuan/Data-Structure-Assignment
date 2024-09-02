@@ -51,6 +51,6 @@ public class Donor implements Comparable<Donor>{
     
     @Override
     public String toString(){
-        return "\nDonor Id: " + donorId + "\nDonor name: " + name + "\nDonor Email: " + email;
+        return "Donor Id: " + donorId + "\nDonor name: " + name + "\nDonor Email: " + email;
     }
 }

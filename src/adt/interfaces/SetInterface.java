@@ -1,6 +1,10 @@
 package adt.interfaces;
 
-public interface SetInterface<T>{
+import java.util.Iterator;
+
+public interface SetInterface<T> extends Iterable{
+    public Iterator<T> iterator();
+    
     public void add(T t);
     
     public void remove(T t);

@@ -16,11 +16,13 @@ public class MainMenu {
     private MainUI mainMenuUI;
     private CharityCauseMaintainanceControl charityCauseMaintainanceControl;
     private DonationManagementControl donationManagementControl;
+    private DonorSystemControl donorSystemControl;
     
     public MainMenu(){
         mainMenuUI = new MainUI();
         charityCauseMaintainanceControl = new CharityCauseMaintainanceControl();
         donationManagementControl = new DonationManagementControl();
+        donorSystemControl = new DonorSystemControl();
     }
     
     public void startUI(){
@@ -37,6 +39,7 @@ public class MainMenu {
                     isEnd = true;
                     break;
                 case 1:
+                    donorSystemControl.startUI();
                     break;
                 case 2:
                     break;

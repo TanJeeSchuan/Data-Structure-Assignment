@@ -34,4 +34,12 @@ public class DonorDAO {
     public LinkedSet getDonors(){
         return donorSet;
     }
+
+    public void addDonor(Donor newDonor) {
+        donorSet.add(newDonor);
+    }
+
+    public void removeDonor(Donor selectedDonor) {
+        donorSet.remove(selectedDonor);
+    }
 }
