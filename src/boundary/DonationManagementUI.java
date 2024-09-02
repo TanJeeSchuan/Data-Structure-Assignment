@@ -6,6 +6,7 @@ package boundary;
 
 import adt.ArrayList;
 import adt.interfaces.List;
+import dao.DB;
 import entity.CharityCause;
 import entity.Donation;
 import entity.DonationManagement;
@@ -17,13 +18,14 @@ import java.util.Scanner;
  * @author xuanx
  */
 public class DonationManagementUI {
-
     private Scanner sc;
-    private DonationManagement dm = new DonationManagement();
+    private DonationManagement dm;
     private Donor donor2 = new Donor("a", "a");
 
     public DonationManagementUI() {
         sc = new Scanner(System.in);
+        dm = new DonationManagement();
+        dm.donations = DB.getInstance().donationDAO.getDonations();
     }
 
     public void donationManagementMenu() {

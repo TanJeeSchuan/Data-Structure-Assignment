@@ -5,6 +5,7 @@
 package boundary;
 
 import adt.ArrayList;
+import adt.LinkedSet;
 import java.util.Scanner;
 
 /**
@@ -103,5 +104,12 @@ public class CharityCauseMaintainanceUI {
     public int getRemovedDoneeIndex() {
         System.out.print("\nEnter Donor index to remove: ");
         return Integer.parseInt(scanner.nextLine());
+    }
+
+    public void showDonees(LinkedSet donees) {
+        System.out.println();
+        for(Object o: donees){
+            System.out.println(o);
+        }
     }
 }

@@ -32,16 +32,18 @@ public class ArrayList<T> implements List, Iterable<T> {
 
     public Iterator<T> getIterator() {
         return new Iterator<T>() {
-            int index = 0;
+            int index = 1;
 
             @Override
             public boolean hasNext() {
-                return index != entries;
+                return index < entries;
             }
 
             @Override
             public T next() {
-                return (T) array[index++];
+                T data = (T)array[index];
+                index++;
+                return data;
             }
         };
     }

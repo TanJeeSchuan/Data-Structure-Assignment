@@ -105,6 +105,7 @@ public class CharityCauseMaintainanceControl {
                 break;
             case 1:
                 //add donor
+                charityCauseMaintainanceUI.showDonees(db.doneeDAO.getDonees());
                 break;
             case 2:
                 charityCauseMaintainanceUI.showCharityCauseDonees(selectedCause.donees);

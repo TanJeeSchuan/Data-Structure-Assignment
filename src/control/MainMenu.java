@@ -5,6 +5,7 @@
 package control;
 
 import boundary.CharityCauseMaintainanceUI;
+import boundary.DonationManagementUI;
 import boundary.MainUI;
 
 /**
@@ -14,10 +15,12 @@ import boundary.MainUI;
 public class MainMenu {
     private MainUI mainMenuUI;
     private CharityCauseMaintainanceControl charityCauseMaintainanceControl;
+    private DonationManagementUI donationManagementControl;
     
     public MainMenu(){
         mainMenuUI = new MainUI();
         charityCauseMaintainanceControl = new CharityCauseMaintainanceControl();
+        donationManagementControl = new DonationManagementUI();
     }
     
     public void startUI(){
@@ -38,6 +41,7 @@ public class MainMenu {
                 case 2:
                     break;
                 case 3:
+                    donationManagementControl.donationManagementMenu();
                     break;
                 case 4:
                     charityCauseMaintainanceControl.startUI();

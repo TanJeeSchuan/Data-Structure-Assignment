@@ -18,7 +18,7 @@ public class DonationManagement {
 
 //    LinkedSet<Donor> donors;
     //fast lookup
-    ArrayMap<Donor, ArrayList<Donation>> donations;
+    public ArrayMap<Donor, ArrayList<Donation>> donations;
     //recent Donations
     LinkedQueue<Donation> recentDonations;
     

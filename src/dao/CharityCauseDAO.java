@@ -8,6 +8,7 @@ import adt.ArrayList;
 import adt.LinkedSet;
 import entity.CharityCause;
 import entity.Donee;
+import java.util.Iterator;
 
 /**
  *
@@ -16,35 +17,35 @@ import entity.Donee;
 public class CharityCauseDAO {
     private ArrayList<CharityCause> charityCauseList;
     
-    public CharityCauseDAO(){
+    public CharityCauseDAO(DoneeDAO doneeDAO){
         charityCauseList = new ArrayList<CharityCause>();
-        DoneeDAO doneeDAO = new DoneeDAO();
         
-        LinkedSet<Donee> doneeSet = doneeDAO.getDonees();        
+        LinkedSet<Donee> doneeSet = doneeDAO.getDonees();
+        Iterator itr = doneeSet.iterator();
         
         CharityCause tempCharityCause = new CharityCause("Feeding the Homeless");
-        tempCharityCause.donees.add(doneeSet.iterator().next());
-        tempCharityCause.donees.add(doneeSet.iterator().next());
+        tempCharityCause.donees.add(itr.next());
+        tempCharityCause.donees.add(itr.next());
         charityCauseList.add(tempCharityCause);
         
         tempCharityCause = new CharityCause("Supporting Education");
-        tempCharityCause.donees.add(doneeSet.iterator().next());
-        tempCharityCause.donees.add(doneeSet.iterator().next());
+        tempCharityCause.donees.add(itr.next());
+        tempCharityCause.donees.add(itr.next());
         charityCauseList.add(tempCharityCause);
         
         tempCharityCause = new CharityCause("Animal Welfare");
-        tempCharityCause.donees.add(doneeSet.iterator().next());
-        tempCharityCause.donees.add(doneeSet.iterator().next());
+        tempCharityCause.donees.add(itr.next());
+        tempCharityCause.donees.add(itr.next());
         charityCauseList.add(tempCharityCause);
         
         tempCharityCause = new CharityCause("Environmental Conservation");
-        tempCharityCause.donees.add(doneeSet.iterator().next());
-        tempCharityCause.donees.add(doneeSet.iterator().next());
+        tempCharityCause.donees.add(itr.next());
+        tempCharityCause.donees.add(itr.next());
         charityCauseList.add(tempCharityCause);
         
         tempCharityCause = new CharityCause("Disaster Relief");
-        tempCharityCause.donees.add(doneeSet.iterator().next());
-        tempCharityCause.donees.add(doneeSet.iterator().next());
+        tempCharityCause.donees.add(itr.next());
+        tempCharityCause.donees.add(itr.next());
         charityCauseList.add(tempCharityCause);
     }
     

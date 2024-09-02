@@ -12,15 +12,17 @@ public class DB {
     private static DB instance = null;
     
     public CharityCauseDAO charityCauseDAO;
+    public DonationDAO donationDAO;
     public DoneeDAO doneeDAO;
     public DonorDAO donorDAO;
     public EventDAO eventDAO;
     
     private DB(){
-        charityCauseDAO = new CharityCauseDAO();
         doneeDAO = new DoneeDAO();
         donorDAO = new DonorDAO();
         eventDAO = new EventDAO();
+        charityCauseDAO = new CharityCauseDAO(doneeDAO);
+        donationDAO = new DonationDAO(donorDAO, charityCauseDAO);
     }
     
     public static DB getInstance(){

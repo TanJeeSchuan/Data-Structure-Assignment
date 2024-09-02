@@ -12,20 +12,27 @@ public class LinkedSet<T> implements SetInterface<T>, Iterable<T> {
     @Override
     public Iterator<T> iterator() {
         return new Iterator(){
+            private int index = 0;
+            private Node currentNode = firstNode;
+            
             @Override
             public boolean hasNext() {
-                return firstNode.next != null;
+                return index < size;
             }
 
             @Override
             public Object next() {
-                Node node = firstNode;
-                firstNode = firstNode.next;
-                return node.value;  
+                Node prevNode = currentNode;
+                currentNode = currentNode.next;
+                index++;
+                return prevNode.value;
+//                Node node = firstNode;
+//                firstNode = firstNode.next;
+//                return node.value;  
             }
         };
     }
-
+    
     private class Node {
 
         private T value;

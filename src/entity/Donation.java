@@ -62,6 +62,6 @@ public class Donation implements Comparable<Donation> {
     
     @Override
     public String toString(){
-        return "\nCharity Cause: " + cause.causeName + "\nAmount: " + amount;
+        return "Donor name: " + donor.getName() + ", Charity Cause: " + cause.causeName + ", Amount: " + amount;
     }
 }
