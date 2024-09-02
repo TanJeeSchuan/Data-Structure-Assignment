@@ -5,6 +5,7 @@
 package boundary;
 
 import adt.ArrayList;
+import adt.LinkedSet;
 import adt.interfaces.List;
 import dao.DB;
 import entity.CharityCause;
@@ -18,9 +19,10 @@ import java.util.Scanner;
  * @author xuanx
  */
 public class DonationManagementUI {
+
     private Scanner sc;
     private DonationManagement dm;
-    private Donor donor2 = new Donor("a", "a");
+    LinkedSet<Donor> donors = DB.getInstance().donorDAO.getDonors();
 
     public DonationManagementUI() {
         sc = new Scanner(System.in);
@@ -28,52 +30,38 @@ public class DonationManagementUI {
         dm.donations = DB.getInstance().donationDAO.getDonations();
     }
 
-    public void donationManagementMenu() {
+    public int showMenu() {
         int option = 0;
+        boolean valid;
+
+        System.out.println("---------- Donation Management ----------");
+        System.out.println("1. Add donation");
+        System.out.println("2. Update donation");
+        System.out.println("3. Remove domation");
+        System.out.println("4. Display all donation");
+        System.out.println("5. Search donation");
+        System.out.println("6. Generate Report");
+        System.out.println("0. Exit");
+        System.out.println();
         do {
-            System.out.println("---------- Donation Management ----------");
-            System.out.println("1. Add donation");
-            System.out.println("2. Update donation");
-            System.out.println("3. Remove domation");
-            System.out.println("4. Display all donation");
-            System.out.println("5. Search donation");
-            System.out.println("6. Generate Report");
-            System.out.println("7. Exit");
-            System.out.println();
+            valid = true;
             System.out.print("Enter your option: ");
             String getOption = sc.nextLine();
             System.out.println();
 
             try {
                 option = Integer.parseInt(getOption);
-                if (option < 1 || option > 7) {
-                    System.out.println("Only 1 - 7 is allowed. Please try again.");
-                } else {
-                    switch (option) {
-                        case 1:
-                            addDonation();
-                            break;
-                        case 2:
-                            updateDonation();
-                            break;
-                        case 3:
-                            removeDonation();
-                            break;
-                        case 4:
-                            displayDonation();
-                            break;
-                        case 5:
-                            searcDonation();
-                            break;
-                        case 6:
-                            donationReport();
-                            break;
-                    }
+                if (option < 0 || option > 6) {
+                    System.out.println("Only 0 - 6 is allowed. Please try again.");
+                    valid = false;
                 }
             } catch (IllegalArgumentException ex) {
                 System.out.println("Only integer is allowed. Please try again.");
+                valid = false;
             }
-        } while (option != 7);
+        } while (!valid);
+        
+        return option;
     }
 
     public void addDonation() {
@@ -122,7 +110,7 @@ public class DonationManagementUI {
         boolean isExist = false;
 
         // *********** Get donor **************//
-        Donor donor = donor2;
+        Donor donor = null;
 
 //        do {
 //            System.out.println("Enter the your name: ");
@@ -215,7 +203,7 @@ public class DonationManagementUI {
 
     public void removeDonation() {
         // *********** Get donor **************//
-        Donor donor = donor2;
+        Donor donor = null;
 
 //        do {
 //            System.out.println("Enter the your name: ");
@@ -285,23 +273,25 @@ public class DonationManagementUI {
 
     public void searcDonation() {
         System.out.println("---------- Search Donation ----------");
-        Donor donor = donor2;
+        Donor donor = null;
+        boolean isExist = false;
 
-//        do {
-//            System.out.println("Enter the your name: ");
-//            String name = sc.nextLine();
-//
-//            for (int i = 0; i < donors.size() && !isExist; i++) {
-//                if (donors.getValue(i).equals(name)) {
-//                    donor = donors.getValue(i);
-//                    isExist = true;
-//                }
-//            }
-//
-//            if (!isExist) {
-//                System.out.println("No such name. Please try again");
-//            }
-//        } while (!isExist);
+        do {
+            System.out.println("Enter the your name: ");
+            String name = sc.nextLine();
+
+            for (int i = 0; i < donors.size() && !isExist; i++) {
+                if (donors.getValue(i).equals(name)) {
+                    donor = donors.getValue(i);
+                    isExist = true;
+                }
+            }
+
+            if (!isExist) {
+                System.out.println("No such name. Please try again");
+            }
+        } while (!isExist);
+
         Donation donation = null;
         System.out.println(donor);
         System.out.println(dm.getDonorDonation(donor));
@@ -317,11 +307,7 @@ public class DonationManagementUI {
         int option = 0;
         CharityCause cause = null;
 
-        List<CharityCause> causes = new ArrayList<>();
-        causes.add(new CharityCause("ACause"));
-        causes.add(new CharityCause("BCause"));
-        causes.add(new CharityCause("CCause"));
-        causes.add(new CharityCause("DCause"));
+        ArrayList<CharityCause> causes = DB.getInstance().charityCauseDAO.getCharityCauses();
 
         do {
             System.out.println("CAUSE");
@@ -338,7 +324,7 @@ public class DonationManagementUI {
                 if (option < 1 || option > causes.size()) {
                     System.out.println("Only 1 - " + causes.size() + " is allowed. Please try again.");
                 } else {
-                    cause = causes.get(option - 1);
+                    cause = (CharityCause) causes.get(option - 1);
                 }
             } catch (Exception ex) {
                 System.out.println("Only integer is allowed. Please try again.");

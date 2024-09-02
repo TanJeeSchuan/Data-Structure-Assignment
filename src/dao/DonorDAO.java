@@ -31,7 +31,7 @@ public class DonorDAO {
         donorSet.add(new Donor("Olivia Martinez", "olivia.martinez@example.com"));
     }
     
-    public LinkedSet getDonees(){
+    public LinkedSet getDonors(){
         return donorSet;
     }
 }

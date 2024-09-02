@@ -22,7 +22,7 @@ public class DonationDAO {
     public DonationDAO(DonorDAO donorDAO, CharityCauseDAO charityCauseDAO){
         donations = new ArrayMap();
         
-        LinkedSet<Donor> donorList = donorDAO.getDonees();
+        LinkedSet<Donor> donorList = donorDAO.getDonors();
         ArrayList<CharityCause> charityCauses = charityCauseDAO.getCharityCauses();
         
         Iterator donItr = donorList.iterator();

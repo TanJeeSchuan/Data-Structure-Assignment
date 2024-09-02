@@ -79,12 +79,6 @@ public class DonationManagement {
 
     }
 
-    public void removeDonation(Donor donor, Donation donation, int index) {
-        if (donations.has(donor)) {
-            donations.get(donor).remove(index);
-        }
-    }
-
     public String getAllDonations() {
         String mapToString = "";
         for (int i = 0; i < donations.size(); i++) {

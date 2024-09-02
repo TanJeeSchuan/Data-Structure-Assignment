@@ -15,12 +15,12 @@ import boundary.MainUI;
 public class MainMenu {
     private MainUI mainMenuUI;
     private CharityCauseMaintainanceControl charityCauseMaintainanceControl;
-    private DonationManagementUI donationManagementControl;
+    private DonationManagementControl donationManagementControl;
     
     public MainMenu(){
         mainMenuUI = new MainUI();
         charityCauseMaintainanceControl = new CharityCauseMaintainanceControl();
-        donationManagementControl = new DonationManagementUI();
+        donationManagementControl = new DonationManagementControl();
     }
     
     public void startUI(){
@@ -41,7 +41,7 @@ public class MainMenu {
                 case 2:
                     break;
                 case 3:
-                    donationManagementControl.donationManagementMenu();
+                    donationManagementControl.startUI();
                     break;
                 case 4:
                     charityCauseMaintainanceControl.startUI();
