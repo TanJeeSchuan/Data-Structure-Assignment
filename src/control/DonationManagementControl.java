@@ -5,7 +5,9 @@
 package control;
 
 import adt.ArrayList;
+import adt.ArrayMap;
 import adt.LinkedSet;
+import adt.interfaces.List;
 import boundary.DonationManagementUI;
 import dao.DB;
 import entity.CharityCause;
@@ -20,13 +22,13 @@ import java.util.Scanner;
  */
 public class DonationManagementControl {
 
-        private Scanner sc;
+    private Scanner sc;
     private DonationManagementUI donationManagementUI;
     private DonationManagement dm;
     LinkedSet<Donor> donors = DB.getInstance().donorDAO.getDonors();
 
     public DonationManagementControl() {
-           sc = new Scanner(System.in);
+        sc = new Scanner(System.in);
 
         donationManagementUI = new DonationManagementUI();
     }
@@ -64,274 +66,190 @@ public class DonationManagementControl {
             }
         }
     }
-    
+
     public void addDonation() {
+        donationManagementUI.promptTitle("Add Donation");
 
-        System.out.println("---------- Add Donation ----------");
-
-        // ----- CAUSE ---------------------------------------------------------------------------------------------------
-        CharityCause cause = getCause();
-
-        // -------DONATION AMOUNT-------------------------------------------------------------------------------------------------
-        double amount = 0;
-        boolean valid = true;
-
-        do {
-            valid = true;
-            System.out.print("Donation amount: RM ");
-            String getOption = sc.nextLine();
-            try {
-                amount = Double.parseDouble(getOption);
-                if (amount <= 0) {
-                    System.out.println("The value must greater than RM 0.");
-                    valid = false;
-                }
-            } catch (Exception ex) {
-                System.out.println("Only integer is allowed. Please try again.");
-                valid = false;
-            }
-        } while (!valid);
-
-        // -------DONOR-------------------------------------------------------------------------------------------------
-        System.out.print("Enter your name: ");
-        String name = sc.nextLine();
-        System.out.print("Enter your email: ");
-        String email = sc.nextLine();
-        System.out.println();
-
-        Donor donor = new Donor(name, email);
-//        donors.add(donor);
-
+        ArrayList<CharityCause> causes = DB.getInstance().charityCauseDAO.getCharityCauses();
+        CharityCause cause = donationManagementUI.getCauseOption(causes);
+        double amount = donationManagementUI.getDonationAmount();
+        Donor donor = new Donor(donationManagementUI.getDonorName(), donationManagementUI.getDonorEmail());
         dm.addDonation(donor, cause, amount);
-        System.out.println("The donation information added sucessfully.");
+
+        donationManagementUI.promptSuccessMessage("added");
     }
-    
-        public void updateDonation() {
-        System.out.println("---------- Update Donation ----------");
-        boolean isExist = false;
 
-        // *********** Get donor **************//
-        Donor donor = null;
+    public void updateDonation() {
+        donationManagementUI.promptTitle("Update Donation");
 
-//        do {
-//            System.out.println("Enter the your name: ");
-//            String name = sc.nextLine();
-//
-//            for (int i = 0; i < donors.size() && !isExist; i++) {
-//                if (donors.getValue(i).equals(name)) {
-//                    donor = donors.getValue(i);
-//                    isExist = true;
-//                }
-//            }
-//
-//            if (!isExist) {
-//                System.out.println("No such name. Please try again");
-//            }
-//        } while (!isExist);
-        Donation donation = null;
-        System.out.println(dm.getDonorDonation(donor));
+        Donor donor = new Donor(donationManagementUI.getDonorName(), donationManagementUI.getDonorEmail());
+        Donation donation;
 
-        int option = 0;
-        do {
-            System.out.print("Enter the index that you want to modify: ");
-            String getInput = sc.nextLine();
-            try {
-                option = Integer.parseInt(getInput);
-                if (option <= 0 || option > dm.getDonorDonation(donor).size()) {
-                    System.out.println("Only 1 to " + dm.getDonorDonation(donor).size() + " is allowed. Please try again.");
-                } else {
-                    donation = (Donation) dm.getDonorDonation(donor).get(option - 1);
-                }
-            } catch (Exception ex) {
-                System.out.println("Only number is allowed. Please try again.");
+        if (!dm.donations.has(donor)) {
+            donationManagementUI.noSuchInformation();
+        } else {
+            donation = donationManagementUI.getModifyDonation(dm.getDonorDonation(donor));
+
+            int option = donationManagementUI.getModifyOption();
+
+            switch (option) {
+                case 1:
+                    Donor newDonor = new Donor(donationManagementUI.getDonorName(), donationManagementUI.getDonorEmail());
+                    dm.setDonationDonor(donor, newDonor, donation);
+                    donation.setDonor(newDonor);
+
+                    break;
+                case 2:
+                    ArrayList<CharityCause> causes = DB.getInstance().charityCauseDAO.getCharityCauses();
+                    CharityCause cause = donationManagementUI.getCauseOption(causes);
+                    donation.setCause(cause);
+
+                    break;
+                case 3:
+                    double amount = donationManagementUI.getDonationAmount();
+                    donation.setAmount(amount);
+
+                    break;
             }
-        } while (donation == null);
 
-        double amount = 0;
-
-        System.out.println();
-        System.out.println("1. Donor");
-        System.out.println("2. Cause");
-        System.out.println("3. Donation amount");
-
-        do {
-            System.out.println("Enter the part you want to modify: ");
-
-            String getInput = sc.nextLine();
-            try {
-                option = Integer.parseInt(getInput);
-                switch (option) {
-                    case 1:
-                        // updateDonor();
-                        donation.setDonor(donor);
-                        break;
-                    case 2:
-                        CharityCause cause = getCause();
-                        donation.setCause(cause);
-                        break;
-                    case 3:
-                        boolean valid = true;
-                        do {
-                            valid = true;
-                            try {
-                                System.out.print("Enter the amount: ");
-                                amount = sc.nextDouble();
-                                if (amount <= 0) {
-                                    System.out.println("Amount must greater than 0. Please try again.");
-                                    valid = false;
-                                }
-                            } catch (Exception ex) {
-                                System.out.println("Only number is allowed. Please try again.");
-                                valid = false;
-                            }
-
-                        } while (!valid);
-
-                        donation.setAmount(amount);
-
-                        break;
-                    default:
-                        System.out.println("Only 1 to 3 is allowed. Please try again.");
-                        break;
-                }
-            } catch (Exception ex) {
-                System.out.println("Only number is allowed. Please try again.");
-            }
-        } while (option < 1 || option > 3);
-        System.out.println();
-        System.out.println("The donation information updated successfully.");
+            donationManagementUI.promptSuccessMessage("updated");
+        }
     }
 
     public void removeDonation() {
-        // *********** Get donor **************//
-        Donor donor = null;
+        donationManagementUI.promptTitle("Delete Donation");
 
-//        do {
-//            System.out.println("Enter the your name: ");
-//            String name = sc.nextLine();
-//
-//            for (int i = 0; i < donors.size() && !isExist; i++) {
-//                if (donors.getValue(i).equals(name)) {
-//                    donor = donors.getValue(i);
-//                    isExist = true;
-//                }
-//            }
-//
-//            if (!isExist) {
-//                System.out.println("No such name. Please try again");
-//            }
-//        } while (!isExist);
-        Donation donation = null;
-        System.out.println(dm.getDonorDonation(donor));
+        Donor donor = new Donor(donationManagementUI.getDonorName(), donationManagementUI.getDonorEmail());
+        Donation donation;
 
-        int option = 0;
-        do {
-            System.out.print("Enter the index that you want to modify: ");
-            String getInput = sc.nextLine();
-            try {
-                option = Integer.parseInt(getInput);
-                if (option <= 0 || option > dm.getDonorDonation(donor).size()) {
-                    System.out.println("Only 1 to " + dm.getDonorDonation(donor).size() + " is allowed. Please try again.");
-                } else {
-                    donation = (Donation) dm.getDonorDonation(donor).get(option - 1);
-                }
-            } catch (Exception ex) {
-                System.out.println("Only number is allowed. Please try again.");
+        if (!dm.donations.has(donor)) {
+            donationManagementUI.noSuchInformation();
+        } else {
+            donation = donationManagementUI.getModifyDonation(dm.getDonorDonation(donor));
+            if (donationManagementUI.getDeleteConfirmation(donation)) {
+                dm.getDonorDonation(donor).remove(donation);
+                donationManagementUI.promptSuccessMessage("deleted");
             }
-        } while (donation == null);
-
-        String confirmation = null;
-        System.out.println("----------------------------------------------------------");
-        System.out.println(donation);
-
-        do {
-            System.out.println("Do you confirm to remove it? (Y/N)");
-            confirmation = sc.nextLine();
-            switch (confirmation.charAt(0)) {
-                case 'Y':
-                case 'y':
-                    dm.getDonorDonation(donor).remove(donation);
-                    System.out.println();
-                    System.out.println("The donation data deleted.");
-                    break;
-                case 'N':
-                case 'n':
-                    System.out.println();
-                    System.out.println("The donation data retained.");
-                    break;
-                default:
-                    System.out.println("Only 'Y' or 'N' is allowed. Please try again.");
-
-            }
-        } while (confirmation.charAt(0) != 'Y' && confirmation.charAt(0) != 'y' && confirmation.charAt(0) != 'N' && confirmation.charAt(0) != 'n');
-
+        }
     }
 
     public void displayDonation() {
-        System.out.println("---------- Display Donation ----------");
-        System.out.println(dm.getAllDonations());
+        ArrayMap<Donor, ArrayList<Donation>> donations = dm.getAllDonations();
+
+        String allDonationsString = "";
+        for (int i = 0; i < donations.size(); i++) {
+            Donor donor = donations.getKey(i);
+            allDonationsString += getDonationString(donor);
+        }
+
+        donationManagementUI.promptTitle("Display Donation");
+        donationManagementUI.displayAllDonations(allDonationsString);
+
     }
 
     public void searcDonation() {
-        System.out.println("---------- Search Donation ----------");
-        Donor donor = null;
-        boolean isExist = false;
+        donationManagementUI.promptTitle("Search Donation");
 
-        do {
-            System.out.println("Enter the your name: ");
-            String name = sc.nextLine();
+        Donor donor = new Donor(donationManagementUI.getDonorName(), donationManagementUI.getDonorEmail());
 
-            for (int i = 0; i < donors.size() && !isExist; i++) {
-                if (donors.getValue(i).equals(name)) {
-                    donor = donors.getValue(i);
-                    isExist = true;
-                }
-            }
-
-            if (!isExist) {
-                System.out.println("No such name. Please try again");
-            }
-        } while (!isExist);
-
-        Donation donation = null;
-        System.out.println(donor);
-        System.out.println(dm.getDonorDonation(donor));
+        if (!dm.donations.has(donor)) {
+            donationManagementUI.noSuchInformation();
+        } else {
+            donationManagementUI.promptInformation(getDonationString(donor));
+        }
     }
 
     public void donationReport() {
-        System.out.println("---------- Donation Report ----------");
-        System.out.println("Most Recent Donor: ");
-        System.out.println(dm.getDonationString(dm.getMostRecentDonor()));
+        donationManagementUI.promptTitle("Donation Report");
+        int option = donationManagementUI.getReportOption();
+        switch (option) {
+            case 1:
+                donorReport();
+                System.out.println("1. Donor in Donation Report");
+                System.out.println("2. Donation Report");
+                break;
+            case 2:
+                donationReport();
+                break;
+            case 3:
+                getMostRecentDonor();
+                break;
+        }
     }
-    
-    public CharityCause getCause() {
-        int option = 0;
-        CharityCause cause = null;
 
-        ArrayList<CharityCause> causes = DB.getInstance().charityCauseDAO.getCharityCauses();
+    public void donorReport() {
+        donationManagementUI.promptTitle("Donor in Donation Report");
+        List<String> donorInfo = new ArrayList<>();
+        int number = 0;
+        donorInfo.add("%-3s | %-8s | %-30s | %-30s | %-5s".formatted("No.", "Donor ID", "Donor name", "Donor Email", "Total Donation"));
 
-        do {
-            System.out.println("CAUSE");
-            System.out.println("-------------");
-            for (int i = 0; i < causes.size(); i++) {
-                System.out.println((i + 1) + ". " + causes.get(i));
-            }
-            System.out.print("Enter the cause you want to donate: ");
-            String getOption = sc.nextLine();
+        for (int i = 0; i < dm.donations.size(); i++) {
+            Donor donor = dm.donations.getKey(i);
+            donorInfo.add("%-3d | %-8d | %-30s | %-30s | %-5d".formatted(i + 1, donor.getDonorId(), donor.getName(), donor.getEmail(), dm.donations.get(donor).size()));
+            number++;
+        }
 
-            try {
-                option = Integer.parseInt(getOption);
-
-                if (option < 1 || option > causes.size()) {
-                    System.out.println("Only 1 - " + causes.size() + " is allowed. Please try again.");
-                } else {
-                    cause = (CharityCause) causes.get(option - 1);
-                }
-            } catch (Exception ex) {
-                System.out.println("Only integer is allowed. Please try again.");
-            }
-
-        } while (cause == null);
-        return cause;
+        donationManagementUI.displayDonorReport(number, donorInfo);
     }
+
+    public void donationsReport() {
+        donationManagementUI.promptTitle("Donation Report");
+
+        List<String> donationInfoReport = new ArrayList<>();
+        int number = 0;
+        donationInfoReport.add("%-3s | %-11s | %-30s | %-20s | %-15s".formatted("No.", "Donation ID", "Donor name", "Cause", "Donation Amount"));
+
+        for (int i = 0; i < dm.donations.size(); i++) {
+            Donor donor = dm.donations.getKey(i);
+            List<Donation> donationInfo = dm.donations.get(donor);
+            for (int j = 0; j < dm.donations.get(donor).size(); j++) {
+                Donation donation = donationInfo.get(i);
+                donationInfoReport.add("%-3d | %-11d | %-30s | %-20s | %-15d".formatted(i + 1, donation.getDonationId(), donor.getName(), donation.getCause(), donation.getAmount()));
+                number++;
+            }
+        }
+
+        donationManagementUI.displayDonationReport(number, donationInfoReport);
+    }
+
+    public void getMostRecentDonor() {
+        donationManagementUI.promptTitle("Most Recent Donor");
+
+        int highest = 0;
+        Donor donor = null;
+
+        for (int i = 0; i < dm.donations.size(); i++) {
+            if (dm.donations.get(dm.donations.getKey(i)).size() > highest) {
+                donor = dm.donations.getKey(i);
+                highest = dm.donations.get(donor).size();
+            }
+        }
+
+        donationManagementUI.promtMostRecentDonor(donor, highest, getDonationArrayString(donor));
+    }
+
+    public String getDonationString(Donor donor) {
+        String arrString = "";
+        arrString += "Donor\n";
+        arrString += "------\n";
+        arrString += donor;
+
+        arrString += "\nDonation Detail\n";
+        arrString += "--------------------";
+        arrString += getDonationArrayString(donor);
+        return arrString;
+    }
+
+    public String getDonationArrayString(Donor donor) {
+        String arrString = "";
+
+        ArrayList<Donation> donationArray = dm.donations.get(donor);
+
+        for (int j = 0; j < donationArray.size(); j++) {
+            arrString += donationArray.get(j);
+            arrString += "\n";
+        }
+        return arrString;
+    }
+
 }

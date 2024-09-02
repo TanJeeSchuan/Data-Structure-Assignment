@@ -66,8 +66,8 @@ public class DonationManagement {
 
     }
 
-    public void setDonationDonor(Donor originDonor, Donor newDonor, Donation donation, int index) {
-        donations.get(originDonor).remove(index);
+    public void setDonationDonor(Donor originDonor, Donor newDonor, Donation donation) {
+        donations.get(originDonor).remove(donation);
 
         if (donations.has(newDonor)) {
             donations.get(newDonor).add(donation);
@@ -79,13 +79,8 @@ public class DonationManagement {
 
     }
 
-    public String getAllDonations() {
-        String mapToString = "";
-        for (int i = 0; i < donations.size(); i++) {
-            Donor donor = donations.getKey(i);
-            mapToString += getDonationString(donor);
-        }
-        return mapToString;
+    public ArrayMap<Donor, ArrayList<Donation>> getAllDonations() {
+        return donations;
     }
 
     public ArrayList<Donation> getDonorDonation(Donor donor) {
@@ -95,47 +90,6 @@ public class DonationManagement {
         return null;
     }
 
-//    public ArrayList<Donor> getDonors(){
-//        ArrayList<Donor> donationDonors = new ArrayList<>();
-//    }
-    public Donor getMostRecentDonor() {
-        int highest = 0;
-        Donor donor = null;
-
-        for (int i = 0; i < donations.size(); i++) {
-            if (donations.get(donations.getKey(i)).size() > highest) {
-                donor = donations.getKey(i);
-                highest = donations.get(donor).size();
-            }
-        }
-
-        return donor;
-    }
-
-    public String getDonationString(Donor donor) {
-        String arrString = "";
-        arrString += "Donor\n";
-        arrString += "------\n";
-        arrString += donor;
-
-        arrString += "\nDonation Detail\n";
-        arrString += "--------------------";
-        arrString += getDonationArrayString(donor);
-        return arrString;
-    }
-
-    public String getDonationArrayString(Donor donor) {
-        String arrString = "";
-
-        ArrayList<Donation> donationArray = donations.get(donor);
-
-        for (int j = 0; j < donationArray.size(); j++) {
-            arrString += donationArray.get(j);
-            arrString += "\n";
-        }
-        return arrString;
-    }
-    
     public LinkedQueue<Donation> getRecentDonors() {
         return recentDonations;
     }
