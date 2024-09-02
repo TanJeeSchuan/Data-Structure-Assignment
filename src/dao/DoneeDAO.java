@@ -34,4 +34,12 @@ public class DoneeDAO {
     public LinkedSet getDonees(){
         return doneeSet;
     }
+    
+        public void addDonee(Donee newDonee) {
+        doneeSet.add(newDonee);
+    }
+
+    public void removeDonee(Donee selectedDonee) {
+        doneeSet.remove(selectedDonee);
+    }
 }
