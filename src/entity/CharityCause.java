@@ -35,6 +35,30 @@ public class CharityCause implements Comparable<CharityCause>{
         donees = new SortedArrayList(doneeList.toArray());
         currentCauseId++;
     }
+
+    public static int getCurrentCauseId() {
+        return currentCauseId;
+    }
+
+    public static void setCurrentCauseId(int currentCauseId) {
+        CharityCause.currentCauseId = currentCauseId;
+    }
+
+    public String getCauseName() {
+        return causeName;
+    }
+
+    public void setCauseName(String causeName) {
+        this.causeName = causeName;
+    }
+
+    public SortedArrayList<Donee> getDonees() {
+        return donees;
+    }
+
+    public void setDonees(SortedArrayList<Donee> donees) {
+        this.donees = donees;
+    }
     
     @Override
     public boolean equals(Object o){
