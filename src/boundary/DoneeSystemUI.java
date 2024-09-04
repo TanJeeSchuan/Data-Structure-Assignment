@@ -4,6 +4,7 @@
  */
 package boundary;
 
+import adt.ArrayList;
 import adt.interfaces.List;
 import adt.interfaces.SetInterface;
 import entity.Donee;
@@ -62,9 +63,8 @@ public class DoneeSystemUI {
         System.out.println(o);
     }
 
-    public void showDonees(SetInterface s) {
+    public void showDonees(ArrayList s) {
         for (Object o : s) {
-            System.out.println("");
             System.out.println(o);
         }
     }
