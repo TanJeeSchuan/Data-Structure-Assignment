@@ -4,6 +4,7 @@
  */
 package boundary;
 
+import adt.interfaces.List;
 import adt.interfaces.SetInterface;
 import entity.Donor;
 import java.util.Scanner;
@@ -91,5 +92,15 @@ public class DonorSystemUI {
 
     public void showRemovedDonor(Donor selectedDonor) {
         System.out.println("\nDonor %s Deleted!".formatted(selectedDonor.getName()));
+    }
+
+    public void report(int total, List<String> recentDonor) {
+        System.out.println("Donee Report");
+        System.out.println("Total of donors: " + total);
+        System.out.println();
+        System.out.println("The last " + recentDonor.size() + " donor informations added: ");
+        for (int i = 0; i < recentDonor.size(); i++) {
+            System.out.println(recentDonor.get(i));
+        }
     }
 }

@@ -4,7 +4,11 @@
  */
 package control;
 
+import adt.ArrayList;
 import adt.LinkedSet;
+import adt.LinkedStack;
+import adt.interfaces.List;
+import adt.interfaces.StackInterface;
 import boundary.DoneeSystemUI;
 import dao.DB;
 import entity.Donee;
@@ -16,6 +20,7 @@ import entity.Donee;
 public class DoneeSystemControl {
 
     private DoneeSystemUI doneeSystemUI;
+    private StackInterface<Donee> doneeStack = new LinkedStack<>();
     private DB db = DB.getInstance();
 
     public DoneeSystemControl() {
@@ -47,6 +52,8 @@ public class DoneeSystemControl {
                 case 4:
                     deleteDonee();
                     break;
+                case 5:
+                    doneeReport();
                 default:
                     throw new AssertionError();
             }
@@ -60,6 +67,7 @@ public class DoneeSystemControl {
 
         Donee newDonee = new Donee(doneeName, doneeContact, doneeAddress);
         DB.getInstance().doneeDAO.addDonee(newDonee);
+        doneeStack.push(newDonee);
         doneeSystemUI.showNewDonee(newDonee);
     }
 
@@ -118,5 +126,28 @@ public class DoneeSystemControl {
     private void modifyDoneeAddress(Donee selectedDonee) {
         String newAddress = doneeSystemUI.getNewDoneeName();
         selectedDonee.setAddress(newAddress);
+    }
+
+    private void doneeReport() {
+        List<String> recentDonee = new ArrayList<>();
+        StackInterface<Donee> tempStack = new LinkedStack<>();
+        LinkedSet<Donee> doneeSet = db.doneeDAO.getDonees();
+        int total = doneeSet.size();
+
+        recentDonee.add("%-8s | %-30s | %-11s | %-50s".formatted("Donee ID", "Donee Name", "Contact Number", "Address"));
+
+        // get data
+        for (int i = 0; i < 10 || doneeStack.isEmpty(); i++) {
+            Donee donee = doneeStack.pop();
+            tempStack.push(donee);
+            recentDonee.add("%-8s | %-30s | %-11s | %-50s".formatted(donee.getDoneeId(), donee.getName(), donee.getContactNumber(), donee.getAddress()));
+
+        }
+        // store back
+        while (!tempStack.isEmpty()) {
+            doneeStack.push(tempStack.pop());
+        }
+
+        doneeSystemUI.report(total, recentDonee);
     }
 }
