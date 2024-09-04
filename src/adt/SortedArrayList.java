@@ -4,6 +4,8 @@
  */
 package adt;
 
+import java.util.Comparator;
+
 /**
  *
  * @author Tan Jee Schuan
@@ -11,8 +13,15 @@ package adt;
  */
 
 public class SortedArrayList<T extends Comparable<T>> extends ArrayList {
+    private Comparator<T> comparator;
+    
     public SortedArrayList(){
         super();
+    }
+    
+    public SortedArrayList(Comparator<T> comparator){
+        super();
+        this.comparator = comparator;
     }
     
     public SortedArrayList(Object[] arr){
@@ -35,12 +44,17 @@ public class SortedArrayList<T extends Comparable<T>> extends ArrayList {
     
     @Override
     public boolean contains(Object object) {
-        return binarySearch(array, 0, entries, (T)object) != -1;
+        if(comparator == null)
+            return binarySearch(array, 0, entries, (T)object) != -1;
+        return comparatorBinarySearch(array, 0, entries, (T)object, this.comparator) != -1;
     }
     
     @Override
     public int indexOf(Object object){
-        return binarySearch(array, 0, entries, (T)object);
+        if(comparator == null)
+            return binarySearch(array, 0, entries, (T)object);
+        
+        return comparatorBinarySearch(array, 0, entries, (T)object, this.comparator);
     }
 
     
@@ -63,14 +77,41 @@ public class SortedArrayList<T extends Comparable<T>> extends ArrayList {
         return -1;
     }
     
+    private int comparatorBinarySearch(Object arr[], int start, int end, Object x, Comparator comparator){
+        if(end >= start){
+            int middle = start + (end - start) / 2 ;
+
+            if(comparator.compare(x, arr[middle]) == 0)
+                return middle;
+
+            //x at low
+            if(comparator.compare(arr[middle],(x)) > 0)
+                return comparatorBinarySearch(arr, start, middle - 1, x, comparator);
+
+            //x at higher part
+            if(comparator.compare(arr[middle],(x)) < 0)
+                return comparatorBinarySearch(arr, middle + 1, end, x, comparator);
+        }
+        //not found
+        return -1;
+    }
+    
     protected int findInsertionIndex(Object object){
         if(isEmpty())
             return 0;
             
-        for(int i = 0; i < entries; i++){
-            if(((T)object).compareTo((T)array[i]) < 0)
-                return i;
+        if(comparator == null){
+            for(int i = 0; i < entries; i++){
+                if(((T)object).compareTo((T)array[i]) < 0)
+                    return i;
+            }
+            return entries;
+        } else {
+            for(int i = 0; i < entries; i++){
+                if(comparator.compare((T)object, (T)array[i]) < 0)
+                    return i;
+            }
+            return entries;
         }
-        return entries;
     }
 }

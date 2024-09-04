@@ -2,7 +2,7 @@ package adt.interfaces;
 
 import java.util.Iterator;
 
-public interface SetInterface<T> extends Iterable{
+public interface SetInterface<T> extends Iterable<T>{
     public Iterator<T> iterator();
     
     public void add(T t);

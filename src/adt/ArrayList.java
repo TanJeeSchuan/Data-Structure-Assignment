@@ -32,7 +32,7 @@ public class ArrayList<T> implements List<T>{
 
     public Iterator<T> getIterator() {
         return new Iterator<T>() {
-            int index = 1;
+            int index = 0;
 
             @Override
             public boolean hasNext() {

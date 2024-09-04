@@ -80,6 +80,14 @@ public class Event implements Comparable<Event>{
         this.charityCause = charityCause;
     }
     
+    public LocalDateTime getEventDate(){
+        return this.eventDate;
+    }
+    
+    public void setEventDate(LocalDateTime eventDate){
+        this.eventDate = eventDate;
+    }
+    
     @Override
     public int compareTo(Event o) {
         return this.eventId - o.eventId;
@@ -87,6 +95,6 @@ public class Event implements Comparable<Event>{
     
     @Override
     public String toString() {
-        return this.eventId + " " + this.eventName + " " + this.eventVenue + " " + Objects.toString(charityCause) + " " + Objects.toString(eventDate);
+        return this.eventId + ", " + this.eventName + ", " + this.eventVenue;
     }
 }

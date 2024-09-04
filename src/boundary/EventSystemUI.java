@@ -6,7 +6,6 @@ package boundary;
 
 import adt.interfaces.List;
 import adt.interfaces.SetInterface;
-import entity.CharityCause;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
@@ -30,10 +29,12 @@ public class EventSystemUI {
         System.out.println("3. Display all events");
         System.out.println("4. Event report");
         System.out.println("5. Delete Event");
-        System.out.println("6. Upcoming Events");
+        System.out.println("6. Upcoming Event");
+        System.out.println("0. Exit");
     }
 
     public int getMenuSelection() {
+        System.out.println("Enter Selection: ");
         int input = Integer.parseInt(scanner.nextLine());
         return input;
     }
@@ -62,14 +63,14 @@ public class EventSystemUI {
         return dateTime;
     }
 
-    public void showCharityCauses(List<CharityCause> charityCauses) {
+    public void showCharityCause(List charityCauses) {
         int index = 0;
-        for(CharityCause charityCause: charityCauses){
+        for(var charityCause: charityCauses){
             System.out.println(index + " ----- " + charityCause.toString());
         }
     }
 
-    public int getCharityCauseIndex() {
+    public int getEventIndex() {
         System.out.print("Enter selected event index: ");
         int input = Integer.parseInt(scanner.nextLine());
         return input; 
@@ -79,5 +80,41 @@ public class EventSystemUI {
         for(var e: set){
             System.out.println(e);
         }
+    }
+    
+    public void showEvent(String s) {
+        System.out.println(s);
+    }
+
+    public int getEventSelection() {
+        System.out.println("Enter Selected Event Index: ");
+        int input = Integer.parseInt(scanner.nextLine());
+        return input -1;
+    }
+
+    public void showEventModificationUI() {
+        System.out.println("1. Modify Event Name");
+        System.out.println("2. Modify Event Venue");
+        System.out.println("3. Modify Event Date");
+        System.out.println("4. Modify Event Charity Cause");
+        System.out.println("0. Exit");
+    }
+
+    public int getEventModificationSelection() {
+        System.out.println("Enter Selected Event Operation: ");
+        int input = Integer.parseInt(scanner.nextLine());
+        return input;    
+    }
+
+    public void showPastEvents() {
+        System.out.println("\nPast Events\n-----------------");
+    }
+
+    public void showFutureEvents() {
+        System.out.println("\nFuture Events\n-----------------");    
+    }
+
+    public void showRemovedEvent(Object selectedEvent) {
+        System.out.println("Removed " + selectedEvent.toString());
     }
 }
