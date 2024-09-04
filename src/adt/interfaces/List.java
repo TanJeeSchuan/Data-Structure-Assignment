@@ -8,7 +8,7 @@ package adt.interfaces;
  *
  * @author Tan Jee Schuan
  */
-public interface List<T> {
+public interface List<T> extends Iterable<T> {
     boolean add(T object);
     boolean contains(T object);
     boolean isEmpty();

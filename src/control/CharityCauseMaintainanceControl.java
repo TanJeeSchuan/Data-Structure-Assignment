@@ -63,7 +63,7 @@ public class CharityCauseMaintainanceControl {
         
         ArrayList<CharityCause> causes = db.charityCauseDAO.getCharityCauses();
         charityCauseMaintainanceUI.showCharityCauseHeader();
-        for(CharityCause cause: causes){
+        for(Object cause: causes){
             charityCauseMaintainanceUI.showCharityCauseSelection("%-10d%-30s%-20s".formatted(cause.causeId, cause.causeName, cause.donees.size()));
         }
         

@@ -4,8 +4,6 @@
  */
 package control;
 
-import boundary.CharityCauseMaintainanceUI;
-import boundary.DonationManagementUI;
 import boundary.MainUI;
 
 /**
@@ -17,12 +15,14 @@ public class MainMenu {
     private CharityCauseMaintainanceControl charityCauseMaintainanceControl;
     private DonationManagementControl donationManagementControl;
     private DonorSystemControl donorSystemControl;
+    private EventSystemControl eventSystemControl;
     
     public MainMenu(){
         mainMenuUI = new MainUI();
         charityCauseMaintainanceControl = new CharityCauseMaintainanceControl();
         donationManagementControl = new DonationManagementControl();
         donorSystemControl = new DonorSystemControl();
+        eventSystemControl = new EventSystemControl();
     }
     
     public void startUI(){
@@ -50,6 +50,7 @@ public class MainMenu {
                     charityCauseMaintainanceControl.startUI();
                     break;
                 case 5:
+                    eventSystemControl.startUI();
                     break;
                 default:
                     throw new AssertionError();

@@ -5,6 +5,7 @@
 package entity;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 /**
  *
@@ -82,5 +83,10 @@ public class Event implements Comparable<Event>{
     @Override
     public int compareTo(Event o) {
         return this.eventId - o.eventId;
+    }
+    
+    @Override
+    public String toString() {
+        return this.eventId + " " + this.eventName + " " + this.eventVenue + " " + Objects.toString(charityCause) + " " + Objects.toString(eventDate);
     }
 }

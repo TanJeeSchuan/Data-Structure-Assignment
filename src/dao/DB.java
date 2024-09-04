@@ -20,8 +20,8 @@ public class DB {
     private DB(){
         doneeDAO = new DoneeDAO();
         donorDAO = new DonorDAO();
-        eventDAO = new EventDAO();
         charityCauseDAO = new CharityCauseDAO(doneeDAO);
+        eventDAO = new EventDAO(charityCauseDAO);
         donationDAO = new DonationDAO(donorDAO, charityCauseDAO);
     }
     

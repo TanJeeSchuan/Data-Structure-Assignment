@@ -4,6 +4,11 @@
  */
 package boundary;
 
+import adt.interfaces.List;
+import adt.interfaces.SetInterface;
+import entity.CharityCause;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 /**
@@ -32,6 +37,47 @@ public class EventSystemUI {
         int input = Integer.parseInt(scanner.nextLine());
         return input;
     }
-    
-    
+
+    public void showAddingNewEvent() {
+        System.out.println("\nAdding New Event...");
+    }
+
+    public String getNewEventName() {
+        System.out.print("Enter Event Name: ");
+        String output = scanner.nextLine();
+        return output;
+    }
+
+    public String getNewEventVenue() {
+        System.out.print("Enter Event Venue: ");
+        String output = scanner.nextLine();
+        return output;    
+    }
+
+    public LocalDateTime getNewEventDate() {
+        System.out.print("Enter Event Date With Format (yyyy-mm-dd): ");
+        String dateString = scanner.nextLine();
+        LocalDateTime dateTime = LocalDateTime.parse(dateString, DateTimeFormatter.ISO_DATE);
+        
+        return dateTime;
+    }
+
+    public void showCharityCauses(List<CharityCause> charityCauses) {
+        int index = 0;
+        for(CharityCause charityCause: charityCauses){
+            System.out.println(index + " ----- " + charityCause.toString());
+        }
+    }
+
+    public int getCharityCauseIndex() {
+        System.out.print("Enter selected event index: ");
+        int input = Integer.parseInt(scanner.nextLine());
+        return input; 
+    }    
+
+    public void showEvents(SetInterface set) {
+        for(var e: set){
+            System.out.println(e);
+        }
+    }
 }

@@ -4,9 +4,14 @@
  */
 package control;
 
+import adt.ArrayList;
+import adt.interfaces.List;
+import adt.interfaces.SetInterface;
 import boundary.EventSystemUI;
 import dao.DB;
+import entity.CharityCause;
 import entity.Event;
+import java.time.LocalDateTime;
 
 /**
  *
@@ -39,6 +44,7 @@ public class EventSystemControl {
                 case 2:
                     break;
                 case 3:
+                    displayAllEvents();
                     break;
                 case 4:
                     break;
@@ -56,9 +62,23 @@ public class EventSystemControl {
         eventSystemUI.showAddingNewEvent();
         String eventName = eventSystemUI.getNewEventName();
         String eventVenue = eventSystemUI.getNewEventVenue();
+        CharityCause eventCharityCause = getSelectedCharityCause();
+        LocalDateTime eventDate = eventSystemUI.getNewEventDate();
         
-        Event newEvent = new Event(eventName, eventVenue);
+        Event newEvent = new Event(eventName, eventVenue, eventCharityCause, eventDate);
         
         db.eventDAO.addEvent(newEvent);
     }    
-}
+
+    private CharityCause getSelectedCharityCause() {
+        List<CharityCause> charityCauses =  db.charityCauseDAO.getCharityCauses();
+        eventSystemUI.showCharityCauses(charityCauses);
+        int selectedIndex = eventSystemUI.getCharityCauseIndex();
+        CharityCause selectedCharityCause = charityCauses.get(selectedIndex);
+        return selectedCharityCause;
+    }
+
+    private void displayAllEvents() {
+        SetInterface<Event> eventList =  db.eventDAO.getEvents();
+        eventSystemUI.showEvents(eventList);    }
+    }

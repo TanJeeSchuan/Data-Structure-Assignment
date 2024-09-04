@@ -5,6 +5,7 @@
 package adt;
 
 import adt.interfaces.List;
+import java.util.Iterator;
 
 /**
  *
@@ -16,6 +17,27 @@ public class LinkedList<T> implements List{
     protected Node head;
     protected Node tail;
     protected int size;
+
+    @Override
+    public Iterator<T> iterator() {
+        return new Iterator(){
+            private int index = 0;
+            private Node currentNode = head;
+            
+            @Override
+            public boolean hasNext() {
+                return index < size;
+            }
+
+            @Override
+            public Object next() {
+                Node prevNode = currentNode;
+                currentNode = currentNode.next;
+                index++;
+                return prevNode.data;
+            }
+        };
+    }
     
     class Node{
         public T data;

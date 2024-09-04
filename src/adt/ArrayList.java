@@ -6,7 +6,7 @@ import java.util.Iterator;
 /*
  * @param <T>
  */
-public class ArrayList<T> implements List, Iterable<T> {
+public class ArrayList<T> implements List{
 
     protected Object[] array;
     protected static final int DEFAULT_CAPACITY = 2;
