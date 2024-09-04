@@ -5,6 +5,7 @@
 package control;
 
 import adt.ArrayList;
+import adt.ArrayMap;
 import adt.ArraySet;
 import adt.LinkedSet;
 import adt.LinkedStack;
@@ -12,6 +13,7 @@ import adt.interfaces.List;
 import adt.interfaces.StackInterface;
 import boundary.DonorSystemUI;
 import dao.DB;
+import entity.Donation;
 import entity.Donor;
 
 /**
@@ -96,7 +98,21 @@ public class DonorSystemControl {
 
     private void displayAllDonors() {
         LinkedSet<Donor> donorSet = db.donorDAO.getDonors();
-        donorSystemUI.showDonors(donorSet);
+        ArrayMap<Donor, ArrayList<Donation>> donations = DB.getInstance().donationDAO.getDonations();
+        int number = 0;
+        ArrayList<String> donorsInfo = new ArrayList<>();
+        donorsInfo.add("%-3s | %-30s | %-30s | %-15s".formatted("No.", "Donor Name", "Donor Email", "No. of donation"));
+        for (int i = 0; i < donorSet.size(); i++) {
+            try {
+                number = donations.get(donorSet.getValue(i)).size();
+            } catch (Exception ex) {
+                number = 0;
+            } finally {
+                donorsInfo.add("%-3d | %-30s | %-30s | %-15d".formatted(i + 1, donorSet.getValue(i).getName(), donorSet.getValue(i).getEmail(), number));
+            }
+        }
+
+        donorSystemUI.showDonors(donorsInfo);
     }
 
     private void deleteDonor() {
@@ -132,7 +148,7 @@ public class DonorSystemControl {
         for (int i = 0; i < 10 || donorStack.isEmpty(); i++) {
             Donor donor = donorStack.pop();
             tempStack.push(donor);
-            recentDonor.add("%-8s | %-30s | %-30s".formatted(donor.getDonorId(), donor.getName(), donor.getEmail()));
+            recentDonor.add("%-8d | %-30s | %-30s".formatted(donor.getDonorId(), donor.getName(), donor.getEmail()));
 
         }
         // store back

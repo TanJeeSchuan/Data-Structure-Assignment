@@ -88,8 +88,10 @@ public class DoneeSystemControl {
                 break;
             case 2:
                 modifyDoneeContact(selectedDonee);
+                break;
             case 3:
                 modifyDoneeAddress(selectedDonee);
+                break;
             default:
                 throw new AssertionError();
         }
@@ -140,7 +142,7 @@ public class DoneeSystemControl {
         for (int i = 0; i < 10 || doneeStack.isEmpty(); i++) {
             Donee donee = doneeStack.pop();
             tempStack.push(donee);
-            recentDonee.add("%-8s | %-30s | %-11s | %-50s".formatted(donee.getDoneeId(), donee.getName(), donee.getContactNumber(), donee.getAddress()));
+            recentDonee.add("%-8d | %-30s | %-11s | %-50s".formatted(donee.getDoneeId(), donee.getName(), donee.getContactNumber(), donee.getAddress()));
 
         }
         // store back

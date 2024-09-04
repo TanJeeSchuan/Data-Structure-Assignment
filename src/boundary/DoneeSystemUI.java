@@ -30,6 +30,7 @@ public class DoneeSystemUI {
         System.out.println("2. Modify donee information");
         System.out.println("3. Display all donees");
         System.out.println("4. Delete Donee");
+        System.out.println("5. Donee Report");
         System.out.println("0. Exit");
     }
 
@@ -106,6 +107,8 @@ public class DoneeSystemUI {
         System.out.println("Total of donees: " + total);
         System.out.println();
         System.out.println("The last " + recentDonee.size() + " donee informations added: ");
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        for (int i = 0; i < recentDonee.size(); i++) {
+            System.out.println(recentDonee.get(i));
+        }
     }
 }

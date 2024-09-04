@@ -25,7 +25,7 @@ public class DonationManagementControl {
     private Scanner sc;
     private DonationManagementUI donationManagementUI;
     private DonationManagement dm;
-    LinkedSet<Donor> donors = DB.getInstance().donorDAO.getDonors();
+    private DB db = DB.getInstance();
 
     public DonationManagementControl() {
         sc = new Scanner(System.in);
@@ -68,12 +68,25 @@ public class DonationManagementControl {
     }
 
     public void addDonation() {
+        boolean isExist = false;
+        LinkedSet<Donor> donorSet = db.donorDAO.getDonors();
+
         donationManagementUI.promptTitle("Add Donation");
 
         ArrayList<CharityCause> causes = DB.getInstance().charityCauseDAO.getCharityCauses();
         CharityCause cause = donationManagementUI.getCauseOption(causes);
         double amount = donationManagementUI.getDonationAmount();
         Donor donor = new Donor(donationManagementUI.getDonorName(), donationManagementUI.getDonorEmail());
+
+        for (int i = 0; i < donorSet.size(); i++) {
+            if (donorSet.getValue(i).equals(donor)) {
+                isExist = true;
+            }
+        }
+        if (!isExist) {
+            DB.getInstance().donorDAO.addDonor(donor);
+        }
+
         dm.addDonation(donor, cause, amount);
 
         donationManagementUI.promptSuccessMessage("added");
