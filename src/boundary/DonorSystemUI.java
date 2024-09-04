@@ -4,6 +4,7 @@
  */
 package boundary;
 
+import adt.ArrayList;
 import adt.interfaces.List;
 import adt.interfaces.SetInterface;
 import entity.Donor;
@@ -29,6 +30,7 @@ public class DonorSystemUI {
             System.out.println("2. Modify donor information");
             System.out.println("3. Display all donors");
             System.out.println("4. Delete Donor");
+            System.out.println("5. Donor Report");
             System.out.println("0. Exit");
         }
 
@@ -55,9 +57,8 @@ public class DonorSystemUI {
         System.out.println(o);
     }
     
-    public void showDonors(SetInterface s) {
+    public void showDonors(ArrayList s) {
         for(Object o: s){
-            System.out.println("");
             System.out.println(o);
         }
     }
