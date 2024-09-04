@@ -4,6 +4,9 @@
  */
 package entity;
 
+import adt.LinkedStack;
+import adt.interfaces.StackInterface;
+
 /**
  *
  * @author Tan Jee Schuan
@@ -59,6 +62,6 @@ public class Donee implements Comparable<Donee>{
     
     @Override
     public String toString(){
-        return "Donee Id: " + doneeId + ", Donee name: " + name + ", ContactNumber: " + contactNumber + ", Address: " + address;
+        return "Donee Id: " + doneeId + ", Donee name: " + name + ", Contact Number: " + contactNumber + ", Address: " + address;
     }
 }

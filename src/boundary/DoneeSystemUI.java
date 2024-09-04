@@ -4,6 +4,7 @@
  */
 package boundary;
 
+import adt.interfaces.List;
 import adt.interfaces.SetInterface;
 import entity.Donee;
 import java.util.Scanner;
@@ -98,5 +99,13 @@ public class DoneeSystemUI {
 
     public void showRemovedDonee(Donee selectedDonee) {
         System.out.println("\nDonee %s Deleted!".formatted(selectedDonee.getName()));
+    }
+
+    public void report(int total, List<String> recentDonee) {
+        System.out.println("Donee Report");
+        System.out.println("Total of donees: " + total);
+        System.out.println();
+        System.out.println("The last " + recentDonee.size() + " donee informations added: ");
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }
