@@ -6,9 +6,9 @@ import java.util.Iterator;
 /*
  * @param <T>
  */
-public class ArrayList<T> implements List{
+public class ArrayList<T> implements List<T>{
 
-    protected Object[] array;
+    protected T[] array;
     protected static final int DEFAULT_CAPACITY = 2;
     protected int maxSize;
     protected int entries = 0;
@@ -76,7 +76,7 @@ public class ArrayList<T> implements List{
     }
 
     @Override
-    public Object get(int index) throws ArrayIndexOutOfBoundsException {
+    public T get(int index) throws ArrayIndexOutOfBoundsException {
         if (index > entries) {
             throw new ArrayIndexOutOfBoundsException();
         }

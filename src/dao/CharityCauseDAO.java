@@ -6,6 +6,7 @@ package dao;
 
 import adt.ArrayList;
 import adt.LinkedSet;
+import adt.interfaces.List;
 import entity.CharityCause;
 import entity.Donee;
 import java.util.Iterator;
@@ -18,7 +19,7 @@ public class CharityCauseDAO {
     private ArrayList<CharityCause> charityCauseList;
     
     public CharityCauseDAO(DoneeDAO doneeDAO){
-        charityCauseList = new ArrayList<CharityCause>();
+        charityCauseList = new ArrayList<>();
         
         LinkedSet<Donee> doneeSet = doneeDAO.getDonees();
         Iterator itr = doneeSet.iterator();

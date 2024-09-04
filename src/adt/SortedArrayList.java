@@ -10,7 +10,7 @@ package adt;
  * @param <T>
  */
 
-public class SortedArrayList<T extends Comparable<T>> extends ArrayList<T> {
+public class SortedArrayList<T extends Comparable<T>> extends ArrayList {
     public SortedArrayList(){
         super();
     }
