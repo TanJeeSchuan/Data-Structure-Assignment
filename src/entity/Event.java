@@ -4,6 +4,8 @@
  */
 package entity;
 
+import java.time.LocalDateTime;
+
 /**
  *
  * @author Tan Jee Schuan
@@ -13,12 +15,14 @@ public class Event implements Comparable<Event>{
     private int eventId;
     private String eventName;
     private String eventVenue;
+    private LocalDateTime eventDate;
     private CharityCause charityCause;
     
     public Event(String eventName, String eventVenue){
         this.eventId = currentId;
         this.eventName = eventName;
         this.eventVenue = eventVenue;
+        this.eventDate = LocalDateTime.now();
         
         currentId++;
     }
@@ -28,6 +32,17 @@ public class Event implements Comparable<Event>{
         this.eventName = eventName;
         this.eventVenue = eventVenue;
         this.charityCause = charityCause;
+        this.eventDate = LocalDateTime.now();
+        
+        currentId++;
+    }
+    
+    public Event(String eventName, String eventVenue, CharityCause charityCause, LocalDateTime eventDate){
+        this.eventId = currentId;
+        this.eventName = eventName;
+        this.eventVenue = eventVenue;
+        this.charityCause = charityCause;
+        this.eventDate = eventDate;
         
         currentId++;
     }
