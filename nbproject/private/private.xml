@@ -3,16 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Tan%20Jee%20Schuan/Documents/TARC/202405/BACS2063%20Data%20Structure%20and%20Algorithms/Assignment/src/dao/CharityCauseDAO.java</file>
-            <file>file:/C:/Users/Tan%20Jee%20Schuan/Documents/TARC/202405/BACS2063%20Data%20Structure%20and%20Algorithms/Assignment/src/adt/interfaces/List.java</file>
-            <file>file:/C:/Users/Tan%20Jee%20Schuan/Documents/TARC/202405/BACS2063%20Data%20Structure%20and%20Algorithms/Assignment/src/control/MainMenu.java</file>
-            <file>file:/C:/Users/Tan%20Jee%20Schuan/Documents/TARC/202405/BACS2063%20Data%20Structure%20and%20Algorithms/Assignment/src/adt/LinkedSet.java</file>
             <file>file:/C:/Users/Tan%20Jee%20Schuan/Documents/TARC/202405/BACS2063%20Data%20Structure%20and%20Algorithms/Assignment/src/control/EventSystemControl.java</file>
-            <file>file:/C:/Users/Tan%20Jee%20Schuan/Documents/TARC/202405/BACS2063%20Data%20Structure%20and%20Algorithms/Assignment/src/boundary/DonorSystemUI.java</file>
             <file>file:/C:/Users/Tan%20Jee%20Schuan/Documents/TARC/202405/BACS2063%20Data%20Structure%20and%20Algorithms/Assignment/src/entity/Event.java</file>
             <file>file:/C:/Users/Tan%20Jee%20Schuan/Documents/TARC/202405/BACS2063%20Data%20Structure%20and%20Algorithms/Assignment/src/dao/EventDAO.java</file>
-            <file>file:/C:/Users/Tan%20Jee%20Schuan/Documents/TARC/202405/BACS2063%20Data%20Structure%20and%20Algorithms/Assignment/src/adt/LinkedList.java</file>
-            <file>file:/C:/Users/Tan%20Jee%20Schuan/Documents/TARC/202405/BACS2063%20Data%20Structure%20and%20Algorithms/Assignment/src/adt/ArrayList.java</file>
+            <file>file:/C:/Users/Tan%20Jee%20Schuan/Documents/TARC/202405/BACS2063%20Data%20Structure%20and%20Algorithms/Assignment/src/boundary/CharityCauseMaintainanceUI.java</file>
             <file>file:/C:/Users/Tan%20Jee%20Schuan/Documents/TARC/202405/BACS2063%20Data%20Structure%20and%20Algorithms/Assignment/src/control/CharityCauseMaintainanceControl.java</file>
             <file>file:/C:/Users/Tan%20Jee%20Schuan/Documents/TARC/202405/BACS2063%20Data%20Structure%20and%20Algorithms/Assignment/src/boundary/EventSystemUI.java</file>
         </group>
