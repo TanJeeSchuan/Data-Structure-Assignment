@@ -16,12 +16,14 @@ public class MainMenu {
     private DonationManagementControl donationManagementControl;
     private DonorSystemControl donorSystemControl;
     private EventSystemControl eventSystemControl;
+    private DoneeSystemControl doneeSystemControl;
     
     public MainMenu(){
         mainMenuUI = new MainUI();
         charityCauseMaintainanceControl = new CharityCauseMaintainanceControl();
         donationManagementControl = new DonationManagementControl();
         donorSystemControl = new DonorSystemControl();
+        doneeSystemControl = new DoneeSystemControl();
         eventSystemControl = new EventSystemControl();
     }
     
@@ -42,6 +44,7 @@ public class MainMenu {
                     donorSystemControl.startUI();
                     break;
                 case 2:
+                    doneeSystemControl.startUI();
                     break;
                 case 3:
                     donationManagementControl.startUI();

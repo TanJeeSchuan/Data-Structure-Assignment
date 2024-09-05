@@ -18,14 +18,14 @@ import entity.Donor;
 public class Assignment {
     
     public static void main(String[] args) {
-        DonationManagement don = new DonationManagement();
-        
-        Donor donor1 = new Donor("Alice", "A@a.aa");
-        CharityCause charityCause = new CharityCause("ABC");
-        don.addDonation(donor1, charityCause, 0);
-        
-        System.out.println(don.getRecentDonors());
-        
+//        DonationManagement don = new DonationManagement();
+//        
+//        Donor donor1 = new Donor("Alice", "A@a.aa");
+//        CharityCause charityCause = new CharityCause("ABC");
+//        don.addDonation(donor1, charityCause, 0);
+//        
+//        System.out.println(don.getRecentDonors());
+//        
         MainMenu mainMenu = new MainMenu();
         mainMenu.startUI();
     }

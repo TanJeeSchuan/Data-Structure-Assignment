@@ -56,6 +56,11 @@ public class Donee implements Comparable<Donee>{
     }
     
     @Override
+    public boolean equals(Object o ){
+        return this.doneeId == ((Donee)o).doneeId;
+    }
+    
+    @Override
     public int compareTo(Donee o) {
         return this.doneeId - o.doneeId;
     }

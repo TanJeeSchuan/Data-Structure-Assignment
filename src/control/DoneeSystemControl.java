@@ -105,7 +105,7 @@ public class DoneeSystemControl {
         ArrayList<CharityCause> causes = db.charityCauseDAO.getCharityCauses();
         String causeName = null;
         ArrayList<String> doneesInfo = new ArrayList<>();
-        doneesInfo.add("%-3s | %-20s | %-30s% | %-11s | %-50s".formatted("No.", "Donee Name", "Cause", "Contact Number", "Address"));
+        doneesInfo.add("%-3s | %-20s | %-30s | %-11s | %-50s".formatted("No.", "Donee Name", "Cause", "Contact Number", "Address"));
         for (int i = 0; i < doneeSet.size(); i++) {
             causeName = null;
             for (int j = 0; j < causes.size() && causeName == null; j++) {
@@ -114,7 +114,7 @@ public class DoneeSystemControl {
                     causeName = cause.getCauseName();
                 }
             }
-            doneesInfo.add("%-3d | %-20s | %-30s% | %-11s | %-50s".formatted(i + 1, doneeSet.getValue(i).getName(), causeName, doneeSet.getValue(i).getContactNumber(), doneeSet.getValue(i).getAddress()));
+            doneesInfo.add("%-3d | %-20s | %-30s | %-11s | %-50s".formatted(i + 1, doneeSet.getValue(i).getName(), causeName, doneeSet.getValue(i).getContactNumber(), doneeSet.getValue(i).getAddress()));
 
         }
 

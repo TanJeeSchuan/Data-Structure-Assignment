@@ -59,7 +59,7 @@ public class SortedArrayList<T extends Comparable<T>> extends ArrayList {
 
     
     private int binarySearch(Object arr[], int start, int end, Object x){
-        if(end >= start){
+        if(end > start){
             int middle = start + (end - start) / 2 ;
 
             if(x.equals(arr[middle]))
