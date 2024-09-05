@@ -63,9 +63,9 @@ public class CharityCauseMaintainanceControl {
         
         ArrayList<CharityCause> causes = db.charityCauseDAO.getCharityCauses();
         charityCauseMaintainanceUI.showCharityCauseHeader();
-//        for(CharityCause cause: causes){
-//            charityCauseMaintainanceUI.showCharityCauseSelection("%-10d%-30s%-20s".formatted(cause.causeId, cause.causeName, cause.donees.size()));
-//        }
+        for(CharityCause cause: causes){
+            charityCauseMaintainanceUI.showCharityCauseSelection("%-10d%-30s%-20s".formatted(cause.causeId, cause.causeName, cause.donees.size()));
+        }
         
         int selectedIndex = charityCauseMaintainanceUI.getCauseSelection();
         CharityCause selectedCause = (CharityCause)causes.get(selectedIndex);
