@@ -47,6 +47,11 @@ public class DonationManagement {
 //        donors.add(donor4);
 
     }
+    
+    public DonationManagement(ArrayMap donations) {
+        recentDonations = new FixedSizedLinkedQueue(5);
+        this.donations = donations;
+    }
 
     //add donation
     public void addDonation(Donor donor, CharityCause charityCause, double amount) {
@@ -54,7 +59,7 @@ public class DonationManagement {
 
         recentDonations.enqueue(newDonation);
         
-        if (!donations.isEmpty() || donations.has(donor)) {
+        if (!donations.isEmpty() && donations.has(donor)) {
             donations.get(donor).add(newDonation);
 
         } else {
@@ -93,5 +98,6 @@ public class DonationManagement {
     public LinkedQueue<Donation> getRecentDonors() {
         return recentDonations;
     }
-
+    
+    
 }

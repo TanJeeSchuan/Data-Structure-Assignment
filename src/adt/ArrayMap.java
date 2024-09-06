@@ -82,6 +82,7 @@ public class ArrayMap<K, V> implements MapInterface<K, V> {
         return null;
     }
 
+    @Override
     public boolean has(K k) {
         for (int i = 0; i < size; i++) {
             if (array[i].key.equals(k)) {

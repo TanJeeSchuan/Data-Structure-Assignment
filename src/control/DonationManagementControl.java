@@ -25,11 +25,12 @@ public class DonationManagementControl {
     private Scanner sc;
     private DonationManagementUI donationManagementUI;
     private DonationManagement dm;
-    private DB db = DB.getInstance();
+    private DB db;
 
     public DonationManagementControl() {
         sc = new Scanner(System.in);
-
+        db = DB.getInstance();
+        dm = new DonationManagement(db.donationDAO.getDonations());
         donationManagementUI = new DonationManagementUI();
     }
 
@@ -88,6 +89,7 @@ public class DonationManagementControl {
         }
 
         dm.addDonation(donor, cause, amount);
+        db.donationDAO.syncDonations(dm.donations);
 
         donationManagementUI.promptSuccessMessage("added");
     }
@@ -125,6 +127,7 @@ public class DonationManagementControl {
                     break;
             }
 
+            db.donationDAO.syncDonations(dm.donations);
             donationManagementUI.promptSuccessMessage("updated");
         }
     }
@@ -144,10 +147,12 @@ public class DonationManagementControl {
                 donationManagementUI.promptSuccessMessage("deleted");
             }
         }
+        
+        db.donationDAO.syncDonations(dm.donations);
     }
 
     public void displayDonation() {
-        ArrayMap<Donor, ArrayList<Donation>> donations = dm.getAllDonations();
+        ArrayMap<Donor, ArrayList<Donation>> donations = db.donationDAO.getDonations();
 
         String allDonationsString = "";
         for (int i = 0; i < donations.size(); i++) {
@@ -256,9 +261,10 @@ public class DonationManagementControl {
     public String getDonationArrayString(Donor donor) {
         String arrString = "";
 
-        ArrayList<Donation> donationArray = dm.donations.get(donor);
+        ArrayList<Donation> donationArray = db.donationDAO.donations.get(donor);
 
         for (int j = 0; j < donationArray.size(); j++) {
+            arrString += "\n";
             arrString += donationArray.get(j);
             arrString += "\n";
         }

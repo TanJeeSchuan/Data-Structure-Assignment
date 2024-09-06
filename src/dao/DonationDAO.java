@@ -102,4 +102,8 @@ public class DonationDAO {
     public ArrayMap<Donor, ArrayList<Donation>> getDonations(){
         return donations;
     }
+    
+    public void syncDonations(ArrayMap<Donor, ArrayList<Donation>> newArrayMap){
+        this.donations = newArrayMap;
+    }
 }
