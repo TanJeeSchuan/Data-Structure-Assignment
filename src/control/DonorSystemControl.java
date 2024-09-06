@@ -57,6 +57,7 @@ public class DonorSystemControl {
                     break;
                 case 5:
                     donorReport();
+                    break;
                 default:
                     throw new AssertionError();
             }
@@ -142,18 +143,23 @@ public class DonorSystemControl {
         LinkedSet<Donor> donorSet = db.donorDAO.getDonors();
         int total = donorSet.size();
 
-        recentDonor.add("%-8s | %-30s | %-11s | %-50s".formatted("Donor ID", "Donor Name", "Contact Number", "Address"));
+        if (donorStack.isEmpty()) {
+            recentDonor.add("No new donors have been added recently.");
 
-        // get data
-        for (int i = 0; i < 10 || donorStack.isEmpty(); i++) {
-            Donor donor = donorStack.pop();
-            tempStack.push(donor);
-            recentDonor.add("%-8d | %-30s | %-30s".formatted(donor.getDonorId(), donor.getName(), donor.getEmail()));
+        } else {
+            recentDonor.add("%-8s | %-30s | %-11s | %-50s".formatted("Donor ID", "Donor Name", "Contact Number", "Address"));
 
-        }
-        // store back
-        while (!tempStack.isEmpty()) {
-            donorStack.push(tempStack.pop());
+            // get data
+            for (int i = 0; i < 10 || donorStack.isEmpty(); i++) {
+                Donor donor = donorStack.pop();
+                tempStack.push(donor);
+                recentDonor.add("%-8d | %-30s | %-30s".formatted(donor.getDonorId(), donor.getName(), donor.getEmail()));
+
+            }
+            // store back
+            while (!tempStack.isEmpty()) {
+                donorStack.push(tempStack.pop());
+            }
         }
 
         donorSystemUI.report(total, recentDonor);

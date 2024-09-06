@@ -99,7 +99,7 @@ public class DonorSystemUI {
         System.out.println("Donee Report");
         System.out.println("Total of donors: " + total);
         System.out.println();
-        System.out.println("The last " + recentDonor.size() + " donor informations added: ");
+        System.out.println("Recently donor added information: ");
         for (int i = 0; i < recentDonor.size(); i++) {
             System.out.println(recentDonor.get(i));
         }
