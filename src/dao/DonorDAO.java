@@ -4,9 +4,7 @@
  */
 package dao;
 
-import adt.ArraySet;
 import adt.LinkedSet;
-import entity.Donee;
 import entity.Donor;
 
 /**

@@ -4,7 +4,6 @@
  */
 package dao;
 
-import adt.ArraySet;
 import adt.LinkedSet;
 import adt.SortedArrayList;
 import entity.CharityCause;
