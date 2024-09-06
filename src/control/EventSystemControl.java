@@ -99,7 +99,7 @@ public class EventSystemControl {
         
         int i = 1;
         for(Event event: eventList){
-            String s = "%%d\t-70s\t%-40s\t%-40s".formatted(i, event.toString(), event.getCharityCause().getCauseName(), event.getEventDate().format(DateTimeFormatter.ISO_LOCAL_DATE));
+            String s = "%d\t%-70s\t%-40s\t%-40s".formatted(i, event.toString(), event.getCharityCause().getCauseName(), event.getEventDate().format(DateTimeFormatter.ISO_LOCAL_DATE));
             eventSystemUI.showEvent(s);
             i++;
         }
