@@ -55,6 +55,7 @@ public class DoneeSystemControl {
                     break;
                 case 5:
                     doneeReport();
+                    break;
                 default:
                     throw new AssertionError();
             }
@@ -153,18 +154,22 @@ public class DoneeSystemControl {
         LinkedSet<Donee> doneeSet = db.doneeDAO.getDonees();
         int total = doneeSet.size();
 
-        recentDonee.add("%-8s | %-30s | %-11s | %-50s".formatted("Donee ID", "Donee Name", "Contact Number", "Address"));
+        if (doneeStack.isEmpty()) {
+            recentDonee.add("No new donees have been added recently.");
+        } else {
+            recentDonee.add("%-8s | %-30s | %-11s | %-50s".formatted("Donee ID", "Donee Name", "Contact Number", "Address"));
 
-        // get data
-        for (int i = 0; i < 10 || doneeStack.isEmpty(); i++) {
-            Donee donee = doneeStack.pop();
-            tempStack.push(donee);
-            recentDonee.add("%-8d | %-30s | %-11s | %-50s".formatted(donee.getDoneeId(), donee.getName(), donee.getContactNumber(), donee.getAddress()));
+            // get data
+            for (int i = 0; i < 10 || doneeStack.isEmpty(); i++) {
+                Donee donee = doneeStack.pop();
+                tempStack.push(donee);
+                recentDonee.add("%-8d | %-30s | %-11s | %-50s".formatted(donee.getDoneeId(), donee.getName(), donee.getContactNumber(), donee.getAddress()));
 
-        }
-        // store back
-        while (!tempStack.isEmpty()) {
-            doneeStack.push(tempStack.pop());
+            }
+            // store back
+            while (!tempStack.isEmpty()) {
+                doneeStack.push(tempStack.pop());
+            }
         }
 
         doneeSystemUI.report(total, recentDonee);

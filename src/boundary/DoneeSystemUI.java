@@ -106,7 +106,7 @@ public class DoneeSystemUI {
         System.out.println("Donee Report");
         System.out.println("Total of donees: " + total);
         System.out.println();
-        System.out.println("The last " + recentDonee.size() + " donee informations added: ");
+        System.out.println("Recently donee added information: ");
         for (int i = 0; i < recentDonee.size(); i++) {
             System.out.println(recentDonee.get(i));
         }
