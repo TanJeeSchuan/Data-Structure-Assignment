@@ -4,15 +4,15 @@
  */
 package adt;
 
-import adt.interfaces.MapInterface;
+import adt.interfaces.Map;
 
 /**
  *
- * @author Cyborg
+ * @author Tan Jia Ning
  * @param <K>
  * @param <V>
  */
-public class ArrayMap<K, V> implements MapInterface<K, V> {
+public class ArrayMap<K, V> implements Map<K, V> {
 
     private static final int DEFAULT_CAPACITY = 2;
     int maxSize = 2;

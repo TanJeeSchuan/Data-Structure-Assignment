@@ -4,13 +4,18 @@
  */
 package adt.interfaces;
 
+import java.util.Iterator;
+
 /**
  *
- * @author Tan Jee Schuan
+ * @author LiauXiaoXuan
  */
-public interface StackInterface<T> {
-    public void push (T item);
-    public T pop();
-    public T peek();
+public interface Queue<T> {
+
+    public Iterator<T> getIterator();
+    public void enqueue(T newEntry);
+    public T dequeue();
+    public T getFront();
     public boolean isEmpty();
+    public void clear();
 }

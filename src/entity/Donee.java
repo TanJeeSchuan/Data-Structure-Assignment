@@ -5,7 +5,7 @@
 package entity;
 
 import adt.LinkedStack;
-import adt.interfaces.StackInterface;
+import adt.interfaces.Stack;
 
 /**
  *

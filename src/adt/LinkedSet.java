@@ -1,9 +1,9 @@
 package adt;
 
-import adt.interfaces.SetInterface;
 import java.util.Iterator;
+import adt.interfaces.Set;
 
-public class LinkedSet<T> implements SetInterface<T>{
+public class LinkedSet<T> implements Set<T>{
 
     private Node firstNode;
     private Node lastNode;

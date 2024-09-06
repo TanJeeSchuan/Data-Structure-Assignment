@@ -6,9 +6,9 @@ package boundary;
 
 import adt.ArrayList;
 import adt.interfaces.List;
-import adt.interfaces.SetInterface;
 import entity.Donee;
 import java.util.Scanner;
+import adt.interfaces.Set;
 
 /**
  *
@@ -89,7 +89,7 @@ public class DoneeSystemUI {
         return input;
     }
 
-    public void showDoneeList(SetInterface d) {
+    public void showDoneeList(Set d) {
         int index = 0;
         for (var o : d) {
             System.out.println("\nIndex: " + index);

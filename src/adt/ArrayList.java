@@ -4,6 +4,7 @@ import adt.interfaces.List;
 import java.util.Iterator;
 
 /*
+Author: Tan You Zhen
  * @param <T>
  */
 public class ArrayList<T> implements List<T>{

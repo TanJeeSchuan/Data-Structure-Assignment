@@ -8,11 +8,11 @@ import adt.ArrayList;
 import adt.LinkedSet;
 import adt.LinkedStack;
 import adt.interfaces.List;
-import adt.interfaces.StackInterface;
 import boundary.DoneeSystemUI;
 import dao.DB;
 import entity.CharityCause;
 import entity.Donee;
+import adt.interfaces.Stack;
 
 /**
  *
@@ -21,7 +21,7 @@ import entity.Donee;
 public class DoneeSystemControl {
 
     private DoneeSystemUI doneeSystemUI;
-    private StackInterface<Donee> doneeStack = new LinkedStack<>();
+    private Stack<Donee> doneeStack = new LinkedStack<>();
     private DB db = DB.getInstance();
 
     public DoneeSystemControl() {
@@ -149,7 +149,7 @@ public class DoneeSystemControl {
 
     private void doneeReport() {
         List<String> recentDonee = new ArrayList<>();
-        StackInterface<Donee> tempStack = new LinkedStack<>();
+        Stack<Donee> tempStack = new LinkedStack<>();
         LinkedSet<Donee> doneeSet = db.doneeDAO.getDonees();
         int total = doneeSet.size();
 

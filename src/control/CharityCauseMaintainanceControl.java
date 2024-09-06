@@ -128,7 +128,8 @@ public class CharityCauseMaintainanceControl {
         int selectedIndex = charityCauseMaintainanceUI.getCauseSelection();
         CharityCause selectedCause = (CharityCause)causes.get(selectedIndex);
         
-        ((CharityCause)db.charityCauseDAO.getCharityCauses().get(selectedIndex)).donees.remove(db.charityCauseDAO.getCharityCauses().get(selectedIndex));
+        db.charityCauseDAO.removeCause(selectedCause);
+        
         charityCauseMaintainanceUI.showCharityCauseSelection(selectedCause.toString() + " Deleted");
     }
 }

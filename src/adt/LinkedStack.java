@@ -4,14 +4,14 @@
  */
 package adt;
 
-import adt.interfaces.StackInterface;
+import adt.interfaces.Stack;
 
 /**
  *
  * @author Tan Jee Schuan
  * @param <T>
  */
-public class LinkedStack<T> implements StackInterface<T>{
+public class LinkedStack<T> implements Stack<T>{
     private Node front;
     private int size;
     

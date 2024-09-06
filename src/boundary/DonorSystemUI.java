@@ -6,9 +6,9 @@ package boundary;
 
 import adt.ArrayList;
 import adt.interfaces.List;
-import adt.interfaces.SetInterface;
 import entity.Donor;
 import java.util.Scanner;
+import adt.interfaces.Set;
 
 /**
  *
@@ -82,7 +82,7 @@ public class DonorSystemUI {
         return input;
     }
 
-    public void showDonorList(SetInterface d) {
+    public void showDonorList(Set d) {
         int index = 0;
         for(var o: d){
             System.out.println("\nIndex: " + index);
