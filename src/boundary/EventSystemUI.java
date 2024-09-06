@@ -5,10 +5,10 @@
 package boundary;
 
 import adt.interfaces.List;
-import adt.interfaces.SetInterface;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
+import adt.interfaces.Set;
 
 /**
  *
@@ -76,7 +76,7 @@ public class EventSystemUI {
         return input; 
     }    
 
-    public void showEvents(SetInterface set) {
+    public void showEvents(Set set) {
         for(var e: set){
             System.out.println(e);
         }

@@ -4,14 +4,14 @@
  */
 package adt;
 
-import adt.interfaces.QueueInterface;
 import java.util.Iterator;
+import adt.interfaces.Queue;
 
 /**
  *
  * @author LiauXiaoXuan
  */
-public class LinkedQueue<T> implements QueueInterface<T>, Iterable<T>{
+public class LinkedQueue<T> implements Queue<T>, Iterable<T>{
     protected Node firstNode;
     protected Node lastNode;
     protected int size;

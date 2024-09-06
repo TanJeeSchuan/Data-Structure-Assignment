@@ -9,11 +9,11 @@ import adt.ArrayMap;
 import adt.LinkedSet;
 import adt.LinkedStack;
 import adt.interfaces.List;
-import adt.interfaces.StackInterface;
 import boundary.DonorSystemUI;
 import dao.DB;
 import entity.Donation;
 import entity.Donor;
+import adt.interfaces.Stack;
 
 /**
  *
@@ -22,7 +22,7 @@ import entity.Donor;
 public class DonorSystemControl {
 
     private DonorSystemUI donorSystemUI;
-    private StackInterface<Donor> donorStack = new LinkedStack<>();
+    private Stack<Donor> donorStack = new LinkedStack<>();
     private DB db = DB.getInstance();
 
     public DonorSystemControl() {
@@ -138,7 +138,7 @@ public class DonorSystemControl {
 
     private void donorReport() {
         List<String> recentDonor = new ArrayList<>();
-        StackInterface<Donor> tempStack = new LinkedStack<>();
+        Stack<Donor> tempStack = new LinkedStack<>();
         LinkedSet<Donor> donorSet = db.donorDAO.getDonors();
         int total = donorSet.size();
 

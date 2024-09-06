@@ -8,7 +8,7 @@ package adt.interfaces;
  *
  * @author Cyborg
  */
-public interface MapInterface<K, V> {
+public interface Map<K, V> {
 
     void add(K k, V v);
 
