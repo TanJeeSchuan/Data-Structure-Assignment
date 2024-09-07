@@ -13,11 +13,24 @@ import java.util.Iterator;
  * @param <T>
  */
 
-public class LinkedList<T> implements List{
+public class LinkedList<T> implements List<T>{
     protected Node head;
     protected Node tail;
-    protected int size;
+    protected int size = 0;
 
+    public LinkedList(){
+        head = null;
+        tail = null;
+        size = 0;
+    }
+    
+    public LinkedList(T[] arr){
+        this();
+        for(T o: arr){
+            this.add(o);
+        }
+    }
+    
     @Override
     public Iterator<T> iterator() {
         return new Iterator(){
@@ -54,14 +67,8 @@ public class LinkedList<T> implements List{
         }
     }
     
-    public LinkedList(){
-        head = null;
-        tail = null;
-        size = 0;
-    }
-    
     @Override
-    public boolean add(Object object) {
+    public boolean add(T object) {
         if(isEmpty()){
             head = new Node((T)object);
             tail = head;
@@ -75,7 +82,7 @@ public class LinkedList<T> implements List{
     }
 
     @Override
-    public boolean contains(Object object) {
+    public boolean contains(T object) {
         if(isEmpty())
             return false;
         
@@ -95,7 +102,7 @@ public class LinkedList<T> implements List{
     }
 
     @Override
-    public Object get(int index) {
+    public T get(int index) {
         int counter = 0;
         Node currentNode = head;
         while(counter < index){
@@ -107,7 +114,7 @@ public class LinkedList<T> implements List{
     }
 
     @Override
-    public boolean remove(Object object) {
+    public boolean remove(T object) {
         int counter = 0;
         if(head.data.equals(object)){
             head = null;
@@ -135,7 +142,7 @@ public class LinkedList<T> implements List{
     }
 
     @Override
-    public int indexOf(Object o) {
+    public int indexOf(T o) {
         if(isEmpty())
             return -1;
         

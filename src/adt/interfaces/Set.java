@@ -2,6 +2,11 @@ package adt.interfaces;
 
 import java.util.Iterator;
 
+/**
+ *
+ * @author SohChlingLiang
+ */
+
 public interface Set<T> extends Iterable<T>{
     public Iterator<T> iterator();
     

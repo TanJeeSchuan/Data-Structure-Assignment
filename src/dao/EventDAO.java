@@ -30,7 +30,7 @@ public class EventDAO {
             }            
         });
         //populatea set
-        Iterator<CharityCause> charityCauseIt = charityCauseDAO.getCharityCauses().getIterator();
+        Iterator<CharityCause> charityCauseIt = charityCauseDAO.getCharityCauses().iterator();
         
         CharityCause currentCharityCause = charityCauseIt.next();
         eventList.add(new Event("Run for Hope", "Central Park", currentCharityCause, LocalDateTime.of(2024, 10, 1, 10, 15, 0)));

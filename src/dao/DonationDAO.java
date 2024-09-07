@@ -26,7 +26,7 @@ public class DonationDAO {
         ArrayList<CharityCause> charityCauses = charityCauseDAO.getCharityCauses();
         
         Iterator donItr = donorList.iterator();
-        Iterator charityItr = charityCauses.getIterator();
+        Iterator charityItr = charityCauses.iterator();
         
         ArrayList<Donation> newDonations = new ArrayList<>();
         Donor currentDonor = (Donor)donItr.next();

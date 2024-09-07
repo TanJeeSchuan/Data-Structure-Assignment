@@ -21,14 +21,11 @@ public class LinkedSet<T> implements Set<T>{
             }
 
             @Override
-            public Object next() {
+            public T next() {
                 Node prevNode = currentNode;
                 currentNode = currentNode.next;
                 index++;
-                return prevNode.value;
-//                Node node = firstNode;
-//                firstNode = firstNode.next;
-//                return node.value;  
+                return (T)prevNode.value;
             }
         };
     }

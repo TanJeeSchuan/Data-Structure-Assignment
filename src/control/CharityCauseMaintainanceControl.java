@@ -8,6 +8,7 @@ import adt.ArrayList;
 import boundary.CharityCauseMaintainanceUI;
 import dao.DB;
 import entity.CharityCause;
+import entity.Donee;
 
 /**
  *
@@ -127,6 +128,10 @@ public class CharityCauseMaintainanceControl {
         
         int selectedIndex = charityCauseMaintainanceUI.getCauseSelection();
         CharityCause selectedCause = (CharityCause)causes.get(selectedIndex);
+        
+        for(Object d: selectedCause.getDonees()){
+            db.doneeDAO.removeDonee(d);
+        }
         
         db.charityCauseDAO.removeCause(selectedCause);
         

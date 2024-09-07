@@ -6,7 +6,7 @@ package adt.interfaces;
 
 /**
  *
- * @author Cyborg
+ * @author Tan Jia Ning
  */
 public interface Map<K, V> {
 

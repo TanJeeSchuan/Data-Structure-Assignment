@@ -30,15 +30,15 @@ public class DoneeDAO {
         doneeSet.add(new Donee("Chris Brown", "5692478130", "145 Pine St, Madison"));
     }
     
-    public LinkedSet getDonees(){
+    public LinkedSet<Donee> getDonees(){
         return doneeSet;
     }
     
-        public void addDonee(Donee newDonee) {
+    public void addDonee(Donee newDonee) {
         doneeSet.add(newDonee);
     }
 
-    public void removeDonee(Donee selectedDonee) {
-        doneeSet.remove(selectedDonee);
+    public void removeDonee(Object selectedDonee) {
+        doneeSet.remove((Donee)selectedDonee);
     }
 }

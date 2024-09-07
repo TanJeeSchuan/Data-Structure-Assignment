@@ -5,6 +5,7 @@
 package adt;
 
 import java.util.Comparator;
+import java.util.Iterator;
 
 /**
  *
@@ -12,7 +13,7 @@ import java.util.Comparator;
  * @param <T>
  */
 
-public class SortedArrayList<T extends Comparable<T>> extends ArrayList {
+public class SortedArrayList<T extends Comparable<T>> extends ArrayList{
     private Comparator<T> comparator;
     
     public SortedArrayList(){
@@ -26,6 +27,25 @@ public class SortedArrayList<T extends Comparable<T>> extends ArrayList {
     
     public SortedArrayList(Object[] arr){
         super(arr);
+    }
+    
+    @Override
+    public Iterator<T> iterator() {
+        return new Iterator() {
+            int index = 0;
+
+            @Override
+            public boolean hasNext() {
+                return index < entries;
+            }
+
+            @Override
+            public T next() {
+                T data = (T)array[index];
+                index++;
+                return (T)data;
+            }
+        };
     }
     
     @Override
@@ -56,7 +76,6 @@ public class SortedArrayList<T extends Comparable<T>> extends ArrayList {
         
         return comparatorBinarySearch(array, 0, entries, (T)object, this.comparator);
     }
-
     
     private int binarySearch(Object arr[], int start, int end, Object x){
         if(end > start){
@@ -95,8 +114,8 @@ public class SortedArrayList<T extends Comparable<T>> extends ArrayList {
         //not found
         return -1;
     }
-    
-    protected int findInsertionIndex(Object object){
+
+    private int findInsertionIndex(Object object){
         if(isEmpty())
             return 0;
             

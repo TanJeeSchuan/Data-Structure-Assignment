@@ -6,7 +6,7 @@ package adt.interfaces;
 
 /**
  *
- * @author Tan Jee Schuan
+ * @author Tan You Zhen
  */
 public interface List<T> extends Iterable<T> {
     boolean add(T object);
@@ -15,6 +15,6 @@ public interface List<T> extends Iterable<T> {
     T get(int index);
     boolean remove(T object);
     int size();
-    int indexOf(Object o);
+    int indexOf(T o);
     Object[] toArray();
 }

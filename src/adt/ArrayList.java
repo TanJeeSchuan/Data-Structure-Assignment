@@ -27,12 +27,9 @@ public class ArrayList<T> implements List<T>{
         System.arraycopy(arr, 0, array, 0, arr.length);
     }
 
+    @Override
     public Iterator<T> iterator() {
-        return getIterator();
-    }
-
-    public Iterator<T> getIterator() {
-        return new Iterator<T>() {
+        return new Iterator() {
             int index = 0;
 
             @Override
@@ -44,7 +41,7 @@ public class ArrayList<T> implements List<T>{
             public T next() {
                 T data = (T)array[index];
                 index++;
-                return data;
+                return (T)data;
             }
         };
     }
