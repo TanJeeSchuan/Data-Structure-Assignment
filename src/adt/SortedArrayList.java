@@ -81,7 +81,7 @@ public class SortedArrayList<T extends Comparable<T>> extends ArrayList{
         if(end > start){
             int middle = start + (end - start) / 2 ;
 
-            if(x.equals(arr[middle]))
+            if(((T)arr[middle]).compareTo((T)x) == 0)
                 return middle;
 
             //x at low

@@ -45,6 +45,13 @@ public class Donor implements Comparable<Donor>{
     }
     
     @Override
+    public boolean equals(Object o) {
+        if(!(o instanceof Donor))
+            return false;
+        return this.name.equals(((Donor)o).name);
+    }
+    
+    @Override
     public int compareTo(Donor o) {
         return this.donorId - o.donorId;
     }
