@@ -57,4 +57,8 @@ public class CharityCauseDAO {
     public ArrayList<CharityCause> getCharityCauses(){
         return charityCauseList;
     }
+    
+    public void removeCause(CharityCause selectedCause) {
+        charityCauseList.remove(selectedCause);
+    }
 }
