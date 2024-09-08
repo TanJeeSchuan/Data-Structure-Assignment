@@ -89,7 +89,9 @@ public class CharityCauseMaintainanceControl {
     }
     
     private void displayAllCauses(){
-        charityCauseMaintainanceUI.showCharityCauseDonees(db.charityCauseDAO.getCharityCauses());
+        for(CharityCause cause: db.charityCauseDAO.getCharityCauses()){
+            charityCauseMaintainanceUI.showCharityCauseSelection("%-10d%-30s%-20s".formatted(cause.causeId, cause.causeName, cause.donees.size()));
+        }
     }
 
     private void modifyCauseName(CharityCause selectedCause) {
@@ -107,6 +109,9 @@ public class CharityCauseMaintainanceControl {
             case 1:
                 //add donor
                 charityCauseMaintainanceUI.showDonees(db.doneeDAO.getDonees());
+                int newDoneeIndex = charityCauseMaintainanceUI.getNewDoneeIndex();
+                selectedCause.donees.add(db.doneeDAO.getDonees().getValue(newDoneeIndex));
+                
                 break;
             case 2:
                 charityCauseMaintainanceUI.showCharityCauseDonees(selectedCause.donees);

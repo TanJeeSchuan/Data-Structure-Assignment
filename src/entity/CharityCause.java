@@ -23,7 +23,7 @@ public class CharityCause implements Comparable<CharityCause>{
         this.causeId = currentCauseId;
         this.causeName = causeName;
         
-        donees = new SortedArrayList();
+        donees = new SortedArrayList<Donee>();
         
         currentCauseId++;
     }

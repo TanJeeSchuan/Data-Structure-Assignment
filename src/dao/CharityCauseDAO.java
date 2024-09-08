@@ -25,28 +25,28 @@ public class CharityCauseDAO {
         Iterator itr = doneeSet.iterator();
         
         CharityCause tempCharityCause = new CharityCause("Feeding the Homeless");
-        tempCharityCause.donees.add(itr.next());
-        tempCharityCause.donees.add(itr.next());
+        tempCharityCause.donees.add((Donee) itr.next());
+        tempCharityCause.donees.add((Donee) itr.next());
         charityCauseList.add(tempCharityCause);
         
         tempCharityCause = new CharityCause("Supporting Education");
-        tempCharityCause.donees.add(itr.next());
-        tempCharityCause.donees.add(itr.next());
+        tempCharityCause.donees.add((Donee) itr.next());
+        tempCharityCause.donees.add((Donee) itr.next());
         charityCauseList.add(tempCharityCause);
         
         tempCharityCause = new CharityCause("Animal Welfare");
-        tempCharityCause.donees.add(itr.next());
-        tempCharityCause.donees.add(itr.next());
+        tempCharityCause.donees.add((Donee) itr.next());
+        tempCharityCause.donees.add((Donee) itr.next());
         charityCauseList.add(tempCharityCause);
         
         tempCharityCause = new CharityCause("Environmental Conservation");
-        tempCharityCause.donees.add(itr.next());
-        tempCharityCause.donees.add(itr.next());
+        tempCharityCause.donees.add((Donee) itr.next());
+        tempCharityCause.donees.add((Donee) itr.next());
         charityCauseList.add(tempCharityCause);
         
         tempCharityCause = new CharityCause("Disaster Relief");
-        tempCharityCause.donees.add(itr.next());
-        tempCharityCause.donees.add(itr.next());
+        tempCharityCause.donees.add((Donee) itr.next());
+        tempCharityCause.donees.add((Donee) itr.next());
         charityCauseList.add(tempCharityCause);
     }
     

@@ -6,6 +6,7 @@ package boundary;
 
 import adt.ArrayList;
 import adt.LinkedSet;
+import adt.SortedArrayList;
 import java.util.Scanner;
 
 /**
@@ -88,7 +89,16 @@ public class CharityCauseMaintainanceUI {
         return (scanner.nextLine());
     }
 
-    public void showCharityCauseDonees(ArrayList lst) {
+    public void showCharityCauseDonees(SortedArrayList lst) {
+        System.out.println("Donees of cause: ");
+        int i = 0;
+        for(var o: lst){
+            System.out.println(i + " " + o.toString());
+            i++;
+        }
+    }
+    
+    public void showCharityCauses(ArrayList lst) {
         for(var o: lst){
             System.out.println("\n"+o);
         }
@@ -108,8 +118,15 @@ public class CharityCauseMaintainanceUI {
 
     public void showDonees(LinkedSet donees) {
         System.out.println();
+        int i = 0;
         for(Object o: donees){
-            System.out.println(o);
+            System.out.println(i + " " + o.toString());
+            i++;
         }
+    }
+
+    public int getNewDoneeIndex() {
+        System.out.println("Enter index of new donee: ");
+        return Integer.parseInt(scanner.nextLine());
     }
 }

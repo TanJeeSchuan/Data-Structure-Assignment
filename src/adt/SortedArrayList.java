@@ -4,6 +4,7 @@
  */
 package adt;
 
+import adt.interfaces.List;
 import java.util.Comparator;
 import java.util.Iterator;
 
@@ -13,7 +14,7 @@ import java.util.Iterator;
  * @param <T>
  */
 
-public class SortedArrayList<T extends Comparable<T>>{
+public class SortedArrayList<T extends Comparable> implements List<T>{
     private Comparator<T> comparator;
     
     protected T[] array;
@@ -22,12 +23,12 @@ public class SortedArrayList<T extends Comparable<T>>{
     protected int entries = 0;
     
     public SortedArrayList(){
-        array = (T[]) new Object[DEFAULT_CAPACITY];
+        array = (T[]) new Comparable[DEFAULT_CAPACITY];
         maxSize = DEFAULT_CAPACITY;
     }
     
     public SortedArrayList(Comparator<T> comparator){
-        array = (T[]) new Object[DEFAULT_CAPACITY];
+        array = (T[]) new Comparable[DEFAULT_CAPACITY];
         maxSize = DEFAULT_CAPACITY;
         this.comparator = comparator;
     }
@@ -40,6 +41,7 @@ public class SortedArrayList<T extends Comparable<T>>{
         System.arraycopy(arr, 0, array, 0, arr.length);
     }
     
+    @Override
     public Iterator<T> iterator() {
         return new Iterator() {
             int index = 0;
@@ -58,7 +60,8 @@ public class SortedArrayList<T extends Comparable<T>>{
         };
     }
     
-    public boolean add(Object object) {
+    @Override
+    public boolean add(T object) {
         if(isFull())
             expandArray();
         
@@ -86,47 +89,41 @@ public class SortedArrayList<T extends Comparable<T>>{
         return true;
     }
     
-    public boolean contains(Object object) {
+    @Override
+    public boolean contains(T object) {
         if(comparator == null)
             return binarySearch(array, 0, entries, (T)object) != -1;
         return comparatorBinarySearch(array, 0, entries, (T)object, this.comparator) != -1;
     }
     
-    public int indexOf(Object object){
+    @Override
+    public int indexOf(T object){
         if(comparator == null)
             return binarySearch(array, 0, entries, (T)object);
         
         return comparatorBinarySearch(array, 0, entries, (T)object, this.comparator);
     }
     
-        protected void shiftArray(int empty) {
-        for (int i = empty; i < entries; i++) {
-            array[i] = array[i + 1];
-        }
+    @Override
+    public T get(int index) {
+        return array[index];
     }
 
-    protected void expandArray() {
-        T[] newArr = (T[]) new Object[maxSize * DEFAULT_CAPACITY];
-
-        for (int i = 0; i < maxSize; i++) {
-            newArr[i] = (T) array[i];
+    @Override
+    public boolean remove(T object) {
+        int index = binarySearch(array,0,size(),object);
+        
+        if (index != -1){
+            entries--;
+            shiftArray(index);
+            return true;
         }
-
-        maxSize *= DEFAULT_CAPACITY;
-        array = newArr;
+        return false;
     }
 
-    protected void makeSpace(int index) {
-        if (entries + 1 > maxSize) {
-            expandArray();
-        }
-
-        for (int i = entries - 1; i >= index; i--) {
-            array[i + 1] = array[i];
-        }
-
-        entries++;
-        array[index] = null;
+    @Override
+    public int size() {
+        return entries;
     }
     
     public boolean isFull() {
@@ -140,10 +137,12 @@ public class SortedArrayList<T extends Comparable<T>>{
         entries = 0;
     }
     
+    @Override
     public boolean isEmpty() {
         return (entries == 0);
     }
 
+    @Override
     public Object[] toArray() {
         Object[] output = new Object[entries];
         System.arraycopy(array, 0, output, 0, entries);
@@ -164,6 +163,35 @@ public class SortedArrayList<T extends Comparable<T>>{
         return str;
     }
     
+        protected void shiftArray(int empty) {
+        for (int i = empty; i < entries; i++) {
+            array[i] = array[i + 1];
+        }
+    }
+
+    private void expandArray() {
+        T[] newArr = (T[]) new Comparable[maxSize * DEFAULT_CAPACITY];
+
+        for (int i = 0; i < maxSize; i++) {
+            newArr[i] = (T) array[i];
+        }
+
+        maxSize *= DEFAULT_CAPACITY;
+        array = newArr;
+    }
+
+    private void makeSpace(int index) {
+        if (entries + 1 > maxSize) {
+            expandArray();
+        }
+
+        for (int i = entries - 1; i >= index; i--) {
+            array[i + 1] = array[i];
+        }
+
+        entries++;
+        array[index] = null;
+    }
     
     private int binarySearch(Object arr[], int start, int end, Object x){
         if(end > start){
