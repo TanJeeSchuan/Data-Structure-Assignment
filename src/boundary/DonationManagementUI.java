@@ -144,33 +144,6 @@ public class DonationManagementUI {
         System.out.println("No such information.");
     }
 
-    public Donation getModifyDonation(ArrayList<Donation> donorDonations) {
-        System.out.println(donorDonations);
-
-        Donation donation = null;
-        int option;
-
-        do {
-            System.out.print("Enter the index that you want to modify: ");
-            String getInput = sc.nextLine();
-            try {
-                option = Integer.parseInt(getInput);
-                if (option <= 0 || option > donorDonations.size()) {
-                    System.out.println(
-                            "Only 1 to " + donorDonations.size() + 
-                                    " is allowed. Please try again.");
-                } else {
-                    donation = (Donation) donorDonations.get(option - 1);
-                }
-            } catch (IllegalArgumentException ex) {
-                System.out.println(
-                        "Only number is allowed. Please try again.");
-            }
-        } while (donation == null);
-
-        return donation;
-    }
-
     public int getModifyOption() {
         int option = 0;
         do {
