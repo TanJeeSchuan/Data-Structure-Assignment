@@ -14,7 +14,7 @@ import java.time.format.DateTimeFormatter;
 
 /**
  *
- * @author Tan Jee Schuan
+ * @author Tan You Zhen
  */
 public class EventSystemControl {
     private EventSystemUI eventSystemUI;

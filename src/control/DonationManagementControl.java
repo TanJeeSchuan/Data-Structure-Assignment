@@ -14,7 +14,7 @@ import java.util.Scanner;
 
 /**
  *
- * @author xuanx
+ * @author Liau Xiao Xuan
  */
 public class DonationManagementControl {
 

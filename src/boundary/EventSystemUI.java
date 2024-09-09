@@ -13,7 +13,7 @@ import java.time.LocalDate;
 
 /**
  *
- * @author Tan Jee Schuan
+ * @author Tan You Zhen
  */
 public class EventSystemUI {
     private Scanner scanner;

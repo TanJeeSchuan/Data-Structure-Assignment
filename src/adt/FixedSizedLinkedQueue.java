@@ -2,7 +2,7 @@ package adt;
 
 /**
  *
- * @author Tan Jee Schuan
+ * @author Liau Xiao Xuan
  */
 public class FixedSizedLinkedQueue<T> extends LinkedQueue<T> {
     private int maxSize;

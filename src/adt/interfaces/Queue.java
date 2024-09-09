@@ -4,7 +4,7 @@ import java.util.Iterator;
 
 /**
  *
- * @author LiauXiaoXuan
+ * @author Liau Xiao Xuan
  */
 public interface Queue<T> {
 
