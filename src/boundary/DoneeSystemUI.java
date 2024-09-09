@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package boundary;
 
 import adt.ArrayList;
@@ -12,7 +8,7 @@ import adt.interfaces.Set;
 
 /**
  *
- * @author xuanx
+ * @author Soh Ching Liang
  */
 public class DoneeSystemUI {
 
@@ -99,7 +95,8 @@ public class DoneeSystemUI {
     }
 
     public void showRemovedDonee(Donee selectedDonee) {
-        System.out.println("\nDonee %s Deleted!".formatted(selectedDonee.getName()));
+        System.out.println("\nDonee %s Deleted!".formatted(selectedDonee.
+                getName()));
     }
 
     public void report(int total, List<String> recentDonee) {

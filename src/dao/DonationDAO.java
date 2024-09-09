@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package dao;
 
 import adt.ArrayList;
@@ -23,7 +19,8 @@ public class DonationDAO {
         donations = new ArrayMap();
         
         LinkedSet<Donor> donorList = donorDAO.getDonors();
-        ArrayList<CharityCause> charityCauses = charityCauseDAO.getCharityCauses();
+        ArrayList<CharityCause> charityCauses = charityCauseDAO.
+                getCharityCauses();
         
         Iterator donItr = donorList.iterator();
         Iterator charityItr = charityCauses.iterator();
@@ -31,71 +28,91 @@ public class DonationDAO {
         ArrayList<Donation> newDonations = new ArrayList<>();
         Donor currentDonor = (Donor)donItr.next();
         CharityCause currentCharityCause = (CharityCause)charityItr.next();
-        newDonations.add(new Donation(currentDonor, currentCharityCause, 150.00));
-        newDonations.add(new Donation(currentDonor, currentCharityCause, 750.00));
+        newDonations.add(new Donation(currentDonor, currentCharityCause, 
+                150.00));
+        newDonations.add(new Donation(currentDonor, currentCharityCause, 
+                750.00));
         donations.add(currentDonor, newDonations);
         
         newDonations = new ArrayList<>();
         currentDonor = (Donor)donItr.next();
 //        currentCharityCause = (CharityCause)charityItr.next();
-        newDonations.add(new Donation(currentDonor, currentCharityCause, 70.00));
-        newDonations.add(new Donation(currentDonor, currentCharityCause, 570.00));
+        newDonations.add(new Donation(currentDonor, currentCharityCause, 
+                70.00));
+        newDonations.add(new Donation(currentDonor, currentCharityCause, 
+                570.00));
         donations.add(currentDonor, newDonations);
         
         newDonations = new ArrayList<>();
         currentDonor = (Donor)donItr.next();
         currentCharityCause = (CharityCause)charityItr.next();
-        newDonations.add(new Donation(currentDonor, currentCharityCause, 70.00));
-        newDonations.add(new Donation(currentDonor, currentCharityCause, 570.00));
+        newDonations.add(new Donation(currentDonor, currentCharityCause, 
+                70.00));
+        newDonations.add(new Donation(currentDonor, currentCharityCause, 
+                570.00));
         donations.add(currentDonor, newDonations);
         
         newDonations = new ArrayList<>();
         currentDonor = (Donor)donItr.next();
 //        currentCharityCause = (CharityCause)charityItr.next();
-        newDonations.add(new Donation(currentDonor, currentCharityCause, 70.00));
-        newDonations.add(new Donation(currentDonor, currentCharityCause, 570.00));
+        newDonations.add(new Donation(currentDonor, currentCharityCause, 
+                70.00));
+        newDonations.add(new Donation(currentDonor, currentCharityCause, 
+                570.00));
         donations.add(currentDonor, newDonations);
         
         newDonations = new ArrayList<>();
         currentDonor = (Donor)donItr.next();
         currentCharityCause = (CharityCause)charityItr.next();
-        newDonations.add(new Donation(currentDonor, currentCharityCause, 70.00));
-        newDonations.add(new Donation(currentDonor, currentCharityCause, 570.00));
+        newDonations.add(new Donation(currentDonor, currentCharityCause, 
+                70.00));
+        newDonations.add(new Donation(currentDonor, currentCharityCause, 
+                570.00));
         donations.add(currentDonor, newDonations);
         
         newDonations = new ArrayList<>();
         currentDonor = (Donor)donItr.next();
 //        currentCharityCause = (CharityCause)charityItr.next();
-        newDonations.add(new Donation(currentDonor, currentCharityCause, 70.00));
-        newDonations.add(new Donation(currentDonor, currentCharityCause, 570.00));
+        newDonations.add(new Donation(currentDonor, currentCharityCause, 
+                70.00));
+        newDonations.add(new Donation(currentDonor, currentCharityCause, 
+                570.00));
         donations.add(currentDonor, newDonations);
         
         newDonations = new ArrayList<>();
         currentDonor = (Donor)donItr.next();
         currentCharityCause = (CharityCause)charityItr.next();
-        newDonations.add(new Donation(currentDonor, currentCharityCause, 70.00));
-        newDonations.add(new Donation(currentDonor, currentCharityCause, 570.00));
+        newDonations.add(new Donation(currentDonor, currentCharityCause, 
+                70.00));
+        newDonations.add(new Donation(currentDonor, currentCharityCause, 
+                570.00));
         donations.add(currentDonor, newDonations);
         
         newDonations = new ArrayList<>();
         currentDonor = (Donor)donItr.next();
 //        currentCharityCause = (CharityCause)charityItr.next();
-        newDonations.add(new Donation(currentDonor, currentCharityCause, 70.00));
-        newDonations.add(new Donation(currentDonor, currentCharityCause, 570.00));
+        newDonations.add(new Donation(currentDonor, currentCharityCause, 
+                70.00));
+        newDonations.add(new Donation(currentDonor, currentCharityCause, 
+                570.00));
         donations.add(currentDonor, newDonations);
         
         newDonations = new ArrayList<>();
         currentDonor = (Donor)donItr.next();
 //        currentCharityCause = (CharityCause)charityItr.next();
-        newDonations.add(new Donation(currentDonor, currentCharityCause, 70.00));
-        newDonations.add(new Donation(currentDonor, currentCharityCause, 570.00));
+        newDonations.add(new Donation(currentDonor, currentCharityCause, 
+                70.00));
+        newDonations.add(new Donation(currentDonor, currentCharityCause, 
+                570.00));
         donations.add(currentDonor, newDonations);
         
         newDonations = new ArrayList<>();
         currentDonor = (Donor)donItr.next();
 //        currentCharityCause = (CharityCause)charityItr.next();
-        newDonations.add(new Donation(currentDonor, currentCharityCause, 70.00));
-        newDonations.add(new Donation(currentDonor, currentCharityCause, 570.00));
+        newDonations.add(new Donation(currentDonor, currentCharityCause, 
+                70.00));
+        newDonations.add(new Donation(currentDonor, currentCharityCause, 
+                570.00));
         donations.add(currentDonor, newDonations);
     }
     
@@ -103,7 +120,8 @@ public class DonationDAO {
         return donations;
     }
     
-    public void syncDonations(ArrayMap<Donor, ArrayList<Donation>> newArrayMap){
+    public void syncDonations(ArrayMap<Donor, ArrayList<Donation>> 
+            newArrayMap){
         this.donations = newArrayMap;
     }
 }

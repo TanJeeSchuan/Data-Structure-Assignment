@@ -58,17 +58,21 @@ public class CharityCauseMaintainanceControl {
     private void modifyCause(){
         //show selection
         
-        ArrayList<CharityCause> causes = db.charityCauseDAO.getCharityCauses();
+        ArrayList<CharityCause> causes =
+                db.charityCauseDAO.getCharityCauses();
         charityCauseMaintainanceUI.showCharityCauseHeader();
         for(CharityCause cause: causes){
             charityCauseMaintainanceUI.showCharityCauseSelection(
-                    "%-10d%-30s%-20s".formatted(cause.causeId, cause.causeName, 
+                    "%-10d%-30s%-20s".formatted(
+                            cause.causeId, cause.causeName, 
                             cause.donees.size()));
         }
         
         int selectedIndex = charityCauseMaintainanceUI.getCauseSelection();
-        CharityCause selectedCause = (CharityCause)causes.get(selectedIndex);
-        charityCauseMaintainanceUI.showModificationUI(selectedCause.toString());
+        CharityCause selectedCause = 
+                (CharityCause)causes.get(selectedIndex);
+        charityCauseMaintainanceUI.showModificationUI(
+                selectedCause.toString());
         
         int choice = charityCauseMaintainanceUI.inputModificationChoice();
         switch (choice) {
@@ -95,12 +99,14 @@ public class CharityCauseMaintainanceControl {
     }
 
     private void modifyCauseName(CharityCause selectedCause) {
-        selectedCause.causeName = charityCauseMaintainanceUI.getNewCauseName();
+        selectedCause.causeName = 
+                charityCauseMaintainanceUI.getNewCauseName();
     }
 
     private void modifyCauseDonees(CharityCause selectedCause) {
         
-        charityCauseMaintainanceUI.showCharityCauseDonees(selectedCause.donees);
+        charityCauseMaintainanceUI.showCharityCauseDonees(
+                selectedCause.donees);
         
         int choice = charityCauseMaintainanceUI.getAddOrRemoveDonee();
         switch (choice) {
@@ -108,7 +114,8 @@ public class CharityCauseMaintainanceControl {
                 break;
             case 1:
                 //add donor
-                charityCauseMaintainanceUI.showDonees(db.doneeDAO.getDonees());
+                charityCauseMaintainanceUI.showDonees(
+                        db.doneeDAO.getDonees());
                 int newDoneeIndex = 
                         charityCauseMaintainanceUI.getNewDoneeIndex();
                 selectedCause.donees.add(
@@ -130,11 +137,13 @@ public class CharityCauseMaintainanceControl {
     }
 
     private void deleteCause() {
-        ArrayList<CharityCause> causes = db.charityCauseDAO.getCharityCauses();
+        ArrayList<CharityCause> causes = 
+                db.charityCauseDAO.getCharityCauses();
         charityCauseMaintainanceUI.showCharityCauseHeader();
         for(CharityCause cause: causes){
             charityCauseMaintainanceUI.showCharityCauseSelection(
-                    "%-10d%-30s%-20s".formatted(cause.causeId, cause.causeName, 
+                    "%-10d%-30s%-20s".formatted(
+                            cause.causeId, cause.causeName, 
                             cause.donees.size()));
         }
         

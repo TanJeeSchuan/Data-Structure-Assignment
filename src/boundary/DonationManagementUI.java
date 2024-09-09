@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package boundary;
 
 import adt.ArrayList;
@@ -52,11 +48,13 @@ public class DonationManagementUI {
             try {
                 option = Integer.parseInt(getOption);
                 if (option < 0 || option > 6) {
-                    System.out.println("Only 0 - 6 is allowed. Please try again.");
+                    System.out.println(
+                            "Only 0 - 6 is allowed. Please try again.");
                     valid = false;
                 }
             } catch (IllegalArgumentException ex) {
-                System.out.println("Only integer is allowed. Please try again.");
+                System.out.println(
+                        "Only integer is allowed. Please try again.");
                 valid = false;
             }
         } while (!valid);
@@ -81,12 +79,15 @@ public class DonationManagementUI {
                 option = Integer.parseInt(getOption);
 
                 if (option < 1 || option > causes.size()) {
-                    System.out.println("Only 1 - " + causes.size() + " is allowed. Please try again.");
+                    System.out.println(
+                            "Only 1 - " + causes.size() +
+                                    " is allowed. Please try again.");
                 } else {
                     cause = (CharityCause) causes.get(option - 1);
                 }
             } catch (IllegalArgumentException ex) {
-                System.out.println("Only integer is allowed. Please try again.");
+                System.out.println(
+                        "Only integer is allowed. Please try again.");
             }
 
         } while (cause == null);
@@ -109,7 +110,8 @@ public class DonationManagementUI {
                     valid = false;
                 }
             } catch (IllegalArgumentException ex) {
-                System.out.println("Only integer is allowed. Please try again.");
+                System.out.println(
+                        "Only integer is allowed. Please try again.");
                 valid = false;
             }
         } while (!valid);
@@ -133,7 +135,8 @@ public class DonationManagementUI {
     }
 
     public void promptSuccessMessage(String action) {
-        System.out.println("The donation information " + action + " sucessfully.");
+        System.out.println(
+                "The donation information " + action + " sucessfully.");
     }
 
     public void noSuchInformation() {
@@ -152,12 +155,15 @@ public class DonationManagementUI {
             try {
                 option = Integer.parseInt(getInput);
                 if (option <= 0 || option > donorDonations.size()) {
-                    System.out.println("Only 1 to " + donorDonations.size() + " is allowed. Please try again.");
+                    System.out.println(
+                            "Only 1 to " + donorDonations.size() + 
+                                    " is allowed. Please try again.");
                 } else {
                     donation = (Donation) donorDonations.get(option - 1);
                 }
             } catch (IllegalArgumentException ex) {
-                System.out.println("Only number is allowed. Please try again.");
+                System.out.println(
+                        "Only number is allowed. Please try again.");
             }
         } while (donation == null);
 
@@ -178,10 +184,12 @@ public class DonationManagementUI {
             try {
                 option = Integer.parseInt(getInput);
                 if (option < 1 || option > 3) {
-                    System.out.println("Only 1 to 3 is allowed. Please try again.");
+                    System.out.println(
+                            "Only 1 to 3 is allowed. Please try again.");
                 }
             } catch (IllegalArgumentException ex) {
-                System.out.println("Only number is allowed. Please try again.");
+                System.out.println(
+                        "Only number is allowed. Please try again.");
             }
         } while (option < 1 || option > 3);
         System.out.println();
@@ -194,7 +202,8 @@ public class DonationManagementUI {
     }
 
     public boolean getDeleteConfirmation(Donation donation) {
-        System.out.println("----------------------------------------------------------");
+        System.out.println(
+                "----------------------------------------------------------");
         System.out.println(donation);
 
         String confirmation;
@@ -210,10 +219,14 @@ public class DonationManagementUI {
                 case 'n':
                     return false;
                 default:
-                    System.out.println("Only 'Y' or 'N' is allowed. Please try again.");
+                    System.out.println(
+                            "Only 'Y' or 'N' is allowed. Please try again.");
 
             }
-        } while (confirmation.charAt(0) != 'Y' && confirmation.charAt(0) != 'y' && confirmation.charAt(0) != 'N' && confirmation.charAt(0) != 'n');
+        } while (confirmation.charAt(0) != 'Y' && 
+                confirmation.charAt(0) != 'y' && 
+                confirmation.charAt(0) != 'N' && 
+                confirmation.charAt(0) != 'n');
 
         return true;
     }
@@ -243,11 +256,13 @@ public class DonationManagementUI {
             try {
                 option = Integer.parseInt(getOption);
                 if (option < 1 || option > 3) {
-                    System.out.println("Only 1 - 3 is allowed. Please try again.");
+                    System.out.println(
+                            "Only 1 - 3 is allowed. Please try again.");
                     valid = false;
                 }
             } catch (IllegalArgumentException ex) {
-                System.out.println("Only integer is allowed. Please try again.");
+                System.out.println(
+                        "Only integer is allowed. Please try again.");
                 valid = false;
             }
         } while (!valid);
@@ -255,7 +270,8 @@ public class DonationManagementUI {
         return option;
     }
 
-    public void promtMostRecentDonor(Donor donor, int highest, String donationArrayString) {
+    public void promtMostRecentDonor(
+            Donor donor, int highest, String donationArrayString) {
         System.out.println(donor);
         System.out.println("Total donation: " + highest);
         System.out.println("---------------");
@@ -265,14 +281,17 @@ public class DonationManagementUI {
     }
 
     public void displayDonorReport(int number, List<String> donorInfo) {
-        System.out.println("Total of donors who participated in the donation: " + number);
+        System.out.println(
+                "Total of donors who participated in the donation: " 
+                        + number);
         System.out.println();
         for (int i = 0; i < donorInfo.size(); i++) {
             System.out.println(donorInfo.get(i));
         }
     }
 
-    public void displayDonationReport(int number, List<String> donationInfoReport) {
+    public void displayDonationReport(
+            int number, List<String> donationInfoReport) {
         System.out.println("Total of donation: " + number);
         System.out.println();
         for (int i = 0; i < donationInfoReport.size(); i++) {

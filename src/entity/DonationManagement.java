@@ -49,7 +49,8 @@ public class DonationManagement {
     }
 
     //add donation
-    public void addDonation(Donor donor, CharityCause charityCause, double amount) {
+    public void addDonation(Donor donor, CharityCause charityCause, 
+            double amount) {
         Donation newDonation = new Donation(donor, charityCause, amount);
 
         recentDonations.enqueue(newDonation);
@@ -66,7 +67,8 @@ public class DonationManagement {
 
     }
 
-    public void setDonationDonor(Donor originDonor, Donor newDonor, Donation donation) {
+    public void setDonationDonor(Donor originDonor, Donor newDonor, 
+            Donation donation) {
         donations.get(originDonor).remove(donation);
 
         if (donations.has(newDonor)) {
