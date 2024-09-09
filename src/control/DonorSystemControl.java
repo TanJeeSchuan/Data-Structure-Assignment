@@ -69,6 +69,8 @@ public class DonorSystemControl {
 
         Donor newDonor = new Donor(donorName, donorEmail);
         DB.getInstance().donorDAO.addDonor(newDonor);
+        
+        donorStack.enqueue(newDonor);
         donorSystemUI.showNewDonor(newDonor);
     }
 
