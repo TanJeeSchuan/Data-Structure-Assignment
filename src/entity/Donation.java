@@ -27,7 +27,7 @@ public class Donation implements Comparable<Donation> {
         return donationId;
     }
 
-    public Donor getDonor(Donor donor) {
+    public Donor getDonor() {
         return donor;
     }
 

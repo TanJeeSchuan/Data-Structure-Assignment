@@ -30,6 +30,7 @@ public class DonationManagementUI {
         int option = 0;
         boolean valid;
         do {
+            System.out.println();
             System.out.println("---------- Donation Management ----------");
             System.out.println("1. Add donation");
             System.out.println("2. Update donation");
@@ -231,8 +232,10 @@ public class DonationManagementUI {
         return true;
     }
 
-    public void displayAllDonations(String allDonationsString) {
-        System.out.println(allDonationsString);
+    public void displayAllDonations(List<String> donations) {
+        for(int i = 0; i < donations.size(); i++){
+            System.out.println(donations.get(i));
+        }
     }
 
     public void promptInformation(String donationInformation) {
@@ -290,13 +293,19 @@ public class DonationManagementUI {
         }
     }
 
-    public void displayDonationReport(
-            int number, List<String> donationInfoReport) {
-        System.out.println("Total of donation: " + number);
+    public void displayDonationReport(List<String> donationInfoReport) {
+        System.out.println("Total of donation: " + donationInfoReport.size());
         System.out.println();
         for (int i = 0; i < donationInfoReport.size(); i++) {
             System.out.println(donationInfoReport.get(i));
         }
         
+    }
+
+    public int getSelection() {
+        System.out.print("Enter the index you want to modify: ");
+        String selection = sc.nextLine();
+        
+        return Integer.parseInt(selection);
     }
 }
