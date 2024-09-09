@@ -133,7 +133,7 @@ public class DonorSystemControl {
     }
 
     private void modifyDonorEmail(Donor selectedDonor) {
-        String newEmail = donorSystemUI.getNewDonorName();
+        String newEmail = donorSystemUI.getNewDonorEmail();
         selectedDonor.setEmail(newEmail);
     }
 
