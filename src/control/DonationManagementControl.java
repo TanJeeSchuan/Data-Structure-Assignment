@@ -14,7 +14,7 @@ import java.util.Scanner;
 
 /**
  *
- * @author xuanx
+ * @author Liau Xiao Xuan
  */
 public class DonationManagementControl {
 
@@ -52,7 +52,7 @@ public class DonationManagementControl {
                     removeDonation();
                     break;
                 case 4:
-                    displayDonation();
+                    displayAllDonation();
                     break;
                 case 5:
                     searcDonation();
@@ -70,12 +70,11 @@ public class DonationManagementControl {
 
         donationManagementUI.promptTitle("Add Donation");
 
-        ArrayList<CharityCause> causes = 
-                DB.getInstance().charityCauseDAO.getCharityCauses();
+        ArrayList<CharityCause> causes
+                = DB.getInstance().charityCauseDAO.getCharityCauses();
         CharityCause cause = donationManagementUI.getCauseOption(causes);
         double amount = donationManagementUI.getDonationAmount();
-        Donor donor = new 
-        Donor(donationManagementUI.getDonorName(), 
+        Donor donor = new Donor(donationManagementUI.getDonorName(),
                 donationManagementUI.getDonorEmail());
 
         for (int i = 0; i < donorSet.size(); i++) {
@@ -96,95 +95,128 @@ public class DonationManagementControl {
     public void updateDonation() {
         donationManagementUI.promptTitle("Update Donation");
 
-        Donor donor = new Donor(donationManagementUI.getDonorName(), 
-                donationManagementUI.getDonorEmail());
-        Donation donation;
+        donationManagementUI.displayAllDonations(displayDonation());
+        int selection = donationManagementUI.getSelection();
+        int index = 0;
+        Donation donation = null;
+        boolean found = false;
 
-        if (!dm.donations.has(donor)) {
-            donationManagementUI.noSuchInformation();
-        } else {
-            donation = donationManagementUI.getModifyDonation
-                        (dm.getDonorDonation(donor));
-
-            int option = donationManagementUI.getModifyOption();
-
-            switch (option) {
-                case 1:
-                    Donor newDonor = 
-                            new Donor(donationManagementUI.getDonorName(), 
-                                    donationManagementUI.getDonorEmail());
-                    dm.setDonationDonor(donor, newDonor, donation);
-                    donation.setDonor(newDonor);
-
-                    break;
-                case 2:
-                    ArrayList<CharityCause> causes = 
-                            DB.getInstance().
-                                    charityCauseDAO.getCharityCauses();
-                    CharityCause cause = 
-                            donationManagementUI.getCauseOption(causes);
-                    donation.setCause(cause);
-
-                    break;
-                case 3:
-                    double amount = donationManagementUI.getDonationAmount();
-                    donation.setAmount(amount);
-
-                    break;
+        for (int i = 0; i < dm.donations.size(); i++) {
+            Donor donor = dm.donations.getKey(i);
+            List<Donation> donationInfo = dm.donations.get(donor);
+            for (int j = 0; j < dm.donations.get(donor).size() 
+                    && !found; j++) {
+                if (++index == selection) {
+                    donation = donationInfo.get(j);
+                    found = true;
+                }
             }
-
-            db.donationDAO.syncDonations(dm.donations);
-            donationManagementUI.promptSuccessMessage("updated");
         }
+
+        Donor donor = donation.getDonor();
+
+        int option = donationManagementUI.getModifyOption();
+
+        switch (option) {
+            case 1:
+                Donor newDonor
+                        = new Donor(donationManagementUI.getDonorName(),
+                                donationManagementUI.getDonorEmail());
+                dm.setDonationDonor(donor, newDonor, donation);
+                donation.setDonor(newDonor);
+
+                break;
+            case 2:
+                ArrayList<CharityCause> causes
+                        = DB.getInstance().charityCauseDAO.getCharityCauses();
+                CharityCause cause
+                        = donationManagementUI.getCauseOption(causes);
+                donation.setCause(cause);
+
+                break;
+            case 3:
+                double amount = donationManagementUI.getDonationAmount();
+                donation.setAmount(amount);
+
+                break;
+        }
+
+        db.donationDAO.syncDonations(dm.donations);
+        donationManagementUI.promptSuccessMessage("updated");
     }
 
     public void removeDonation() {
         donationManagementUI.promptTitle("Delete Donation");
 
-        Donor donor = 
-                new Donor(donationManagementUI.getDonorName(), 
-                        donationManagementUI.getDonorEmail());
-        Donation donation;
+        donationManagementUI.displayAllDonations(displayDonation());
+        int selection = donationManagementUI.getSelection();
+        int index = 0;
+        Donation donation = null;
+        boolean found = false;
 
-        if (!dm.donations.has(donor)) {
-            donationManagementUI.noSuchInformation();
-        } else {
-            donation = donationManagementUI.
-                    getModifyDonation(dm.getDonorDonation(donor));
-            if (donationManagementUI.getDeleteConfirmation(donation)) {
-                dm.getDonorDonation(donor).remove(donation);
-                donationManagementUI.promptSuccessMessage("deleted");
+        for (int i = 0; i < dm.donations.size(); i++) {
+            Donor donor = dm.donations.getKey(i);
+            List<Donation> donationInfo = dm.donations.get(donor);
+            for (int j = 0; j < dm.donations.get(donor).size() 
+                    && !found; j++) {
+                if (++index == selection) {
+                    donation = donationInfo.get(j);
+                    found = true;
+                }
             }
         }
-        
+
+        Donor donor = donation.getDonor();
+
+        if (donationManagementUI.getDeleteConfirmation(donation)) {
+            dm.getDonorDonation(donor).remove(donation);
+            donationManagementUI.promptSuccessMessage("deleted");
+        }
+
         db.donationDAO.syncDonations(dm.donations);
     }
 
-    public void displayDonation() {
-        ArrayMap<Donor, ArrayList<Donation>> donations = 
-                db.donationDAO.getDonations();
+    public void displayAllDonation() {
+        donationManagementUI.promptTitle("Display Donation");
+        donationManagementUI.displayAllDonations(displayDonation());
+    }
 
-        String allDonationsString = "";
-        for (int i = 0; i < donations.size(); i++) {
-            Donor donor = donations.getKey(i);
-            allDonationsString += getDonationString(donor);
+    public List<String> displayDonation() {
+        List<String> donationsInfo = new ArrayList<>();
+        int number = 0;
+        donationsInfo.add(
+                "%-3s | %-30s | %-30s | %-15s"
+                        .formatted("No.", "Donor name",
+                                "Cause", "Donation Amount"));
+
+        for (int i = 0; i < dm.donations.size(); i++) {
+            Donor donor = dm.donations.getKey(i);
+            List<Donation> donationInfo = dm.donations.get(donor);
+            for (int j = 0; j < dm.donations.get(donor).size(); j++) {
+                Donation donation = donationInfo.get(j);
+                donationsInfo.add(
+                        "%-3d | %-30s | %-30s | %-15.2f"
+                                .formatted(++number, donor.getName(),
+                                        donation.getCause(),
+                                        donation.getAmount()));
+            }
+
         }
 
-        donationManagementUI.promptTitle("Display Donation");
-        donationManagementUI.displayAllDonations(allDonationsString);
-
+        return donationsInfo;
     }
 
     public void searcDonation() {
         donationManagementUI.promptTitle("Search Donation");
 
-        Donor donor = new Donor(donationManagementUI.getDonorName(), 
+        Donor donor = new Donor(donationManagementUI.getDonorName(),
                 donationManagementUI.getDonorEmail());
 
         if (!dm.donations.has(donor)) {
             donationManagementUI.noSuchInformation();
         } else {
-            donationManagementUI.promptInformation(getDonationString(donor));
+            donationManagementUI.promptInformation(
+                    getDonationString(donor));
         }
     }
 
@@ -194,11 +226,9 @@ public class DonationManagementControl {
         switch (option) {
             case 1:
                 donorReport();
-                System.out.println("1. Donor in Donation Report");
-                System.out.println("2. Donation Report");
                 break;
             case 2:
-                donationReport();
+                donationsReport();
                 break;
             case 3:
                 getMostRecentDonor();
@@ -211,15 +241,15 @@ public class DonationManagementControl {
         List<String> donorInfo = new ArrayList<>();
         int number = 0;
         donorInfo.add("%-3s | %-8s | %-30s | %-30s | %-5s"
-                .formatted("No.", "Donor ID", 
-                        "Donor name", "Donor Email", "Total Donation"));
+                .formatted("No.", "Donor ID","Donor name", 
+                        "Donor Email", "Total Donation"));
 
         for (int i = 0; i < dm.donations.size(); i++) {
             Donor donor = dm.donations.getKey(i);
             donorInfo.add("%-3d | %-8d | %-30s | %-30s | %-5d"
-                    .formatted(i + 1, donor.getDonorId(), donor.getName(),
-                            donor.getEmail(), dm.donations.get(donor)
-                                    .size()));
+                    .formatted(i + 1, donor.getDonorId(), 
+                            donor.getName(),donor.getEmail(), 
+                                dm.donations.get(donor).size()));
             number++;
         }
 
@@ -229,29 +259,8 @@ public class DonationManagementControl {
     public void donationsReport() {
         donationManagementUI.promptTitle("Donation Report");
 
-        List<String> donationInfoReport = new ArrayList<>();
-        int number = 0;
-        donationInfoReport.add(
-                "%-3s | %-11s | %-30s | %-20s | %-15s"
-                        .formatted("No.", "Donation ID", "Donor name", 
-                                "Cause", "Donation Amount"));
-
-        for (int i = 0; i < dm.donations.size(); i++) {
-            Donor donor = dm.donations.getKey(i);
-            List<Donation> donationInfo = dm.donations.get(donor);
-            for (int j = 0; j < dm.donations.get(donor).size(); j++) {
-                Donation donation = donationInfo.get(i);
-                donationInfoReport.add(
-                        "%-3d | %-11d | %-30s | %-20s | %-15d"
-                                .formatted(i + 1, donation.getDonationId(),
-                                        donor.getName(), donation.getCause(),
-                                        donation.getAmount()));
-                number++;
-            }
-        }
-
-        donationManagementUI.displayDonationReport(number, 
-                donationInfoReport);
+        donationManagementUI.displayDonationReport(
+                displayDonation());
     }
 
     public void getMostRecentDonor() {
@@ -261,7 +270,8 @@ public class DonationManagementControl {
         Donor donor = null;
 
         for (int i = 0; i < dm.donations.size(); i++) {
-            if (dm.donations.get(dm.donations.getKey(i)).size() > highest) {
+            if (dm.donations.get(
+                    dm.donations.getKey(i)).size() > highest) {
                 donor = dm.donations.getKey(i);
                 highest = dm.donations.get(donor).size();
             }

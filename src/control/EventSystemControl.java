@@ -14,7 +14,7 @@ import java.time.format.DateTimeFormatter;
 
 /**
  *
- * @author Tan Jee Schuan
+ * @author Tan You Zhen
  */
 public class EventSystemControl {
     private EventSystemUI eventSystemUI;
@@ -126,7 +126,7 @@ public class EventSystemControl {
                 throw new AssertionError();
         }
 
-        eventSystemUI.showEvent("%%d\t-70s\t%-40s\t%-40s".formatted(i, selectedEvent.toString(), selectedEvent.getCharityCause().getCauseName(), selectedEvent.getEventDate().format(DateTimeFormatter.ISO_LOCAL_DATE)));
+        eventSystemUI.showEvent("%d\t%-70s\t%-40s\t%-40s".formatted(i, selectedEvent.toString(), selectedEvent.getCharityCause().getCauseName(), selectedEvent.getEventDate().format(DateTimeFormatter.ISO_LOCAL_DATE)));
     }
     
     private void modifyEventName(Event selectedEvent) {

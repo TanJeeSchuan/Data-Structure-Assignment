@@ -96,7 +96,7 @@ public class DonorSystemUI {
     }
 
     public void report(int total, List<String> recentDonor) {
-        System.out.println("Donee Report");
+        System.out.println("Donor Report");
         System.out.println("Total of donors: " + total);
         System.out.println();
         System.out.println("Recently donor added information: ");

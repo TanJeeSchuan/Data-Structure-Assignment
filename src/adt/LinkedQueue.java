@@ -5,7 +5,7 @@ import adt.interfaces.Queue;
 
 /**
  *
- * @author LiauXiaoXuan
+ * @author Liau Xiao Xuan
  */
 public class LinkedQueue<T> implements Queue<T>, Iterable<T>{
     protected Node firstNode;

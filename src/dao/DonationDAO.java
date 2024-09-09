@@ -10,7 +10,7 @@ import java.util.Iterator;
 
 /**
  *
- * @author Tan Jee Schuan
+ * @author Liau Xiao Xuan
  */
 public class DonationDAO {
     public ArrayMap<Donor, ArrayList<Donation>> donations;

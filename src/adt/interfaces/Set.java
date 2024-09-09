@@ -4,7 +4,7 @@ import java.util.Iterator;
 
 /**
  *
- * @author SohChlingLiang
+ * @author Soh Ching Liang
  */
 
 public interface Set<T> extends Iterable<T>{
