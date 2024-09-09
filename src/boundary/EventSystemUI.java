@@ -9,6 +9,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 import adt.interfaces.Set;
+import java.time.LocalDate;
 
 /**
  *
@@ -58,15 +59,16 @@ public class EventSystemUI {
     public LocalDateTime getNewEventDate() {
         System.out.print("Enter Event Date With Format (yyyy-mm-dd): ");
         String dateString = scanner.nextLine();
-        LocalDateTime dateTime = LocalDateTime.parse(dateString, DateTimeFormatter.ISO_DATE);
+        LocalDate date = LocalDate.parse(dateString, DateTimeFormatter.ISO_DATE);
         
-        return dateTime;
+        return date.atStartOfDay();
     }
 
     public void showCharityCause(List charityCauses) {
         int index = 0;
         for(var charityCause: charityCauses){
             System.out.println(index + " ----- " + charityCause.toString());
+            index++;
         }
     }
 
