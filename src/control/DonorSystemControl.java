@@ -89,6 +89,7 @@ public class DonorSystemControl {
                 break;
             case 2:
                 modifyDonorEmail(selectedDonor);
+                break;
             default:
                 throw new AssertionError();
         }

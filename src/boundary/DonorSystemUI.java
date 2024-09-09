@@ -40,7 +40,7 @@ public class DonorSystemUI {
     }
     
     public String getNewDonorName(){
-        System.out.print("\nEnter new donor name: ");
+        System.out.print("\nEnter new donor email: ");
         return scanner.nextLine();
     }
 
