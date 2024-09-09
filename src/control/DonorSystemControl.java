@@ -6,14 +6,15 @@ package control;
 
 import adt.ArrayList;
 import adt.ArrayMap;
+import adt.LinkedQueue;
 import adt.LinkedSet;
 import adt.LinkedStack;
 import adt.interfaces.List;
+import adt.interfaces.Queue;
 import boundary.DonorSystemUI;
 import dao.DB;
 import entity.Donation;
 import entity.Donor;
-import adt.interfaces.Stack;
 
 /**
  *
@@ -22,7 +23,7 @@ import adt.interfaces.Stack;
 public class DonorSystemControl {
 
     private DonorSystemUI donorSystemUI;
-    private Stack<Donor> donorStack = new LinkedStack<>();
+    private Queue<Donor> donorStack = new LinkedQueue<>();
     private DB db = DB.getInstance();
 
     public DonorSystemControl() {
@@ -139,7 +140,7 @@ public class DonorSystemControl {
 
     private void donorReport() {
         List<String> recentDonor = new ArrayList<>();
-        Stack<Donor> tempStack = new LinkedStack<>();
+        Queue<Donor> tempStack = new LinkedQueue<>();
         LinkedSet<Donor> donorSet = db.donorDAO.getDonors();
         int total = donorSet.size();
 
@@ -150,15 +151,14 @@ public class DonorSystemControl {
             recentDonor.add("%-8s | %-30s | %-11s | %-50s".formatted("Donor ID", "Donor Name", "Contact Number", "Address"));
 
             // get data
-            for (int i = 0; i < 10 || donorStack.isEmpty(); i++) {
-                Donor donor = donorStack.pop();
-                tempStack.push(donor);
+            for (int i = 0; i < 10 && !donorStack.isEmpty(); i++) {
+                Donor donor = donorStack.dequeue();
+                tempStack.enqueue(donor);
                 recentDonor.add("%-8d | %-30s | %-30s".formatted(donor.getDonorId(), donor.getName(), donor.getEmail()));
-
             }
             // store back
             while (!tempStack.isEmpty()) {
-                donorStack.push(tempStack.pop());
+                donorStack.enqueue(tempStack.dequeue());
             }
         }
 
