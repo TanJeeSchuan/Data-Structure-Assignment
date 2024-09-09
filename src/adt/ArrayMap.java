@@ -30,6 +30,7 @@ public class ArrayMap<K, V> implements Map<K, V> {
         maxSize = DEFAULT_CAPACITY;
     }
 
+    @Override
     public boolean isEmpty() {
         return size==0;
     }
@@ -88,6 +89,7 @@ public class ArrayMap<K, V> implements Map<K, V> {
         return false;
     }
 
+    @Override
     public int size() {
         return size;
     }

@@ -19,4 +19,6 @@ public interface Map<K, V> {
     int size();
     
     K getKey(int index);
+    
+    boolean isEmpty();
 }
