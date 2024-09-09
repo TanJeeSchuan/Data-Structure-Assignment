@@ -12,7 +12,7 @@ import adt.interfaces.Set;
 
 /**
  *
- * @author Tan Jee Schuan
+ * @author Tan Jia Ning
  */
 public class DonorSystemUI {
     private Scanner scanner;

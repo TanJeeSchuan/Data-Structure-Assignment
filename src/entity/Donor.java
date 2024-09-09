@@ -2,7 +2,7 @@ package entity;
 
 /**
  *
- * @author Tan Jee Schuan
+ * @author Tan Jia Ning
  */
 public class Donor implements Comparable<Donor>{
     private static int currentDonorId = 1;

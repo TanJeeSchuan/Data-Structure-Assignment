@@ -17,7 +17,7 @@ import entity.Donor;
 
 /**
  *
- * @author Tan Jee Schuan
+ * @author Tan Jia Ning
  */
 public class DonorSystemControl {
 
