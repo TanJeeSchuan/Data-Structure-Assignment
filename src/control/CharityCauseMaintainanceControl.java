@@ -4,7 +4,6 @@ import adt.ArrayList;
 import boundary.CharityCauseMaintainanceUI;
 import dao.DB;
 import entity.CharityCause;
-import entity.Donee;
 
 /**
  *

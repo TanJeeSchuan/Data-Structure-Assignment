@@ -4,14 +4,10 @@
  */
 package dao;
 
-import adt.LinkedSet;
 import adt.SortedArrayList;
 import entity.CharityCause;
-import entity.Donor;
 import entity.Event;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.util.Comparator;
 import java.util.Iterator;
 

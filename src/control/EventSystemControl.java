@@ -4,7 +4,6 @@
  */
 package control;
 
-import adt.ArrayList;
 import adt.interfaces.List;
 import boundary.EventSystemUI;
 import dao.DB;
@@ -12,7 +11,6 @@ import entity.CharityCause;
 import entity.Event;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import adt.interfaces.Set;
 
 /**
  *
