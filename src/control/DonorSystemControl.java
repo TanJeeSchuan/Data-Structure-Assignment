@@ -149,7 +149,7 @@ public class DonorSystemControl {
             recentDonor.add("No new donors have been added recently.");
 
         } else {
-            recentDonor.add("%-8s | %-30s | %-11s | %-50s".formatted("Donor ID", "Donor Name", "Contact Number", "Address"));
+            recentDonor.add("%-8s | %-30s | %-11s".formatted("Donor ID", "Donor Name", "Contact Number"));
 
             // get data
             for (int i = 0; i < 10 && !donorStack.isEmpty(); i++) {
