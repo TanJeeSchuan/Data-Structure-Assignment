@@ -2,7 +2,7 @@ package entity;
 
 /**
  *
- * @author Tan Jee Schuan
+ * @author Liau Xiao Xuan
  */
 public class Donation implements Comparable<Donation> {
 
@@ -58,6 +58,7 @@ public class Donation implements Comparable<Donation> {
     
     @Override
     public String toString(){
-        return "Donor name: " + donor.getName() + ", Charity Cause: " + cause.causeName + ", Amount: " + amount;
+        return "Donor name: " + donor.getName() + ", Charity Cause: " + 
+                cause.causeName + ", Amount: " + amount;
     }
 }

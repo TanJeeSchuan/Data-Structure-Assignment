@@ -104,7 +104,8 @@ public class DonationManagementControl {
         for (int i = 0; i < dm.donations.size(); i++) {
             Donor donor = dm.donations.getKey(i);
             List<Donation> donationInfo = dm.donations.get(donor);
-            for (int j = 0; j < dm.donations.get(donor).size() && !found; j++) {
+            for (int j = 0; j < dm.donations.get(donor).size() 
+                    && !found; j++) {
                 if (++index == selection) {
                     donation = donationInfo.get(j);
                     found = true;
@@ -156,7 +157,8 @@ public class DonationManagementControl {
         for (int i = 0; i < dm.donations.size(); i++) {
             Donor donor = dm.donations.getKey(i);
             List<Donation> donationInfo = dm.donations.get(donor);
-            for (int j = 0; j < dm.donations.get(donor).size() && !found; j++) {
+            for (int j = 0; j < dm.donations.get(donor).size() 
+                    && !found; j++) {
                 if (++index == selection) {
                     donation = donationInfo.get(j);
                     found = true;
@@ -213,7 +215,8 @@ public class DonationManagementControl {
         if (!dm.donations.has(donor)) {
             donationManagementUI.noSuchInformation();
         } else {
-            donationManagementUI.promptInformation(getDonationString(donor));
+            donationManagementUI.promptInformation(
+                    getDonationString(donor));
         }
     }
 
@@ -238,15 +241,15 @@ public class DonationManagementControl {
         List<String> donorInfo = new ArrayList<>();
         int number = 0;
         donorInfo.add("%-3s | %-8s | %-30s | %-30s | %-5s"
-                .formatted("No.", "Donor ID",
-                        "Donor name", "Donor Email", "Total Donation"));
+                .formatted("No.", "Donor ID","Donor name", 
+                        "Donor Email", "Total Donation"));
 
         for (int i = 0; i < dm.donations.size(); i++) {
             Donor donor = dm.donations.getKey(i);
             donorInfo.add("%-3d | %-8d | %-30s | %-30s | %-5d"
-                    .formatted(i + 1, donor.getDonorId(), donor.getName(),
-                            donor.getEmail(), dm.donations.get(donor)
-                            .size()));
+                    .formatted(i + 1, donor.getDonorId(), 
+                            donor.getName(),donor.getEmail(), 
+                                dm.donations.get(donor).size()));
             number++;
         }
 
@@ -256,7 +259,8 @@ public class DonationManagementControl {
     public void donationsReport() {
         donationManagementUI.promptTitle("Donation Report");
 
-        donationManagementUI.displayDonationReport(displayDonation());
+        donationManagementUI.displayDonationReport(
+                displayDonation());
     }
 
     public void getMostRecentDonor() {
@@ -266,7 +270,8 @@ public class DonationManagementControl {
         Donor donor = null;
 
         for (int i = 0; i < dm.donations.size(); i++) {
-            if (dm.donations.get(dm.donations.getKey(i)).size() > highest) {
+            if (dm.donations.get(
+                    dm.donations.getKey(i)).size() > highest) {
                 donor = dm.donations.getKey(i);
                 highest = dm.donations.get(donor).size();
             }

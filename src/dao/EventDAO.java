@@ -13,7 +13,7 @@ import java.util.Iterator;
 
 /**
  *
- * @author Tan Jee Schuan
+ * @author Tan You Zhen
  */
 public class EventDAO {
     private SortedArrayList<Event> eventList;
