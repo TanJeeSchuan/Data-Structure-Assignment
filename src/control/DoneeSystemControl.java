@@ -102,7 +102,8 @@ public class DoneeSystemControl {
         ArrayList<CharityCause> causes = db.charityCauseDAO.getCharityCauses();
         String causeName = null;
         ArrayList<String> doneesInfo = new ArrayList<>();
-        doneesInfo.add("%-3s | %-20s | %-30s | %-11s | %-50s".formatted("No.", "Donee Name", "Cause", "Contact Number", "Address"));
+        doneesInfo.add("%-3s | %-20s | %-30s | %-11s | %-50s".formatted("No.", 
+                "Donee Name", "Cause", "Contact Number", "Address"));
         for (int i = 0; i < doneeSet.size(); i++) {
             causeName = null;
             for (int j = 0; j < causes.size() && causeName == null; j++) {
@@ -111,7 +112,9 @@ public class DoneeSystemControl {
                     causeName = cause.getCauseName();
                 }
             }
-            doneesInfo.add("%-3d | %-20s | %-30s | %-11s | %-50s".formatted(i + 1, doneeSet.getValue(i).getName(), causeName, doneeSet.getValue(i).getContactNumber(), doneeSet.getValue(i).getAddress()));
+            doneesInfo.add("%-3d | %-20s | %-30s | %-11s | %-50s".formatted
+        (i + 1, doneeSet.getValue(i).getName(), causeName, doneeSet.getValue(i)
+                .getContactNumber(), doneeSet.getValue(i).getAddress()));
 
         }
 
@@ -153,13 +156,16 @@ public class DoneeSystemControl {
         if (doneeQueue.isEmpty()) {
             recentDonee.add("No new donees have been added recently.");
         } else {
-            recentDonee.add("%-8s | %-30s | %-11s | %-50s".formatted("Donee ID", "Donee Name", "Contact Number", "Address"));
+            recentDonee.add("%-8s | %-30s | %-11s | %-50s".formatted
+        ("Donee ID", "Donee Name", "Contact Number", "Address"));
 
             // get data
             for (int i = 0; i < 10 && !doneeQueue.isEmpty(); i++) {
                 Donee donee = doneeQueue.dequeue();
                 tempQueue.enqueue(donee);
-                recentDonee.add("%-8d | %-30s | %-11s | %-50s".formatted(donee.getDoneeId(), donee.getName(), donee.getContactNumber(), donee.getAddress()));
+                recentDonee.add("%-8d | %-30s | %-11s | %-50s".formatted
+        (donee.getDoneeId(), donee.getName(), donee.getContactNumber(), 
+                donee.getAddress()));
 
             }
             // store back

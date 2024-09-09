@@ -60,6 +60,8 @@ public class Donee implements Comparable<Donee>{
     
     @Override
     public String toString(){
-        return "Donee Id: " + doneeId + ", Donee name: " + name + ", Contact Number: " + contactNumber + ", Address: " + address;
+        return "Donee Id: " + doneeId + ", Donee name: " + name + 
+                ", Contact Number: " + contactNumber + ", Address: " 
+                + address;
     }
 }
