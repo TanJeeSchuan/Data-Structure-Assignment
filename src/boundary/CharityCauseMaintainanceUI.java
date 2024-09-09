@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package boundary;
 
 import adt.ArrayList;
@@ -35,7 +31,8 @@ public class CharityCauseMaintainanceUI {
     }
     
     public void showCharityCauseHeader(){
-        System.out.println("\n%-10s%-30s%-20s".formatted("CauseId","Cause Name","Number of Donee"));
+        System.out.println("\n%-10s%-30s%-20s".formatted(
+                "CauseId","Cause Name","Number of Donee"));
     }
     
     public void showCharityCauseSelection(String charityString){

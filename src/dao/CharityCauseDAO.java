@@ -1,12 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package dao;
 
 import adt.ArrayList;
 import adt.LinkedSet;
-import adt.interfaces.List;
 import entity.CharityCause;
 import entity.Donee;
 import java.util.Iterator;
@@ -24,7 +19,8 @@ public class CharityCauseDAO {
         LinkedSet<Donee> doneeSet = doneeDAO.getDonees();
         Iterator itr = doneeSet.iterator();
         
-        CharityCause tempCharityCause = new CharityCause("Feeding the Homeless");
+        CharityCause tempCharityCause = 
+                new CharityCause("Feeding the Homeless");
         tempCharityCause.donees.add((Donee) itr.next());
         tempCharityCause.donees.add((Donee) itr.next());
         charityCauseList.add(tempCharityCause);

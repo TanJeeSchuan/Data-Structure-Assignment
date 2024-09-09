@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package adt;
 
 import adt.interfaces.List;
@@ -93,7 +89,8 @@ public class SortedArrayList<T extends Comparable> implements List<T>{
     public boolean contains(T object) {
         if(comparator == null)
             return binarySearch(array, 0, entries, (T)object) != -1;
-        return comparatorBinarySearch(array, 0, entries, (T)object, this.comparator) != -1;
+        return comparatorBinarySearch(array, 0, entries, (T)object, 
+                this.comparator) != -1;
     }
     
     @Override
@@ -101,7 +98,8 @@ public class SortedArrayList<T extends Comparable> implements List<T>{
         if(comparator == null)
             return binarySearch(array, 0, entries, (T)object);
         
-        return comparatorBinarySearch(array, 0, entries, (T)object, this.comparator);
+        return comparatorBinarySearch(array, 0, entries, (T)object, 
+                this.comparator);
     }
     
     @Override
@@ -212,7 +210,8 @@ public class SortedArrayList<T extends Comparable> implements List<T>{
         return -1;
     }
     
-    private int comparatorBinarySearch(Object arr[], int start, int end, Object x, Comparator comparator){
+    private int comparatorBinarySearch(Object arr[], int start, int end, 
+            Object x, Comparator comparator){
         if(end >= start){
             int middle = start + (end - start) / 2 ;
 
@@ -221,11 +220,13 @@ public class SortedArrayList<T extends Comparable> implements List<T>{
 
             //x at low
             if(comparator.compare(arr[middle],(x)) > 0)
-                return comparatorBinarySearch(arr, start, middle - 1, x, comparator);
+                return comparatorBinarySearch(arr, start, middle - 1, x, 
+                        comparator);
 
             //x at higher part
             if(comparator.compare(arr[middle],(x)) < 0)
-                return comparatorBinarySearch(arr, middle + 1, end, x, comparator);
+                return comparatorBinarySearch(arr, middle + 1, end, x, 
+                        comparator);
         }
         //not found
         return -1;

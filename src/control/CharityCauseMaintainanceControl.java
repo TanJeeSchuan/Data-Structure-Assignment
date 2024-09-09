@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package control;
 
 import adt.ArrayList;
@@ -56,7 +52,8 @@ public class CharityCauseMaintainanceControl {
     private void addNewCause() {
         charityCauseMaintainanceUI.showAddCharityUI();
         String causeName = charityCauseMaintainanceUI.getCauseDetails();
-        DB.getInstance().charityCauseDAO.addCharityCause(new CharityCause(causeName));
+        DB.getInstance().charityCauseDAO.addCharityCause
+        (new CharityCause(causeName));
     }
     
     private void modifyCause(){
@@ -65,7 +62,9 @@ public class CharityCauseMaintainanceControl {
         ArrayList<CharityCause> causes = db.charityCauseDAO.getCharityCauses();
         charityCauseMaintainanceUI.showCharityCauseHeader();
         for(CharityCause cause: causes){
-            charityCauseMaintainanceUI.showCharityCauseSelection("%-10d%-30s%-20s".formatted(cause.causeId, cause.causeName, cause.donees.size()));
+            charityCauseMaintainanceUI.showCharityCauseSelection(
+                    "%-10d%-30s%-20s".formatted(cause.causeId, cause.causeName, 
+                            cause.donees.size()));
         }
         
         int selectedIndex = charityCauseMaintainanceUI.getCauseSelection();
@@ -90,7 +89,9 @@ public class CharityCauseMaintainanceControl {
     
     private void displayAllCauses(){
         for(CharityCause cause: db.charityCauseDAO.getCharityCauses()){
-            charityCauseMaintainanceUI.showCharityCauseSelection("%-10d%-30s%-20s".formatted(cause.causeId, cause.causeName, cause.donees.size()));
+            charityCauseMaintainanceUI.showCharityCauseSelection(
+                    "%-10d%-30s%-20s".formatted(cause.causeId, 
+                            cause.causeName, cause.donees.size()));
         }
     }
 
@@ -109,14 +110,19 @@ public class CharityCauseMaintainanceControl {
             case 1:
                 //add donor
                 charityCauseMaintainanceUI.showDonees(db.doneeDAO.getDonees());
-                int newDoneeIndex = charityCauseMaintainanceUI.getNewDoneeIndex();
-                selectedCause.donees.add(db.doneeDAO.getDonees().getValue(newDoneeIndex));
+                int newDoneeIndex = 
+                        charityCauseMaintainanceUI.getNewDoneeIndex();
+                selectedCause.donees.add(
+                        db.doneeDAO.getDonees().getValue(newDoneeIndex));
                 
                 break;
             case 2:
-                charityCauseMaintainanceUI.showCharityCauseDonees(selectedCause.donees);
-                int removedIndex = charityCauseMaintainanceUI.getRemovedDoneeIndex();
-                selectedCause.donees.remove(selectedCause.donees.get(removedIndex));
+                charityCauseMaintainanceUI.showCharityCauseDonees(
+                        selectedCause.donees);
+                int removedIndex =
+                        charityCauseMaintainanceUI.getRemovedDoneeIndex();
+                selectedCause.donees.remove(
+                        selectedCause.donees.get(removedIndex));
                 break;
             default:
                 throw new AssertionError();
@@ -128,7 +134,9 @@ public class CharityCauseMaintainanceControl {
         ArrayList<CharityCause> causes = db.charityCauseDAO.getCharityCauses();
         charityCauseMaintainanceUI.showCharityCauseHeader();
         for(CharityCause cause: causes){
-            charityCauseMaintainanceUI.showCharityCauseSelection("%-10d%-30s%-20s".formatted(cause.causeId, cause.causeName, cause.donees.size()));
+            charityCauseMaintainanceUI.showCharityCauseSelection(
+                    "%-10d%-30s%-20s".formatted(cause.causeId, cause.causeName, 
+                            cause.donees.size()));
         }
         
         int selectedIndex = charityCauseMaintainanceUI.getCauseSelection();
@@ -140,6 +148,7 @@ public class CharityCauseMaintainanceControl {
         
         db.charityCauseDAO.removeCause(selectedCause);
         
-        charityCauseMaintainanceUI.showCharityCauseSelection(selectedCause.toString() + " Deleted");
+        charityCauseMaintainanceUI.showCharityCauseSelection(
+                selectedCause.toString() + " Deleted");
     }
 }

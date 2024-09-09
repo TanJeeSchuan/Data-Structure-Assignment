@@ -57,11 +57,13 @@ public class LinkedSet<T> implements Set<T>{
 
         Node newNode = new Node(t);
 
-        if (isEmpty()) { // if the set is empty, straightly add the element into the set
+        if (isEmpty()) {
+// if the set is empty, straightly add the element into the set
             firstNode = newNode;
             lastNode = firstNode;
             size++;
-        } else if (!contains(t)) { // check the element in the set, return true if the element is not exist
+        } else if (!contains(t)) {
+// check the element in the set, return true if the element is not exist
             lastNode.next = newNode;
             lastNode = newNode;
             size++;
