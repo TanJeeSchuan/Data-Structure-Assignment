@@ -21,7 +21,7 @@ import adt.interfaces.Queue;
 public class DoneeSystemControl {
 
     private DoneeSystemUI doneeSystemUI;
-    private Queue<Donee> doneeStack = new LinkedQueue<>();
+    private Queue<Donee> doneeQueue = new LinkedQueue<>();
     private DB db = DB.getInstance();
 
     public DoneeSystemControl() {
@@ -69,7 +69,7 @@ public class DoneeSystemControl {
 
         Donee newDonee = new Donee(doneeName, doneeContact, doneeAddress);
         DB.getInstance().doneeDAO.addDonee(newDonee);
-        doneeStack.enqueue(newDonee);
+        doneeQueue.enqueue(newDonee);
         doneeSystemUI.showNewDonee(newDonee);
     }
 
@@ -154,21 +154,21 @@ public class DoneeSystemControl {
         LinkedSet<Donee> doneeSet = db.doneeDAO.getDonees();
         int total = doneeSet.size();
 
-        if (doneeStack.isEmpty()) {
+        if (doneeQueue.isEmpty()) {
             recentDonee.add("No new donees have been added recently.");
         } else {
             recentDonee.add("%-8s | %-30s | %-11s | %-50s".formatted("Donee ID", "Donee Name", "Contact Number", "Address"));
 
             // get data
-            for (int i = 0; i < 10 && !doneeStack.isEmpty(); i++) {
-                Donee donee = doneeStack.dequeue();
+            for (int i = 0; i < 10 && !doneeQueue.isEmpty(); i++) {
+                Donee donee = doneeQueue.dequeue();
                 tempQueue.enqueue(donee);
                 recentDonee.add("%-8d | %-30s | %-11s | %-50s".formatted(donee.getDoneeId(), donee.getName(), donee.getContactNumber(), donee.getAddress()));
 
             }
             // store back
             while (!tempQueue.isEmpty()) {
-                doneeStack.enqueue(tempQueue.dequeue());
+                doneeQueue.enqueue(tempQueue.dequeue());
             }
         }
 
